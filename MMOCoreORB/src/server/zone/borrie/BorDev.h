@@ -53,7 +53,7 @@ public:
 			target->setPvpStatusBitmask(0);
 			commander->sendSystemMessage("Target's AI is no longer always on.");
 		} else {
-			target->setPvpStatusBitmask(CreatureFlag::NONE);
+			target->setPvpStatusBitmask(CreatureFlag::ALWAYSON);
 			commander->sendSystemMessage("Target's AI is Always On now.");
 		}			
 	}
