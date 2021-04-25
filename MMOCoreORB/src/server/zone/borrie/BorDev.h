@@ -49,23 +49,27 @@ public:
 	}
 
 	static void ToggleAlwaysOnAI(CreatureObject* target, CreatureObject* commander) {
-		if (target->getPvpStatusBitmask() & CreatureFlag::ALWAYSON) {
-			target->setPvpStatusBitmask(0);
+		ManagedReference<AiAgent*> agent = target->asAiAgent();
+
+		if (agent->getCreatureBitmask() & CreatureFlag::ALWAYSON) {
+			agent->clearCreatureBit(CreatureFlag::ALWAYSON);
 			commander->sendSystemMessage("Target's AI is no longer always on.");
 		} else {
-			target->setPvpStatusBitmask(CreatureFlag::ALWAYSON);
+			agent->setCreatureBit(CreatureFlag::ALWAYSON);
 			commander->sendSystemMessage("Target's AI is Always On now.");
 		}			
 	}
 
 	static void ToggleForceAICombat(CreatureObject* target, CreatureObject* commander) {
-		if (target->getPvpStatusBitmask() & CreatureFlag::FORCECOMBAT) {
-			target->setPvpStatusBitmask(0);
-			commander->sendSystemMessage("Target PVP Flags Reset");
+		ManagedReference<AiAgent*> agent = target->asAiAgent();
+
+		if (agent->getCreatureBitmask() & CreatureFlag::FORCECOMBAT) {
+			agent->clearCreatureBit(CreatureFlag::FORCECOMBAT);
+			commander->sendSystemMessage("Target is no longer forced into combat.");
 		} else {
-			target->setPvpStatusBitmask(CreatureFlag::FORCECOMBAT);
-			commander->sendSystemMessage("Target's AI is Forcing Combat.");
-		}
+			agent->setCreatureBit(CreatureFlag::FORCECOMBAT);
+			commander->sendSystemMessage("Target will now not peace out of combat.");
+		}	
 	}
 
 	static void creatureGoto(CreatureObject* creature, const uint64& target) {
