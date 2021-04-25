@@ -58,6 +58,16 @@ public:
 			}
 		} else if (command == "client") {
 			BorDev::SetCreatureClient(creature, target);
+		} else if (command == "peace") {
+			if (object != nullptr) {
+				if (object->isCreatureObject()) {
+					BorDev::StopCombat(object->asCreatureObject());
+				} else {
+					BorDev::StopCombat(creature);
+				}
+			} else {
+				BorDev::StopCombat(creature);
+			}
 		}
 
 		

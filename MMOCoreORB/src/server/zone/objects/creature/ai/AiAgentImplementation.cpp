@@ -518,7 +518,7 @@ void AiAgentImplementation::runStartAwarenessInterrupt(SceneObject* pObject) {
 
 	if (creoObject->isDead() || creoObject->isIncapacitated()) return;
 
-	if (isInCombat()) return;
+	//if (isInCombat()) return;
 
 	float levelDiff = creoObject->getLevel() - getLevel();
 	float mod = Math::max(0.04f, Math::min((1.f - (levelDiff / 20.f)), 1.2f));
@@ -1331,7 +1331,6 @@ void AiAgentImplementation::removeDefender(SceneObject* defender) {
  * @param clearDefenders if true the defender vector will be emptied
  */
 void AiAgentImplementation::clearCombatState(bool clearDefenders) {
-	return;
 	CreatureObjectImplementation::clearCombatState(clearDefenders);
 
 	if (threatMap != nullptr)
