@@ -668,7 +668,7 @@ bool AiAgentImplementation::runAwarenessLogicCheck(SceneObject* pObject) {
 		return false;
 	}
 
-	if (creoObject->getPvpStatusBitmask() == CreatureFlag::NONE || creoObject->isDead() || creoObject->isIncapacitated())
+	if (creoObject->getPvpStatusBitmask() == CreatureFlag::NONE || creoObject->isDead() || creoObject->isIncapacitated()) && !(getCreatureBitmask() & CreatureFlag::ALWAYSON))
 		return false;
 
 	//-- if not in combat, ignore creatures in different cells
@@ -1331,13 +1331,16 @@ void AiAgentImplementation::removeDefender(SceneObject* defender) {
  * @param clearDefenders if true the defender vector will be emptied
  */
 void AiAgentImplementation::clearCombatState(bool clearDefenders) {
+	if (getCreatureBitmask() & CreatureFlag::FORCECOMBAT)
+		return;
+
 	CreatureObjectImplementation::clearCombatState(clearDefenders);
 
 	if (threatMap != nullptr)
 		threatMap->removeAll();
 
 	notifyObservers(ObserverEventType::PEACE);
-	sendReactionChat(ReactionManager::CALM);
+	//sendReactionChat(ReactionManager::CALM);
 }
 
 void AiAgentImplementation::notifyInsert(QuadTreeEntry* entry) {

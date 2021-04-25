@@ -56,6 +56,10 @@ public:
 			if (object->isCreatureObject()) {
 				BorDev::ToggleAlwaysOnAI(object->asCreatureObject(), creature);
 			}
+		} else if (command == "forcecombat") {
+			if (object->isCreatureObject()) {
+				BorDev::ToggleForceAICombat(object->asCreatureObject(), creature);
+			}
 		} else if (command == "client") {
 			BorDev::SetCreatureClient(creature, target);
 		} else if (command == "peace") {
@@ -68,6 +72,8 @@ public:
 			} else {
 				BorDev::StopCombat(creature);
 			}
+		} else if (command == "move") {
+			BorDev::SetPosition(creature, target);
 		}
 
 		

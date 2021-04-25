@@ -58,6 +58,16 @@ public:
 		}			
 	}
 
+	static void ToggleForceAICombat(CreatureObject* target, CreatureObject* commander) {
+		if (target->getPvpStatusBitmask() & CreatureFlag::FORCECOMBAT) {
+			target->setPvpStatusBitmask(0);
+			commander->sendSystemMessage("Target PVP Flags Reset");
+		} else {
+			target->setPvpStatusBitmask(CreatureFlag::FORCECOMBAT);
+			commander->sendSystemMessage("Target's AI is Forcing Combat.");
+		}
+	}
+
 	static void creatureGoto(CreatureObject* creature, const uint64& target) {
 		ManagedReference<SceneObject*> object = creature->getZoneServer()->getObject(target, false);
 		if (object == nullptr) {
@@ -82,6 +92,11 @@ public:
 			creature->sendSystemMessage("Error: Invalid Target. Must be a creature.");
 			throw Exception();
 		}
+	}
+
+	static void SetPosition(CreatureObject* creature, const uint64& target) {
+		ManagedReference<SceneObject*> object = creature->getZoneServer()->getObject(target, false);
+		object->setPosition(creature->getPositionX(), creature->getPositionZ(), creature->getPositionY());
 	}
 
 	static void creatureFollow(CreatureObject* creature, const uint64& target) {
