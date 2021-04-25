@@ -668,7 +668,7 @@ bool AiAgentImplementation::runAwarenessLogicCheck(SceneObject* pObject) {
 		return false;
 	}
 
-	if (creoObject->getPvpStatusBitmask() == CreatureFlag::NONE || creoObject->isDead() || creoObject->isIncapacitated()) && !(creoObject->getCreatureBitmask() & CreatureFlag::ALWAYSON))
+	if ((creoObject->getPvpStatusBitmask() == CreatureFlag::NONE || creoObject->isDead() || creoObject->isIncapacitated()) && !(creoObject->getCreatureBitmask() & CreatureFlag::ALWAYSON))
 		return false;
 
 	//-- if not in combat, ignore creatures in different cells
