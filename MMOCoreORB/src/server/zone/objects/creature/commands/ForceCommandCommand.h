@@ -5,6 +5,8 @@
 #ifndef FORCECOMMANDCOMMAND_H_
 #define FORCECOMMANDCOMMAND_H_
 
+#include "server/zone/roleplay/BorDev.h"
+
 class ForceCommandCommand : public QueueCommand {
 public:
 
@@ -15,11 +17,21 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+		StringTokenizer args(arguments.toString());
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
+		String command, subCommand, subSubCommand;
+		if (args.hasMoreTokens()) {
+			args.getStringToken(command);
+		}
+
+		command = command.toLowerCase();
+
+		if (command == "test") {
+			BorDev::SendHelloWorld(creature);
+		}
+
+		
 
 		return SUCCESS;
 	}
