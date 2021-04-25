@@ -56,7 +56,7 @@ public:
 			if (object->isCreatureObject()) {
 				BorDev::ToggleAlwaysOnAI(object->asCreatureObject(), creature);
 			}
-		} else if (command == "forcecombat") {
+		} else if (command == "fc") {
 			if (object->isCreatureObject()) {
 				BorDev::ToggleForceAICombat(object->asCreatureObject(), creature);
 			}

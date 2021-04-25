@@ -97,6 +97,7 @@ public:
 	static void SetPosition(CreatureObject* creature, const uint64& target) {
 		ManagedReference<SceneObject*> object = creature->getZoneServer()->getObject(target, false);
 		object->setPosition(creature->getPositionX(), creature->getPositionZ(), creature->getPositionY());
+		object->updateZone(false, false);
 	}
 
 	static void creatureFollow(CreatureObject* creature, const uint64& target) {

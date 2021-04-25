@@ -823,7 +823,7 @@ void AiAgentImplementation::doAwarenessCheck() {
 		}
 	}
 
-	if (numberOfPlayersInRange.get() > 0)
+	if (numberOfPlayersInRange.get() > 0 || (getCreatureBitmask() & CreatureFlag::ALWAYSON))
 		activateAwarenessEvent();
 }
 
@@ -1331,7 +1331,7 @@ void AiAgentImplementation::removeDefender(SceneObject* defender) {
  * @param clearDefenders if true the defender vector will be emptied
  */
 void AiAgentImplementation::clearCombatState(bool clearDefenders) {
-	if (getCreatureBitmask() & CreatureFlag::FORCECOMBAT)
+	if (getCreatureBitmask() & CreatureFlag::ALWAYSON)
 		return;
 
 	CreatureObjectImplementation::clearCombatState(clearDefenders);
@@ -2445,7 +2445,7 @@ void AiAgentImplementation::activateMovementEvent() {
 	if (isWaiting() && moveEvent != nullptr)
 		moveEvent->cancel();
 
-	if ((waitTime < 0 || numberOfPlayersInRange.get() <= 0) && getFollowObject().get() == nullptr && !isRetreating()) {
+	if ((waitTime < 0 || numberOfPlayersInRange.get() <= 0) && getFollowObject().get() == nullptr && !isRetreating() && !((getCreatureBitmask() & CreatureFlag::ALWAYSON))) {
 		if (moveEvent != nullptr) {
 			moveEvent->clearCreatureObject();
 			moveEvent = nullptr;
