@@ -572,7 +572,7 @@ void AiAgentImplementation::runStartAwarenessInterrupt(SceneObject* pObject) {
 		if (CollisionManager::checkLineOfSight(thisAgent, pObject)) { addDefender(pObject); }
 	} else if (pFollow == nullptr && inRange && isCreature() && (creoObject->getCurrentSpeed() >= creoObject->getWalkSpeed())) {
 		if (CollisionManager::checkLineOfSight(thisAgent, pObject)) {
-			setWatchObject(pObject);
+			//setWatchObject(pObject);
 			//setAlertDuration(10000); //-- TODO (dannuic): make this wait time more dynamic
 
 			if (alert != nullptr) {
@@ -580,7 +580,7 @@ void AiAgentImplementation::runStartAwarenessInterrupt(SceneObject* pObject) {
 				alert->addMiliTime(10000);
 			}
 
-			showFlyText("npc_reaction/flytext", "alert", 255, 0, 0);
+			//showFlyText("npc_reaction/flytext", "alert", 255, 0, 0);
 		}
 	} else if (pObject == pFollow && alertedTimeIsPast && (getFollowState() == WATCHING)) {
 		setOblivious();
@@ -630,10 +630,11 @@ bool AiAgentImplementation::runAwarenessLogicCheck(SceneObject* pObject) {
 	if (isDead() || isIncapacitated())
 		return false;
 
-	if (getPvpStatusBitmask() == 0 && !(isDroidObject() && isPet()))
-		return false;
+	//PVP Status is irrelevant. 
+	//if (getPvpStatusBitmask() == 0 && !(isDroidObject() && isPet()))
+	//	return false;
 
-	if (getNumberOfPlayersInRange() <= 0 || isRetreating() || isFleeing() || isInCombat())
+	if ((getNumberOfPlayersInRange() <= 0 || isRetreating() || isFleeing() || isInCombat()) && !(getCreatureBitmask() & CreatureFlag::ALWAYSON))
 		return false;
 
 	CreatureObject* creoObject = pObject->asCreatureObject();
@@ -641,11 +642,12 @@ bool AiAgentImplementation::runAwarenessLogicCheck(SceneObject* pObject) {
 	if (!creoObject || creoObject->isInvisible())
 		return false;
 
-	checkForReactionChat(pObject);
+	//We no longer want reactions from NPCs.
+	//checkForReactionChat(pObject);
 
-	if (getCreatureBitmask() & CreatureFlag::SCANNING_FOR_CONTRABAND) {
-		getZoneUnsafe()->getGCWManager()->runCrackdownScan(thisAiAgent, creoObject);
-	}
+	//if (getCreatureBitmask() & CreatureFlag::SCANNING_FOR_CONTRABAND) {
+	//	getZoneUnsafe()->getGCWManager()->runCrackdownScan(thisAiAgent, creoObject);
+	//}
 
 	ManagedReference<SceneObject*> follow = getFollowObject().get();
 
@@ -829,9 +831,11 @@ void AiAgentImplementation::doRecovery(int latency) {
 	if (isDead() || getZoneUnsafe() == nullptr)
 		return;
 
-	activateHAMRegeneration(latency);
+	//activateHAMRegeneration(latency);
 	activateStateRecovery();
 	activatePostureRecovery();
+
+	/* //We're disabling recovery because this is no longer a real-time game. 
 
 	// we only want to activate recovery if we need to -- it will restart when we need it
 	if (defenderList.size() > 0 || damageOverTimeList.hasDot()
@@ -842,6 +846,7 @@ void AiAgentImplementation::doRecovery(int latency) {
 			|| getWounds(CreatureAttribute::QUICKNESS) > 0 || getWounds(CreatureAttribute::STAMINA) > 0
 			|| getWounds(CreatureAttribute::FOCUS) > 0 || getWounds(CreatureAttribute::WILLPOWER) > 0)
 		activateRecovery();
+	*/
 }
 
 void AiAgentImplementation::selectSpecialAttack() {
@@ -1645,15 +1650,17 @@ void AiAgentImplementation::activateHAMRegeneration(int latency) {
     if (isIncapacitated() || isDead() || isInCombat())
         return;
 
-    uint32 healthTick = (uint32) Math::max(1.f, (float) ceil(getMaxHAM(CreatureAttribute::HEALTH) / 300000.f * latency));
-    uint32 actionTick = (uint32) Math::max(1.f, (float) ceil(getMaxHAM(CreatureAttribute::ACTION) / 300000.f * latency));
-    uint32 mindTick   = (uint32) Math::max(1.f, (float) ceil(getMaxHAM(CreatureAttribute::MIND) / 300000.f * latency));
+	//Disabling all Regeneration
 
-    healDamage(asCreatureObject(), CreatureAttribute::HEALTH, healthTick, true, false);
-    healDamage(asCreatureObject(), CreatureAttribute::ACTION, actionTick, true, false);
-    healDamage(asCreatureObject(), CreatureAttribute::MIND,   mindTick,   true, false);
-
-    activatePassiveWoundRegeneration();
+    //uint32 healthTick = (uint32) Math::max(1.f, (float) ceil(getMaxHAM(CreatureAttribute::HEALTH) / 300000.f * latency));
+    //uint32 actionTick = (uint32) Math::max(1.f, (float) ceil(getMaxHAM(CreatureAttribute::ACTION) / 300000.f * latency));
+    //uint32 mindTick   = (uint32) Math::max(1.f, (float) ceil(getMaxHAM(CreatureAttribute::MIND) / 300000.f * latency));
+	//
+    //healDamage(asCreatureObject(), CreatureAttribute::HEALTH, healthTick, true, false);
+    //healDamage(asCreatureObject(), CreatureAttribute::ACTION, actionTick, true, false);
+    //healDamage(asCreatureObject(), CreatureAttribute::MIND,   mindTick,   true, false);
+	//
+    //activatePassiveWoundRegeneration();
 }
 
 void AiAgentImplementation::updateCurrentPosition(PatrolPoint* pos) {
@@ -3400,6 +3407,9 @@ String AiAgentImplementation::getPersonalityStf() {
 }
 
 void AiAgentImplementation::sendReactionChat(int type, int state, bool force) {
+
+	/* No need for reaction chats when its all going to be turn based roleplay.
+
 	if (!getCooldownTimerMap()->isPast("reaction_chat") || getZoneUnsafe() == nullptr || isDead()) {
 		return;
 	}
@@ -3408,6 +3418,7 @@ void AiAgentImplementation::sendReactionChat(int type, int state, bool force) {
 
 	if (reactionManager != nullptr)
 		reactionManager->sendChatReaction(asAiAgent(), type, state, force);
+	*/
 }
 
 void AiAgentImplementation::setMaxHAM(int type, int value, bool notifyClient) {
