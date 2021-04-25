@@ -419,8 +419,8 @@ void TangibleObjectImplementation::removeVisibleComponent(int value, bool notify
 }
 
 void TangibleObjectImplementation::setDefender(SceneObject* defender) {
-	if (defender == asTangibleObject())
-		return;
+	//if (defender == asTangibleObject())
+	//	return;
 
 	fatal(defender, "defender in setDefender null");
 

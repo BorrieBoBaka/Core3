@@ -17,6 +17,7 @@ public:
 
 	static void ToggleCombat(CreatureObject* target) {
 		Locker clock(target);
+		target->setDefender(target);
 		target->setCombatState();
 	}
 
@@ -99,6 +100,19 @@ public:
 		} else {
 			creature->sendSystemMessage("Error: Invalid Target. Must be a creature.");
 			throw Exception();
+		}
+	}
+
+	static void SetCreatureClient(CreatureObject* creature, const uint64& target) {
+		ManagedReference<SceneObject*> object = creature->getZoneServer()->getObject(target, false);
+
+		if (object == nullptr) {
+			creature->sendSystemMessage("Target required for /dm retreat commands");
+			throw Exception();
+		}
+		Locker nlocker(object, creature);
+		if (object->isCreatureObject()) {
+			object->asCreatureObject()->setClient(creature->getClient());
 		}
 	}
 

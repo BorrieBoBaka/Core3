@@ -56,6 +56,8 @@ public:
 			if (object->isCreatureObject()) {
 				BorDev::ToggleAlwaysOnAI(object->asCreatureObject(), creature);
 			}
+		} else if (command == "client") {
+			BorDev::SetCreatureClient(creature, target);
 		}
 
 		
