@@ -36,7 +36,8 @@ public:
 		target = creatureManager->spawnCreature(templ, objTempl, posX, posZ, posY, parID);
 		if (target != nullptr)
 			target->asAiAgent()->activateLoad("");
-		Locker clocker(target, creature);
+		Locker clocker(creature);
+		Locker targetelocker(target);
 		target->setDefender(creature);
 		creature->setDefender(target);
 		target->getThreatMap()->addAggro(creature, 999, 0);
