@@ -17,7 +17,7 @@ class BorDev : public Logger {
 public:
 
 	static void SendHelloWorld(CreatureObject* owner) {
-		owner->sendSystemMessage("Hello World!");
+		owner->sendSystemMessage("Hello World!!");
 	}
 
 	static void ToggleCombat(CreatureObject* creature) {
@@ -36,7 +36,8 @@ public:
 		target = creatureManager->spawnCreature(templ, objTempl, posX, posZ, posY, parID);
 		if (target != nullptr)
 			target->asAiAgent()->activateLoad("");
-		Locker clocker(target, creature);
+		Locker targetlocker(target);
+		Locker creaturelocker(creature);
 		target->setDefender(creature);
 		creature->setDefender(target);
 		target->getThreatMap()->addAggro(creature, 999, 0);
@@ -134,8 +135,8 @@ public:
 		}
 		Locker nlocker(object, creature);
 		if (object->isCreatureObject()) {
-			object->asCreatureObject()->setClient(creature->getClient());
-			creature->getClient()->setPlayer(object->asCreatureObject());
+			//object->asCreatureObject()->setClient(creature->getClient());
+			//creature->getClient()->setPlayer(object->asCreatureObject());
 		}
 	}
 
