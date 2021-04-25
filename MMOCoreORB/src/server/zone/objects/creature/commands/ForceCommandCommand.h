@@ -5,7 +5,7 @@
 #ifndef FORCECOMMANDCOMMAND_H_
 #define FORCECOMMANDCOMMAND_H_
 
-#include "server/zone/roleplay/BorDev.h"
+#include "server/zone/borrie/BorDev.h"
 
 class ForceCommandCommand : public QueueCommand {
 public:
