@@ -50,7 +50,7 @@ public:
 
 	static void ToggleAlwaysOnAI(CreatureObject* target, CreatureObject* commander) {
 		ManagedReference<AiAgent*> agent = target->asAiAgent();
-
+		Locker alock(agent);
 		if (agent->getCreatureBitmask() & CreatureFlag::ALWAYSON) {
 			agent->clearCreatureBit(CreatureFlag::ALWAYSON);
 			commander->sendSystemMessage("Target's AI is no longer always on.");
@@ -62,7 +62,7 @@ public:
 
 	static void ToggleForceAICombat(CreatureObject* target, CreatureObject* commander) {
 		ManagedReference<AiAgent*> agent = target->asAiAgent();
-
+		Locker alock(agent);
 		if (agent->getCreatureBitmask() & CreatureFlag::FORCECOMBAT) {
 			agent->clearCreatureBit(CreatureFlag::FORCECOMBAT);
 			commander->sendSystemMessage("Target is no longer forced into combat.");
