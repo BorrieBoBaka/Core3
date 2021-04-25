@@ -1331,6 +1331,7 @@ void AiAgentImplementation::removeDefender(SceneObject* defender) {
  * @param clearDefenders if true the defender vector will be emptied
  */
 void AiAgentImplementation::clearCombatState(bool clearDefenders) {
+	return;
 	CreatureObjectImplementation::clearCombatState(clearDefenders);
 
 	if (threatMap != nullptr)

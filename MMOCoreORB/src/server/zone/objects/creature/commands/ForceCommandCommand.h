@@ -52,6 +52,10 @@ public:
 			BorDev::creatureFollow(creature, target);
 		} else if (command == "stay") {
 			BorDev::creatureStay(creature, target);
+		} else if (command == "ai") {
+			if (object->isCreatureObject()) {
+				BorDev::ToggleAlwaysOnAI(object->asCreatureObject(), creature);
+			}
 		}
 
 		
