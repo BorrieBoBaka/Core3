@@ -20,7 +20,7 @@ public:
 		owner->sendSystemMessage("Hello World!");
 	}
 
-	static void ToggleCombat(CreatureObject* target) {
+	static void ToggleCombat(CreatureObject* creature) {
 		//Locker clock(target);
 		//target->setDefender(target);
 		//target->setCombatState();
