@@ -17,7 +17,7 @@ public:
 
 	static void ToggleCombat(CreatureObject* target) {
 		Locker clock(target);
-		creo->setCombatState();
+		target->setCombatState();
 	}
 
 	static void ToggleAlwaysOnAI(CreatureObject* target, CreatureObject* commander) {
