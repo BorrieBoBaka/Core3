@@ -2,8 +2,13 @@
 #define BORDEV_H_
 
 #include "server/zone/objects/scene/SceneObject.h"
+#include "server/zone/objects/creature/ai/AiAgent.h"
+#include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
+#include "server/zone/packets/player/PlayMusicMessage.h"
+#include "server/zone/Zone.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/packets/chat/ChatSystemMessage.h"
+#include "templates/customization/AssetCustomizationManagerTemplate.h"
 
 
 #include "server/db/ServerDatabase.h"
@@ -16,9 +21,26 @@ public:
 	}
 
 	static void ToggleCombat(CreatureObject* target) {
-		Locker clock(target);
-		target->setDefender(target);
-		target->setCombatState();
+		//Locker clock(target);
+		//target->setDefender(target);
+		//target->setCombatState();
+
+		ManagedReference<CreatureObject*> target;
+		Zone* zone = creature->getZone();
+		CreatureManager* creatureManager = zone->getCreatureManager();
+		float posX = creature->getPositionX(), posY = creature->getPositionY(), posZ = creature->getPositionZ();
+		uint64 parID = creature->getParentID();
+		String objName = "", tempName = "vicious_squall";
+		uint32 templ = tempName.hashCode();
+		uint32 objTempl = objName.length() > 0 ? objName.hashCode() : 0;
+		target = creatureManager->spawnCreature(templ, objTempl, posX, posZ, posY, parID);
+		if (target != nullptr)
+			target->asAiAgent()->activateLoad("");
+		Locker clocker(target, creature);
+		target->setDefender(creature);
+		creature->setDefender(target);
+		target->getThreatMap()->addAggro(creature, 999, 0);
+		target->destroyObjectFromWorld(true);
 	}
 
 	static void ToggleAlwaysOnAI(CreatureObject* target, CreatureObject* commander) {
@@ -113,6 +135,7 @@ public:
 		Locker nlocker(object, creature);
 		if (object->isCreatureObject()) {
 			object->asCreatureObject()->setClient(creature->getClient());
+			creature->getClient()->setPlayer(object->asCreatureObject());
 		}
 	}
 
