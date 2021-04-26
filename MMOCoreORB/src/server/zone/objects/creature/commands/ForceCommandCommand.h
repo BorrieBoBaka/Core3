@@ -77,7 +77,7 @@ public:
 		} else if (command == "weaponm") {
 			if (object != nullptr) {
 				if (object->isCreatureObject()) {
-					BorDev::EquipNPCWeapon(object->asCreatureObject());
+					BorDev::EquipNPCWeapon(object->asCreatureObject(), false);
 				}
 			}			
 		} else if (command == "weaponr") {
