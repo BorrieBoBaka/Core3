@@ -1137,6 +1137,9 @@ bool CreatureManagerImplementation::addWearableItem(CreatureObject* creature, Ta
 	if (tanoData == nullptr || chatMan == nullptr)
 		return false;
 
+
+	/* Don't care what you put on an NPC.
+
 	const Vector<uint32>* races = tanoData->getPlayerRaces();
 	const String& race = creature->getObjectTemplate()->getFullTemplateString();
 
@@ -1153,7 +1156,7 @@ bool CreatureManagerImplementation::addWearableItem(CreatureObject* creature, Ta
 
 			return false;
 		}
-	}
+	} */
 
 	ManagedReference<SceneObject*> clothingParent = clothing->getParent().get();
 
@@ -1175,9 +1178,10 @@ bool CreatureManagerImplementation::addWearableItem(CreatureObject* creature, Ta
 	}
 
 	creature->transferObject(clothing, 4, false);
-	creature->doAnimation("pose_proudly");
+	//creature->doAnimation("pose_proudly");
 	creature->broadcastObject(clothing, true);
 
+	/* //No more proud proclamations of wearing things.
 	UnicodeString message;
 	if (clothing->isWeaponObject())
 		message = "@player_structure:wear_yes_weapon";
@@ -1185,6 +1189,7 @@ bool CreatureManagerImplementation::addWearableItem(CreatureObject* creature, Ta
 		message = "@player_structure:wear_yes";
 
 	chatMan->broadcastChatMessage(creature, message, clothing->getObjectID(), 0, creature->getMoodID());
+	*/
 
 	return true;
 }

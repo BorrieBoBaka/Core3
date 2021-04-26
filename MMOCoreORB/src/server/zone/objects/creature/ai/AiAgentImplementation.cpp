@@ -2206,6 +2206,8 @@ float AiAgentImplementation::getMaxDistance() {
 		return followCopy != nullptr ? getAggroRadius()*2 : 25;
 		break;
 	case AiAgent::FOLLOWING:
+		if ((getCreatureBitmask() & CreatureFlag::DIRECTFOLLOW))
+			return 0;
 		if (followCopy == nullptr)
 			return 0.1f;
 

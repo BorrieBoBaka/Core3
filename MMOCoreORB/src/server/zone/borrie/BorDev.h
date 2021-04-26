@@ -75,6 +75,18 @@ public:
 		}	
 	}
 
+	static void ToggleDirectFollow(CreatureObject* target, CreatureObject* commander) {
+		ManagedReference<AiAgent*> agent = target->asAiAgent();
+		Locker alock(agent);
+		if (agent->getCreatureBitmask() & CreatureFlag::DIRECTFOLLOW) {
+			agent->clearCreatureBit(CreatureFlag::DIRECTFOLLOW);
+			commander->sendSystemMessage("Target will no longer tightly follow you.");
+		} else {
+			agent->setCreatureBit(CreatureFlag::DIRECTFOLLOW);
+			commander->sendSystemMessage("Target will now tightly follow you.");
+		}
+	}
+
 	static void creatureGoto(CreatureObject* creature, const uint64& target) {
 		ManagedReference<SceneObject*> object = creature->getZoneServer()->getObject(target, false);
 		if (object == nullptr) {

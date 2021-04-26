@@ -56,6 +56,10 @@ public:
 			if (object->isCreatureObject()) {
 				BorDev::ToggleAlwaysOnAI(object->asCreatureObject(), creature);
 			}
+		} else if (command == "dirfol") {
+			if (object->isCreatureObject()) {
+				BorDev::ToggleDirectFollow(object->asCreatureObject(), creature);
+			}
 		} else if (command == "fc") {
 			if (object->isCreatureObject()) {
 				BorDev::ToggleForceAICombat(object->asCreatureObject(), creature);

@@ -35,6 +35,7 @@ public:
 		IGNORE_FACTION_STANDING	= 0x4000,
 		ALWAYSON				= 0x8000,
 		FORCECOMBAT				= 0x16000,
+		DIRECTFOLLOW			= 0x32000,
 
 		CARNIVORE               = 0x01,
 		HERBIVORE               = 0x02
