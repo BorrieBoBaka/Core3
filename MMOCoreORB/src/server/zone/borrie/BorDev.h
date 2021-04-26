@@ -9,6 +9,7 @@
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/packets/chat/ChatSystemMessage.h"
 #include "templates/customization/AssetCustomizationManagerTemplate.h"
+#include "server/zone/managers/combat/CombatManager.h"
 
 
 #include "server/db/ServerDatabase.h"
@@ -45,7 +46,9 @@ public:
 	}
 
 	static void StopCombat(CreatureObject* creature) {
-		creature->clearCombatState(true);
+		//creature->clearCombatState(true);
+		Locker lock(creature);
+		CombatManager::instance()->forcePeace(creature);
 	}
 
 	static void ToggleAlwaysOnAI(CreatureObject* target, CreatureObject* commander) {
@@ -161,6 +164,15 @@ public:
 		if (object->isCreatureObject()) {
 			object->asCreatureObject()->setClient(creature->getClient());
 			creature->getClient()->setPlayer(object->asCreatureObject());
+		}
+	}
+
+	static void EquipNPCWeapon(SceneObject* target, bool forceRanged) {
+		if (target->isCreatureObject()) {
+			if (target->asCreatureObject()->asAiAgent() != nullptr) {
+				Locker nlocker(target);
+				target->asCreatureObject()->asAiAgent()->selectWeapon(forceRanged);
+			}
 		}
 	}
 

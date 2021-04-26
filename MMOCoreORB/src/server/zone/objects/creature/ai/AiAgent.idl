@@ -775,8 +775,9 @@ class AiAgent extends CreatureObject {
 		waiting = false;
 	}
 
-	@preLocked
-	public native void selectWeapon();
+	@preLocked 
+	public native void selectWeapon(boolean forceRanged = false);
+
 	@preLocked
 	public native void selectDefaultWeapon();
 

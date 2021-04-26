@@ -117,7 +117,7 @@ public:
 							return GENERALERROR;
 
 					}
-				}
+				} 
 				else if( sceno->isPet() && object->getGameObjectType() == SceneObjectType::FOOD){
 					Reference<AiAgent*> aiAgent = sceno.castTo<AiAgent*>();
 					if( aiAgent != nullptr ){
@@ -166,11 +166,24 @@ public:
 					}
 				}
 				else if (sceno->isCreatureObject()) {
+
+					CreatureObject* vendor = cast<CreatureObject*>(sceno.get());
+					TangibleObject* clothing = cast<TangibleObject*>(object.get());
+
+					if (vendor == nullptr || vendor->getZone() == nullptr || vendor->getZone()->getCreatureManager() == nullptr)
+						return GENERALERROR;
+
+					if (vendor->getZone()->getCreatureManager()->addWearableItem(vendor, clothing))
+						return SUCCESS;
+					else
+						return GENERALERROR;
+
+					/* This is important, and we need to designate if an npc is a RP npc
 					String err;
 					Locker objLocker(object);
 					if (sceno->canAddObject(object, -1, err) == 0) {
 						sceno->transferObject(object, -1, true);
-					}
+					} */
 				}
 			}
 		}

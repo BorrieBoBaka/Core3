@@ -1067,11 +1067,11 @@ int AiAgentImplementation::handleObjectMenuSelect(CreatureObject* player, byte s
 	return CreatureObjectImplementation::handleObjectMenuSelect(player, selectedID);
 }
 
-void AiAgentImplementation::selectWeapon() {
+void AiAgentImplementation::selectWeapon(bool forceRanged) {
 	WeaponObject* finalWeap = nullptr;
 	ManagedReference<WeaponObject*> defaultWeapon = getSlottedObject("default_weapon").castTo<WeaponObject*>();
 
-	if (getUseRanged()) {
+	if (getUseRanged() || forceRanged) {
 		if (readyWeapon != nullptr && readyWeapon->isRangedWeapon()) {
 			finalWeap = readyWeapon;
 		} else if (defaultWeapon != nullptr && defaultWeapon->isRangedWeapon()) {

@@ -74,6 +74,18 @@ public:
 			}
 		} else if (command == "move") {
 			BorDev::SetPosition(creature, target);
+		} else if (command == "weaponm") {
+			if (object != nullptr) {
+				if (object->isCreatureObject()) {
+					BorDev::EquipNPCWeapon(object->asCreatureObject());
+				}
+			}			
+		} else if (command == "weaponr") {
+			if (object != nullptr) {
+				if (object->isCreatureObject()) {
+					BorDev::EquipNPCWeapon(object->asCreatureObject(), true);
+				}
+			}
 		}
 
 		
