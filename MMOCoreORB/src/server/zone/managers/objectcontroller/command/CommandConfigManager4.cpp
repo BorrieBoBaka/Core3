@@ -182,6 +182,28 @@
 #include "server/zone/objects/creature/commands/RequestSpaceTrainerCommand.h"
 
 
+
+#include "server/zone/objects/creature/commands/AnimCommand.h"
+#include "server/zone/objects/creature/commands/AttackNpcCommand.h"
+#include "server/zone/objects/creature/commands/AttackRpCommand.h"
+#include "server/zone/objects/creature/commands/D20Command.h"
+#include "server/zone/objects/creature/commands/DmCommand.h"
+#include "server/zone/objects/creature/commands/EndTurnCommand.h"
+#include "server/zone/objects/creature/commands/HpCommand.h"
+#include "server/zone/objects/creature/commands/MsgDmCommand.h"
+#include "server/zone/objects/creature/commands/NFaceCommand.h"
+#include "server/zone/objects/creature/commands/NFollowCommand.h"
+#include "server/zone/objects/creature/commands/NStayCommand.h"
+#include "server/zone/objects/creature/commands/NTargetCommand.h"
+#include "server/zone/objects/creature/commands/RDebugCommand.h"
+#include "server/zone/objects/creature/commands/RestRpCommand.h"
+#include "server/zone/objects/creature/commands/RpCommand.h"
+#include "server/zone/objects/creature/commands/SetCombatCommand.h"
+#include "server/zone/objects/creature/commands/SkillRpCommand.h"
+#include "server/zone/objects/creature/commands/ToolCommand.h"
+#include "server/zone/objects/creature/commands/TrainCommand.h"
+
+
 using namespace server::zone::managers::objectcontroller::command;
 
 
@@ -325,4 +347,26 @@ void CommandConfigManager::registerCommands4() {
 	commandFactory.registerCommand<InspacereloadCommand>(String("inspacereload").toLowerCase());
 	commandFactory.registerCommand<InspacerrCommand>(String("inspacerr").toLowerCase());
 	commandFactory.registerCommand<RequestSpaceTrainerCommand>(String("requestSpaceTrainer").toLowerCase());
+
+	commandFactory.registerCommand<AnimCommand>(String("anim").toLowerCase());
+	commandFactory.registerCommand<AttackNpcCommand>(String("attacknpc").toLowerCase());
+	commandFactory.registerCommand<AttackRpCommand>(String("attackrp").toLowerCase());
+	commandFactory.registerCommand<D20Command>(String("d20").toLowerCase());
+	commandFactory.registerCommand<DmCommand>(String("dm").toLowerCase());
+	commandFactory.registerCommand<EndTurnCommand>(String("endturn").toLowerCase());
+	commandFactory.registerCommand<HpCommand>(String("hp").toLowerCase());
+	commandFactory.registerCommand<MsgDmCommand>(String("msgdm").toLowerCase());
+	commandFactory.registerCommand<NFaceCommand>(String("nface").toLowerCase());
+	commandFactory.registerCommand<NFollowCommand>(String("nfollow").toLowerCase());
+	commandFactory.registerCommand<NStayCommand>(String("nstay").toLowerCase());
+	commandFactory.registerCommand<NTargetCommand>(String("ntarget").toLowerCase());
+	commandFactory.registerCommand<RDebugCommand>(String("rdebug").toLowerCase());
+	commandFactory.registerCommand<RestRpCommand>(String("restrp").toLowerCase());
+	commandFactory.registerCommand<RpCommand>(String("rp").toLowerCase());
+	commandFactory.registerCommand<SetCombatCommand>(String("setcombat").toLowerCase());
+	commandFactory.registerCommand<SkillRpCommand>(String("skillrp").toLowerCase());
+	commandFactory.registerCommand<ToolCommand>(String("tool").toLowerCase());
+	commandFactory.registerCommand<TrainCommand>(String("train").toLowerCase());
+
+
 }
