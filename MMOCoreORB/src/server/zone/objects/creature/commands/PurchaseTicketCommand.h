@@ -271,20 +271,21 @@ public:
 
 		ManagedReference<TicketObject*> ticketObject = ticket1.castTo<TicketObject*>();
 
-		String arrivalPlanet = ticketObject->getArrivalPlanet();
-		String arrivalPointName = ticketObject->getArrivalPoint();
+		//Disgusting Edit, but I'm too noob in C++ to do this reliably.
+		String arrivalPlanet2 = ticketObject->getArrivalPlanet();
+		String arrivalPointName2 = ticketObject->getArrivalPoint();
 
-		ManagedReference<Zone*> arrivalZone = server->getZoneServer()->getZone(arrivalPlanet);
+		ManagedReference<Zone*> arrivalZone2 = server->getZoneServer()->getZone(arrivalPlanet2);
 
-		Reference<PlanetTravelPoint*> arrivalPoint = arrivalZone->getPlanetManager()->getPlanetTravelPoint(arrivalPointName);
+		Reference<PlanetTravelPoint*> arrivalPoint2 = arrivalZone2->getPlanetManager()->getPlanetTravelPoint(arrivalPointName2);
 
-		ManagedReference<CreatureObject*> targetShuttleObject = arrivalPoint->getShuttle();
+		ManagedReference<CreatureObject*> targetShuttleObject = arrivalPoint2->getShuttle();
 
 		Coordinate p;
 		float x;
 		float y;
 
-		p.initializePosition(arrivalPoint->getArrivalPosition());
+		p.initializePosition(arrivalPoint2->getArrivalPosition());
 
 		ManagedReference<CityRegion*> region = targetShuttleObject != nullptr ? targetShuttleObject->getCityRegion().get() : nullptr;
 
@@ -311,7 +312,7 @@ public:
 			y = p.getPositionY() + cos(dirRadians) * distance;
 		}
 
-		creature->switchZone(arrivalZone->getZoneName(), x, p.getPositionZ(), y, 0);
+		creature->switchZone(arrivalZone2->getZoneName(), x, p.getPositionZ(), y, 0);
 
 		Locker ticketLocker(ticketObject);
 
