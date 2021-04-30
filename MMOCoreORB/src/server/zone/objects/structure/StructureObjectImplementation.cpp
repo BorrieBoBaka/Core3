@@ -780,7 +780,7 @@ int StructureObjectImplementation::getBasePowerRate() const {
 
 float StructureObjectImplementation::getDelayDestroyHours() const {
     //return 30.0f * 24.0f; // Destroy after 30 days in the hole on maintenance
-	return 9999999f;
+	return 9999999.0f;
 }
 
 bool StructureObjectImplementation::isOnAdminList(CreatureObject* player) const {
