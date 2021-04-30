@@ -11,6 +11,15 @@
 #include "server/zone/objects/region/CityRegion.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
 
+#include "QueueCommand.h"
+#include "server/zone/objects/tangible/ticket/TicketObject.h"
+#include "server/zone/objects/player/PlayerObject.h"
+#include "server/zone/objects/player/sui/SuiWindowType.h"
+#include "server/zone/objects/player/sui/listbox/SuiListBox.h"
+#include "server/zone/objects/player/sui/callbacks/TicketSelectionSuiCallback.h"
+#include "server/zone/managers/planet/PlanetTravelPoint.h"
+#include "server/zone/objects/group/GroupObject.h"
+
 class PurchaseTicketCommand : public QueueCommand {
 public:
 
