@@ -834,7 +834,7 @@ void AiAgentImplementation::doRecovery(int latency) {
 
 	//activateHAMRegeneration(latency);
 	activateStateRecovery();
-	activatePostureRecovery();
+	//activatePostureRecovery();
 
 	/* //We're disabling recovery because this is no longer a real-time game. 
 

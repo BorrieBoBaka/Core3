@@ -29,8 +29,12 @@ void ImageDesignManager::updateCustomization(CreatureObject* imageDesigner, Cust
 
 	String skillMod = customData->getImageDesignSkillMod();
 
+	/*
+
 	if (imageDesigner->getSkillMod(skillMod) < customData->getSkillModValue())
 		return;
+
+	*/
 
 	if (customData->getIsScale()) {
 		float minScale = customData->getMinScale();
