@@ -133,10 +133,11 @@ int InstrumentImplementation::handleObjectMenuSelect(CreatureObject* player, byt
 			if (ghost == nullptr)
 				return 1;
 
+			/*
 			if (!ghost->hasAbility("startmusic")) {
 				player->sendSystemMessage("@performance:music_lack_skill_instrument");
 				return 1;
-			}
+			}*/
 
 			if (player->getDistanceTo(_this.getReferenceUnsafeStaticCast()) >= 5) {
 				player->sendSystemMessage("@elevator_text:too_far");

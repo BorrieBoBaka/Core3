@@ -1777,6 +1777,12 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 	if (hasState(CreatureState::FROZEN))
 		newSpeed = 0.01f;
 
+	//Sloppy, but it'll do.
+	if ((getCreatureBitmask() & CreatureFlag::TOGGLEWALK)) {
+		newSpeed = walkSpeed;
+	}
+
+
 	float updateTicks = float(UPDATEMOVEMENTINTERVAL) / 1000.f;
 
 	float maxSpeed = newSpeed*updateTicks; // now maxSpeed is the distance able to travel in time updateTicks

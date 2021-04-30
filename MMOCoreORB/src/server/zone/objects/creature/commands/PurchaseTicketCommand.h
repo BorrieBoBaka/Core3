@@ -157,6 +157,7 @@ public:
 			return GENERALERROR;
 		}
 
+		/*
 		//Check if they have funds.
 		int bank = creature->getBankCredits();
 		int cash = creature->getCashCredits();
@@ -200,13 +201,13 @@ public:
 
 			creature->subtractBankCredits(fare); //Take all of the fare from the bank.
 		}
+		*/
 
-
-		StringIdChatParameter params("@base_player:prose_pay_acct_success"); //You successfully make a payment of %DI credits to %TO.
-		params.setDI(baseFare + (roundTrip * baseFare));
-		params.setTO("@money/acct_n:travelsystem"); //the Galactic Travel Commission
-
-		creature->sendSystemMessage(params);
+		//StringIdChatParameter params("@base_player:prose_pay_acct_success"); //You successfully make a payment of %DI credits to %TO.
+		//params.setDI(baseFare + (roundTrip * baseFare));
+		//params.setTO("@money/acct_n:travelsystem"); //the Galactic Travel Commission
+		//
+		//creature->sendSystemMessage(params);
 
 		ManagedReference<SceneObject*> ticket1 = pmDeparture->createTicket(departurePoint, arrivalPlanet, arrivalPoint);
 		if (ticket1 == nullptr) {
@@ -246,13 +247,68 @@ public:
 			creature->sendSystemMessage(param);
 		}
 
-		ManagedReference<SuiMessageBox*> suiBox = new SuiMessageBox(creature, 0);
-		suiBox->setPromptTitle("");
-		suiBox->setPromptText("@travel:ticket_purchase_complete"); //Ticket purchase complete
+		//ManagedReference<SuiMessageBox*> suiBox = new SuiMessageBox(creature, 0);
+		//suiBox->setPromptTitle("");
+		//suiBox->setPromptText("@travel:ticket_purchase_complete"); //Ticket purchase complete
+		//
+		//creature->sendMessage(suiBox->generateMessage());
 
-		creature->sendMessage(suiBox->generateMessage());
+		//creature->sendSystemMessage("DEBUG: The Purchase Ticket Command was executed.");
 
-		creature->sendSystemMessage("DEBUG: The Purchase Ticket Command was executed.");
+		//Teleporting
+
+		// calculate arrival position
+		//ticket1
+
+		String arrivalPlanet = ticket1->getArrivalPlanet();
+		String arrivalPointName = ticket1->getArrivalPoint();
+
+		ManagedReference<Zone*> arrivalZone = server->getZoneServer()->getZone(arrivalPlanet);
+
+		Reference<PlanetTravelPoint*> arrivalPoint = arrivalZone->getPlanetManager()->getPlanetTravelPoint(arrivalPointName);
+
+		ManagedReference<CreatureObject*> targetShuttleObject = arrivalPoint->getShuttle();
+
+		Coordinate p;
+		float x;
+		float y;
+
+		p.initializePosition(arrivalPoint->getArrivalPosition());
+
+		ManagedReference<CityRegion*> region = targetShuttleObject != nullptr ? targetShuttleObject->getCityRegion().get() : nullptr;
+
+		// Randomize the arrival a bit to try and avoid everyone zoning on top of each other
+		// For NPC cities, use the generic method
+		if (region == nullptr || region->isClientRegion()) {
+			p.randomizePosition(3);
+
+			x = p.getPositionX();
+			y = p.getPositionY();
+
+		} else {
+			// relative orientation of the shuttle
+			float oy = targetShuttleObject->getDirection()->getY();
+			float dirDegrees = (acos(oy) * 180 / M_PI) * 2;
+
+			// the proper location for arrival is along a 36 degree arc centered on the shuttle's facing axis, between 13 and 16 meters out
+			dirDegrees = dirDegrees - 18 + System::random(36);
+			float dirRadians = dirDegrees * M_PI / 180;
+			float distance = 13 + System::random(3);
+
+			// update the X & Y positions accordingly
+			x = p.getPositionX() + sin(dirRadians) * distance;
+			y = p.getPositionY() + cos(dirRadians) * distance;
+		}
+
+		creature->switchZone(arrivalZone->getZoneName(), x, p.getPositionZ(), y, 0);
+
+		Locker ticketLocker(ticket1);
+
+		// remove the ticket from inventory and destroy it.
+		ticket1->destroyObjectFromWorld(true);
+		ticket1->destroyObjectFromDatabase(true);
+
+		//End Teleporting Code
 
 		return SUCCESS;
 	}

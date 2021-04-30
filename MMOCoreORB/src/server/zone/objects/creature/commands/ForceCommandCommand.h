@@ -60,6 +60,10 @@ public:
 			if (object->isCreatureObject()) {
 				BorDev::ToggleDirectFollow(object->asCreatureObject(), creature);
 			}
+		} else if (command == "walk") {
+			if (object->isCreatureObject()) {
+				BorDev::ToggleAIWalks(object->asCreatureObject(), creature);
+			}
 		} else if (command == "fc") {
 			if (object->isCreatureObject()) {
 				BorDev::ToggleForceAICombat(object->asCreatureObject(), creature);
@@ -89,6 +93,34 @@ public:
 				if (object->isCreatureObject()) {
 					BorDev::EquipNPCWeapon(object->asCreatureObject(), true);
 				}
+			}
+		} else if (command == "posture0") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 0);
+			}
+		} else if (command == "posture1") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 1);
+			}
+		} else if (command == "posture2") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 2);
+			}
+		} else if (command == "posture3") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 3);
+			}
+		} else if (command == "posture4") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 4);
+			}
+		} else if (command == "posture5") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 5);
+			}
+		} else if (command == "posture6") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 6);
 			}
 		}
 

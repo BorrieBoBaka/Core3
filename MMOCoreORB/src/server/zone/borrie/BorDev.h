@@ -63,6 +63,36 @@ public:
 		}			
 	}
 
+	static void ToggleAIWalks(CreatureObject* target, CreatureObject* commander) {
+		ManagedReference<AiAgent*> agent = target->asAiAgent();
+		Locker alock(agent);
+		if (agent->getCreatureBitmask() & CreatureFlag::TOGGLEWALK) {
+			agent->clearCreatureBit(CreatureFlag::TOGGLEWALK);
+			commander->sendSystemMessage("The target will run if need be.");
+		} else {
+			agent->setCreatureBit(CreatureFlag::TOGGLEWALK);
+			commander->sendSystemMessage("The target is forced to walk.");
+		}
+	}
+
+
+	static void SetNPCPosture(CreatureObject* target, int posture) {
+		if (posture == 0)
+			creature->setPosture(CreaturePosture::UPRIGHT, true);
+		else if (posture == 1)
+			creature->setPosture(CreaturePosture::CROUCHED, true);
+		else if (posture == 2)
+			creature->setPosture(CreaturePosture::PRONE, true);
+		else if (posture == 3)
+			creature->setPosture(CreaturePosture::SNEAKING, true);
+		else if (posture == 4)
+			creature->setPosture(CreaturePosture::SITTING, true);
+		else if (posture == 5)
+			creature->setPosture(CreaturePosture::KNOCKEDDOWN, true);
+		else if (posture == 6)
+			creature->setPosture(CreaturePosture::DEAD, true);
+	}
+
 	static void ToggleForceAICombat(CreatureObject* target, CreatureObject* commander) {
 		ManagedReference<AiAgent*> agent = target->asAiAgent();
 		Locker alock(agent);

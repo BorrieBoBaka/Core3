@@ -5494,10 +5494,10 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 		return false;
 	}
 
-	if (zone->getZoneName() == "dungeon1") {
-		player->sendSystemMessage("@combat_effects:burst_run_space_dungeon"); // The artificial gravity makes burst running impossible here.
-		return false;
-	}
+	//if (zone->getZoneName() == "dungeon1") {
+	//	player->sendSystemMessage("@combat_effects:burst_run_space_dungeon"); // The artificial gravity makes burst running impossible here.
+	//	return false;
+	//}
 
 	if (!player->checkCooldownRecovery("burstrun")) {
 		player->sendSystemMessage("@combat_effects:burst_run_wait"); //You are too tired to Burst Run.
@@ -5507,7 +5507,7 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 	uint32 crc = STRING_HASHCODE("burstrun");
 	float hamCost = 100.0f;
 	float duration = 30;
-	float cooldown = 300;
+	float cooldown = 60;
 
 	float burstRunMod = (float) player->getSkillMod("burst_run");
 	hamModifier += (burstRunMod / 100.f);
@@ -5515,6 +5515,8 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 	if (hamModifier > 1.0f) {
 		hamModifier = 1.0f;
 	}
+
+	/*
 
 	float hamReduction = 1.f - hamModifier;
 
@@ -5530,6 +5532,8 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 	player->inflictDamage(player, CreatureAttribute::HEALTH, healthCost, true);
 	player->inflictDamage(player, CreatureAttribute::ACTION, actionCost, true);
 	player->inflictDamage(player, CreatureAttribute::MIND, mindCost, true);
+
+	*/
 
 	if (cooldownModifier > 1.0f) {
 		cooldownModifier = 1.0f;
