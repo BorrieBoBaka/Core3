@@ -182,7 +182,7 @@ void ImageDesignManager::updateColorCustomization(CreatureObject* imageDesigner,
 
 	ManagedReference<CreatureObject*> creatureObject = creo;
 
-	//String skillMod = customData->getImageDesignSkillMod();
+	String skillMod = customData->getImageDesignSkillMod();
 	//
 	//if (imageDesigner->getSkillMod(skillMod) < customData->getSkillModValue())
 	//	return;

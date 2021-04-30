@@ -269,8 +269,10 @@ public:
 		// calculate arrival position
 		//ticket1
 
-		String arrivalPlanet = ticket1->getArrivalPlanet();
-		String arrivalPointName = ticket1->getArrivalPoint();
+		ManagedReference<TicketObject*> ticketObject = ticket1.castTo<TicketObject*>();
+
+		String arrivalPlanet = ticketObject->getArrivalPlanet();
+		String arrivalPointName = ticketObject->getArrivalPoint();
 
 		ManagedReference<Zone*> arrivalZone = server->getZoneServer()->getZone(arrivalPlanet);
 
@@ -311,7 +313,7 @@ public:
 
 		creature->switchZone(arrivalZone->getZoneName(), x, p.getPositionZ(), y, 0);
 
-		Locker ticketLocker(ticket1);
+		Locker ticketLocker(ticketObject);
 
 		// remove the ticket from inventory and destroy it.
 		ticket1->destroyObjectFromWorld(true);
