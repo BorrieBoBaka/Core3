@@ -93,6 +93,8 @@ public:
 			target->setPosture(CreaturePosture::DEAD, true, true);
 		else if (posture == 7)
 			target->setPosture(CreaturePosture::CROUCHED, false, true);
+		else if (posture == 8)
+			target->setPosture(CreaturePosture::CROUCHED, false, false);
 	}
 
 	static void ToggleForceAICombat(CreatureObject* target, CreatureObject* commander) {

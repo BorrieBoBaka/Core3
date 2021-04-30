@@ -96,35 +96,39 @@ public:
 			}
 		} else if (command == "posture0") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 0);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 0);
 			}
 		} else if (command == "posture1") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 1);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 1);
 			}
 		} else if (command == "posture2") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 2);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 2);
 			}
 		} else if (command == "posture3") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 3);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 3);
 			}
 		} else if (command == "posture4") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 4);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 4);
 			}
 		} else if (command == "posture5") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 5);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 5);
 			}
 		} else if (command == "posture6") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 6);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 6);
 			}
 		} else if (command == "posture7") {
 			if (object->isCreatureObject()) {
-				BorDev::EquipNPCWeapon(object->asCreatureObject(), 7);
+				BorDev::SetNPCPosture(object->asCreatureObject(), 7);
+			}
+		} else if (command == "posture8") {
+			if (object->isCreatureObject()) {
+				BorDev::SetNPCPosture(object->asCreatureObject(), 8);
 			}
 		}
 
