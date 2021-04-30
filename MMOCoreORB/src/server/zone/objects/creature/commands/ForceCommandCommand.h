@@ -122,6 +122,10 @@ public:
 			if (object->isCreatureObject()) {
 				BorDev::EquipNPCWeapon(object->asCreatureObject(), 6);
 			}
+		} else if (command == "posture7") {
+			if (object->isCreatureObject()) {
+				BorDev::EquipNPCWeapon(object->asCreatureObject(), 7);
+			}
 		}
 
 		

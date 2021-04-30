@@ -78,19 +78,21 @@ public:
 
 	static void SetNPCPosture(CreatureObject* target, int posture) {
 		if (posture == 0)
-			target->setPosture(CreaturePosture::UPRIGHT, true);
+			target->setPosture(CreaturePosture::UPRIGHT, true, true);
 		else if (posture == 1)
-			target->setPosture(CreaturePosture::CROUCHED, true);
+			target->setPosture(CreaturePosture::CROUCHED, true, true);
 		else if (posture == 2)
-			target->setPosture(CreaturePosture::PRONE, true);
+			target->setPosture(CreaturePosture::PRONE, true, true);
 		else if (posture == 3)
-			target->setPosture(CreaturePosture::SNEAKING, true);
+			target->setPosture(CreaturePosture::SNEAKING, true, true);
 		else if (posture == 4)
-			target->setPosture(CreaturePosture::SITTING, true);
+			target->setPosture(CreaturePosture::SITTING, true, true);
 		else if (posture == 5)
-			target->setPosture(CreaturePosture::KNOCKEDDOWN, true);
+			target->setPosture(CreaturePosture::KNOCKEDDOWN, true, true);
 		else if (posture == 6)
-			target->setPosture(CreaturePosture::DEAD, true);
+			target->setPosture(CreaturePosture::DEAD, true, true);
+		else if (posture == 7)
+			target->setPosture(CreaturePosture::CROUCHED, false, true);
 	}
 
 	static void ToggleForceAICombat(CreatureObject* target, CreatureObject* commander) {
