@@ -44,6 +44,7 @@ public:
 			sui->setPromptTitle("@performance:available_songs"); // Available Songs
 			sui->setPromptText("@performance:select_song"); // Select a song to play.
 
+			/*
 			const AbilityList* list = ghost->getAbilityList();
 
 			for (int i = 0; i < list->size(); ++i) {
@@ -60,7 +61,22 @@ public:
 						sui->addMenuItem(arg);
 					}
 				}
-			}
+			} */
+
+			sui->addMenuItem("starwars1");
+			sui->addMenuItem("starwars2");
+			sui->addMenuItem("starwars3");
+			sui->addMenuItem("starwars4");
+			sui->addMenuItem("rock");
+			sui->addMenuItem("folk");
+			sui->addMenuItem("ceremonial");
+			sui->addMenuItem("ballad");
+			sui->addMenuItem("waltz");
+			sui->addMenuItem("jazz");
+			sui->addMenuItem("jazz");
+			sui->addMenuItem("virtuoso");
+			sui->addMenuItem("western");
+			sui->addMenuItem("funk");
 
 			ghost->addSuiBox(sui);
 			player->sendMessage(sui->generateMessage());
@@ -148,11 +164,13 @@ public:
 		String instr = performanceManager->getInstrument(
 				instrument->getInstrumentType());
 
+
+		/*
 		if (!ghost->hasAbility(instr)) {
 			creature->sendSystemMessage("@performance:music_lack_skill_instrument"); // You do not have the skill to use the currently equipped instrument.
 
 			return GENERALERROR;
-		}
+		} */
 
 		String args = arguments.toString();
 
@@ -166,15 +184,16 @@ public:
 					sendAvailableSongs(player, ghost);
 
 					return SUCCESS;
-				} else {
+				} //else {
+					/*
 					args = bandSong;
 
 					String fullString = String("startMusic") + "+" + args;
 					if (!ghost->hasAbility(fullString)) {
 						creature->sendSystemMessage("@performance:music_lack_skill_song_band"); // You do not have the skill to perform the song the band is performing.
 						return GENERALERROR;
-					}
-				}
+					} */
+				//}
 			} else {
 				if (bandSong != "" && args != bandSong) {
 					creature->sendSystemMessage("@performance:music_join_band_stop"); // You must play the same song as the band.
@@ -196,10 +215,11 @@ public:
 
 		String fullString = String("startMusic") + "+" + args;
 
+		/*
 		if (!ghost->hasAbility(fullString)) {
 			creature->sendSystemMessage("@performance:music_lack_skill_song_self"); // You do not have the skill to perform that song.
 			return GENERALERROR;
-		}
+		} */
 
 		Locker lockerInstr(instrument);
 

@@ -186,12 +186,16 @@ void StructureObjectImplementation::notifyInsertToZone(Zone* zone) {
 			structurePermissionList.dropList("VENDOR");
 	}
 
+	/*
 	if (!staticObject && getBaseMaintenanceRate() != 0 && !isTurret() && !isMinefield()) {
 		//Decay is 4 weeks.
 		maxCondition = getBaseMaintenanceRate() * 24 * 7 * 4;
 
 		scheduleMaintenanceExpirationEvent();
-	} else if(getOwnerObjectID() != 0 && getCityRegion().get() == nullptr && !isTurret() && !isMinefield()) {
+	} else */
+		
+		
+	if(getOwnerObjectID() != 0 && getCityRegion().get() == nullptr && !isTurret() && !isMinefield()) {
 		auto ssot = dynamic_cast<SharedStructureObjectTemplate*>(templateObject.get());
 
 		if (ssot == nullptr)
@@ -269,6 +273,7 @@ CreatureObject* StructureObjectImplementation::getOwnerCreatureObject() const {
 }
 
 float StructureObjectImplementation::getMaintenanceRate() const {
+	/*
 	float rate = getBaseMaintenanceRate();
 
 #if DEBUG_STRUCTURE_RAPID_DECAY
@@ -280,6 +285,9 @@ float StructureObjectImplementation::getMaintenanceRate() const {
 	}
 
 	return (float)((int)rate); // Round to nearest int
+	*/
+
+	return 0.0f;
 }
 
 String StructureObjectImplementation::getMaintenanceMods() const {
@@ -315,6 +323,7 @@ String StructureObjectImplementation::getTimeString(uint32 timestamp) const {
 
 //Only gets called when maintenance has been changed by an outside source
 void StructureObjectImplementation::scheduleMaintenanceExpirationEvent() {
+	/*
 	if (getMaintenanceRate() <= 0) {
 		if (getOwnerObjectID() == 0)
 			return;
@@ -387,10 +396,11 @@ void StructureObjectImplementation::scheduleMaintenanceExpirationEvent() {
 		maintenanceExpires.addMiliTime((uint64)secondsRemaining * 1000);
 	}
 
-	scheduleMaintenanceTask(secondsRemaining);
+	scheduleMaintenanceTask(secondsRemaining); */
 }
 
 void StructureObjectImplementation::scheduleMaintenanceTask(int secondsFromNow) {
+	/*
 	if(getBaseMaintenanceRate() == 0) {
 		if (getOwnerObjectID() == 0)
 			return;
@@ -414,6 +424,8 @@ void StructureObjectImplementation::scheduleMaintenanceTask(int secondsFromNow) 
 	} else {
 		structureMaintenanceTask->schedule((uint64)secondsFromNow * 1000);
 	}
+
+	*/
 }
 
 void StructureObjectImplementation::destroyObjectFromWorld(bool sendSelfDestroy) {
@@ -494,8 +506,8 @@ void StructureObjectImplementation::updateStructureStatus() {
 	, true);
 #endif // DEBUG_STRUCTURE_MAINT
 
-	float timeDiff = ((float) lastMaintenanceTime.miliDifference()) / 1000.0f;
-	float maintenanceDue = (getMaintenanceRate() / 3600.0f) * timeDiff;
+	float timeDiff = 0.0f;	  //((float) lastMaintenanceTime.miliDifference()) / 1000.0f;
+	float maintenanceDue = 0.0f; //(getMaintenanceRate() / 3600.0f) * timeDiff;
 	float cityTaxDue = 0.0f;
 
 #if DEBUG_STRUCTURE_MAINT
@@ -511,6 +523,7 @@ void StructureObjectImplementation::updateStructureStatus() {
 
 	ManagedReference<CityRegion*> city = getCityRegion().get();
 
+	/*
 	if(isBuildingObject() && city != nullptr && !city->isClientRegion() && city->getPropertyTax() > 0){
 		cityTaxDue = city->getPropertyTax() / 100.0f * maintenanceDue;
 
@@ -520,7 +533,7 @@ void StructureObjectImplementation::updateStructureStatus() {
 			taxTask->execute();
 		}
 
-	}
+	} */
 
 #if DEBUG_STRUCTURE_MAINT
 	info("updateStructureStatus: maintenanceDue = " + String::valueOf(maintenanceDue)
@@ -546,6 +559,8 @@ void StructureObjectImplementation::updateStructureStatus() {
 // Basic checks to see if structure is running tasks etc.
 String StructureObjectImplementation::getDebugStructureStatus() const {
 	StringBuffer status;
+
+	/*
 
 	if (structureMaintenanceTask != nullptr) {
 		int ss = (int) (structureMaintenanceTask->getNextExecutionTime().miliDifference() / 1000.f * -1) + 1;
@@ -575,7 +590,9 @@ String StructureObjectImplementation::getDebugStructureStatus() const {
 			status << "WARNING: City object without a city!";
 			error("getDebugStructureStatus: City structure but not in a city!");
 		}
-	}
+	} */
+
+	status << "Structure maintenance disabled on this server.";
 
 	return status.toString();
 }
@@ -738,25 +755,32 @@ bool StructureObjectImplementation::isGuildHall() const {
 }
 
 int StructureObjectImplementation::getBaseMaintenanceRate() const {
+	/*
 	const SharedStructureObjectTemplate* tmpl = cast<SharedStructureObjectTemplate*>(getObjectTemplate());
 
 	if(tmpl == nullptr)
 		return 0;
 
-	return tmpl->getBaseMaintenanceRate();
+	return tmpl->getBaseMaintenanceRate(); */
+
+	return 0;
 }
 
 int StructureObjectImplementation::getBasePowerRate() const {
+	/*
 	const SharedStructureObjectTemplate* tmpl = cast<SharedStructureObjectTemplate*>(getObjectTemplate());
 
 	if(tmpl == nullptr)
 		return 0;
 
-	return tmpl->getBasePowerRate();
+	return tmpl->getBasePowerRate(); */
+
+	return 0;
 }
 
 float StructureObjectImplementation::getDelayDestroyHours() const {
-    return 30.0f * 24.0f; // Destroy after 30 days in the hole on maintenance
+    //return 30.0f * 24.0f; // Destroy after 30 days in the hole on maintenance
+	return 9999999f;
 }
 
 bool StructureObjectImplementation::isOnAdminList(CreatureObject* player) const {

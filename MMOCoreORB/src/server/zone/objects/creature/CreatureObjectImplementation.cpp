@@ -2784,6 +2784,7 @@ void CreatureObjectImplementation::notifySelfPositionUpdate() {
 }
 
 void CreatureObjectImplementation::activateHAMRegeneration(int latency) {
+	/*
 	if (isIncapacitated() || isDead())
 		return;
 
@@ -2819,6 +2820,7 @@ void CreatureObjectImplementation::activateHAMRegeneration(int latency) {
 	healDamage(asCreatureObject(), CreatureAttribute::MIND, mindTick, true, false);
 
 	activatePassiveWoundRegeneration();
+	*/
 }
 
 void CreatureObjectImplementation::activatePassiveWoundRegeneration() {

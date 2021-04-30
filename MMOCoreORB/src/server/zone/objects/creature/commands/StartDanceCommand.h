@@ -38,6 +38,7 @@ public:
 		sui->setPromptTitle("@performance:available_dances");
 		sui->setPromptText("@performance:select_dance");
 
+		/*
 		const AbilityList* list = ghost->getAbilityList();
 
 		for (int i = 0; i < list->size(); ++i) {
@@ -54,9 +55,35 @@ public:
 					sui->addMenuItem(arg);
 				}
 			}
-		}
+		} */
+
+		sui->addMenuItem("basic");
+		sui->addMenuItem("rhythmic");
+		sui->addMenuItem("basic2");
+		sui->addMenuItem("rhythmic2");
+		sui->addMenuItem("footloose");
+		sui->addMenuItem("formal");
+		sui->addMenuItem("footloose2");
+		sui->addMenuItem("formal2");
+		sui->addMenuItem("popular");
+		sui->addMenuItem("poplock");
+		sui->addMenuItem("popular2");
+		sui->addMenuItem("poplock2");
+		sui->addMenuItem("lyrical");
+		sui->addMenuItem("exotic");
+		sui->addMenuItem("exotic2");
+		sui->addMenuItem("lyrical2");
+		sui->addMenuItem("exotic3");
+		sui->addMenuItem("exotic4");
+		sui->addMenuItem("theatrical");
+		sui->addMenuItem("theatrical2");
+		sui->addMenuItem("breakdance");
+		sui->addMenuItem("breakdance2");
+		sui->addMenuItem("tumble");
+		sui->addMenuItem("tumble2");
 
 		ghost->addSuiBox(sui);
+
 		player->sendMessage(sui->generateMessage());
 
 		return;
@@ -113,10 +140,11 @@ public:
 
 		String fullString = String("startDance") + "+" + args;
 
+		/*
 		if (!ghost->hasAbility(fullString)) {
 			creature->sendSystemMessage("@performance:dance_lack_skill_self");
 			return GENERALERROR;
-		}
+		} */
 
 		if (!performanceManager->hasDanceAnimation(args)) {
 			creature->sendSystemMessage("@performance:dance_lack_skill_self");

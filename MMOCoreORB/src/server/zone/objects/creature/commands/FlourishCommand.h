@@ -43,6 +43,8 @@ public:
 
 		int mod = Integer::valueOf(args);
 
+		/*
+
 		Reference<PlayerObject*> ghost =
 						creature->getSlottedObject(
 								"ghost").castTo<PlayerObject*> ();
@@ -50,6 +52,11 @@ public:
 		String fullString = String("flourish") + "+" + args;
 
 		if (!ghost->hasAbility(fullString)) {
+			creature->sendSystemMessage("@performance:flourish_not_valid");
+			return GENERALERROR;
+		} */
+
+		if (mod > 8 || mod < 0) {
 			creature->sendSystemMessage("@performance:flourish_not_valid");
 			return GENERALERROR;
 		}

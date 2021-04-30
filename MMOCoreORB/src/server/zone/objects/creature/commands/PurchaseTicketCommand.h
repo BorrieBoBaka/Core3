@@ -252,6 +252,8 @@ public:
 
 		creature->sendMessage(suiBox->generateMessage());
 
+		creature->sendSystemMessage("DEBUG: The Purchase Ticket Command was executed.");
+
 		return SUCCESS;
 	}
 
