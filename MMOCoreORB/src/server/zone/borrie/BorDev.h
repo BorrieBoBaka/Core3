@@ -77,6 +77,7 @@ public:
 
 
 	static void SetNPCPosture(CreatureObject* target, int posture) {
+		Locker clock(target);
 		if (posture == 0)
 			target->setPosture(CreaturePosture::UPRIGHT, true, true);
 		else if (posture == 1)
