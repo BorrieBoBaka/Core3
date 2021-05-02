@@ -178,7 +178,7 @@ public:
 					ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
 					if (inventory == nullptr || inventory->isContainerFullRecursive()) {
 						creature->sendSystemMessage("Your inventory is full, so the item could not be created.");
-						return;
+						return GENERALERROR;
 					}
 
 					TangibleObject* clothing = (vendor->getZoneServer()->createObject(shot->getServerObjectCRC(), 1)).castTo<TangibleObject*>();
