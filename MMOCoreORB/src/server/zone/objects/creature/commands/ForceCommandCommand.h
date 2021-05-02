@@ -130,6 +130,15 @@ public:
 			if (object->isCreatureObject()) {
 				BorDev::SetNPCPosture(object->asCreatureObject(), 8);
 			}
+		} else if (command == "setheight") {
+			if (object->isCreatureObject()) {
+				if ((args.hasMoreTokens())) {
+					float height = args.getFloatToken();
+					Locker lclock(object->asCreatureObject());
+					object->asCreatureObject()->setHeight(height, true);
+				}
+			}
+			
 		}
 
 		

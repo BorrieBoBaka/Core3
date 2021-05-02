@@ -48,16 +48,15 @@ void ArmorObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, 
 int ArmorObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* player, byte selectedID) const {
 
 	if (selectedID == 81) {
-		
 		ManagedReference<SceneObject*> parent = sceneObject->getParent().get();
-	
+
 		if (parent == nullptr)
 			return 0;
-	
+
 		if (parent->isPlayerCreature()) {
 			player->sendSystemMessage("@armor_rehue:equipped");
 			return 0;
-		}	
+		}
 
 		if (parent->isCellObject()) {
 			ManagedReference<SceneObject*> obj = parent->getParent().get();
@@ -68,34 +67,30 @@ int ArmorObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 				if (!buio->isOnAdminList(player))
 					return 0;
 			}
-		}
-		else
-		{
+		} else {
 			if (!sceneObject->isASubChildOf(player))
 				return 0;
 		}
 
 		ZoneServer* server = player->getZoneServer();
 
-		if (server != nullptr) {		
+		if (server != nullptr) {
+			// The color index.
+			String appearanceFilename = sceneObject->getObjectTemplate()->getAppearanceFilename();
+			VectorMap<String, Reference<CustomizationVariable*>> variables;
+			AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, false);
 
-		// The color index.
-		String appearanceFilename = sceneObject->getObjectTemplate()->getAppearanceFilename();
-		VectorMap<String, Reference<CustomizationVariable*> > variables;
-		AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, false);
+			// The Sui Box.
+			ManagedReference<SuiColorBox*> cbox = new SuiColorBox(player, SuiWindowType::COLOR_ARMOR);
+			cbox->setCallback(new ColorArmorSuiCallback(server));
+			cbox->setColorPalette(variables.elementAt(1).getKey()); // First one seems to be the frame of it? Skip to 2nd.
+			cbox->setUsingObject(sceneObject);
 
-		// The Sui Box.
-		ManagedReference<SuiColorBox*> cbox = new SuiColorBox(player, SuiWindowType::COLOR_ARMOR);
-		cbox->setCallback(new ColorArmorSuiCallback(server));
-		cbox->setColorPalette(variables.elementAt(1).getKey()); // First one seems to be the frame of it? Skip to 2nd.
-		cbox->setUsingObject(sceneObject);
-
-		// Add to player.
-		ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
-		ghost->addSuiBox(cbox);
-		player->sendMessage(cbox->generateMessage());
+			// Add to player.
+			ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
+			ghost->addSuiBox(cbox);
+			player->sendMessage(cbox->generateMessage());
 		}
-
 	}
 	
 	return WearableObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);

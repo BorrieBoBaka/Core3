@@ -168,7 +168,13 @@ public:
 				else if (sceno->isCreatureObject()) {
 
 					CreatureObject* vendor = cast<CreatureObject*>(sceno.get());
-					TangibleObject* clothing = cast<TangibleObject*>(object.get());
+					TangibleObject* oldClothing = cast<TangibleObject*>(object.get());
+
+					String objectTemplate = oldClothing->getObjectTemplate()->getClientTemplateFileName();
+					Reference<SharedObjectTemplate*> shot = TemplateManager::instance()->getTemplate(objectTemplate.hashCode());
+					ManagedReference<TangibleObject*> clothing = (creature->getZoneServer()->createObject(shot->getServerObjectCRC(), 1)).castTo<TangibleObject*>();
+
+
 
 					if (vendor == nullptr || vendor->getZone() == nullptr || vendor->getZone()->getCreatureManager() == nullptr)
 						return GENERALERROR;

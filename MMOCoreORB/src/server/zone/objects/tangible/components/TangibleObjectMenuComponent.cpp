@@ -10,6 +10,13 @@
 #include "server/zone/packets/object/ObjectMenuResponse.h"
 #include "server/zone/objects/player/PlayerObject.h"
 
+#include "server/zone/objects/creature/CreatureObject.h"
+#include "server/zone/objects/building/BuildingObject.h"
+#include "server/zone/objects/player/sui/colorbox/SuiColorBox.h"
+#include "server/zone/objects/player/sui/callbacks/ColorArmorSuiCallback.h"
+#include "server/zone/ZoneServer.h"
+#include "templates/customization/AssetCustomizationManagerTemplate.h"
+
 void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const {
 	ObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player);
 
@@ -20,6 +27,7 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 
 	TangibleObject* tano = cast<TangibleObject*>( sceneObject);
 
+	/*
 	// Figure out what the object is and if its able to be Sliced.
 	if(tano->isSliceable() && !tano->isSecurityTerminal()) { // Check to see if the player has the correct skill level
 
@@ -39,7 +47,14 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 
 		if(hasSkill)
 			menuResponse->addRadialMenuItem(69, 3, "@slicing/slicing:slice"); // Slice
-	}
+	} */
+
+	menuResponse->addRadialMenuItem(81, 3, "Change Color");
+	menuResponse->addRadialMenuItemToRadialID(81, 82, 3, "Primary");
+	menuResponse->addRadialMenuItemToRadialID(81, 83, 3, "Secondary");
+	menuResponse->addRadialMenuItemToRadialID(81, 84, 3, "Tertiary");
+
+	WearableObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player); 	
 
 	if(player->getPlayerObject() != nullptr && player->getPlayerObject()->isPrivileged()) {
 		/// Viewing components used to craft item, for admins
@@ -108,7 +123,58 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 		}
 
 		return 0;
-	}else
+	}
+	if (selectedID == 82 || selectedID == 83 || selectedID == 84) {
+		ManagedReference<SceneObject*> parent = sceneObject->getParent().get();
+
+		if (parent == nullptr)
+			return 0;
+
+		if (parent->isPlayerCreature()) {
+			player->sendSystemMessage("@armor_rehue:equipped");
+			return 0;
+		}
+
+		if (parent->isCellObject()) {
+			ManagedReference<SceneObject*> obj = parent->getParent().get();
+
+			if (obj != nullptr && obj->isBuildingObject()) {
+				ManagedReference<BuildingObject*> buio = cast<BuildingObject*>(obj.get());
+
+				if (!buio->isOnAdminList(player))
+					return 0;
+			}
+		} else {
+			if (!sceneObject->isASubChildOf(player))
+				return 0;
+		}
+
+		ZoneServer* server = player->getZoneServer();
+
+		if (server != nullptr) {
+			// The color index.
+			String appearanceFilename = sceneObject->getObjectTemplate()->getAppearanceFilename();
+			VectorMap<String, Reference<CustomizationVariable*>> variables;
+			AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, false);
+
+			int paletteID = 0;
+			if (selectedID == 83)
+				paletteID = 1;
+			else if (selectedID == 84)
+				paletteID = 2;
+
+			// The Sui Box.
+			ManagedReference<SuiColorBox*> cbox = new SuiColorBox(player, SuiWindowType::COLOR_ARMOR);
+			cbox->setCallback(new ColorArmorSuiCallback(server));
+			cbox->setColorPalette(variables.elementAt(paletteID).getKey()); 
+			cbox->setUsingObject(sceneObject);
+
+			// Add to player.
+			ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
+			ghost->addSuiBox(cbox);
+			player->sendMessage(cbox->generateMessage());
+		}
+	} else
 		return ObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
 
 }

@@ -26,7 +26,8 @@ int PlayerContainerComponent::canAddObject(SceneObject* sceneObject, SceneObject
 		TangibleObject* wearable = cast<TangibleObject*>(object);
 
 		SharedTangibleObjectTemplate* tanoData = dynamic_cast<SharedTangibleObjectTemplate*>(wearable->getObjectTemplate());
-
+		
+		/*
 		if (tanoData != nullptr) {
 			const auto races = tanoData->getPlayerRaces();
 			String race = creo->getObjectTemplate()->getFullTemplateString();
@@ -36,8 +37,9 @@ int PlayerContainerComponent::canAddObject(SceneObject* sceneObject, SceneObject
 
 				return TransferErrorCode::PLAYERUSEMASKERROR;
 			}
-		}
+		} */
 
+		/*
 		if (creo->isPlayerCreature()) {
 			if (!wearable->isNeutral()) {
 				if (wearable->isImperial() && (creo->getFactionStatus() == FactionStatus::ONLEAVE || !creo->isImperial())) {
@@ -52,7 +54,9 @@ int PlayerContainerComponent::canAddObject(SceneObject* sceneObject, SceneObject
 					return TransferErrorCode::PLAYERUSEMASKERROR;
 				}
 			}
-		}
+		} */
+
+		/*
 
 		if (object->isArmorObject()) {
 			PlayerManager* playerManager = sceneObject->getZoneServer()->getPlayerManager();
@@ -89,6 +93,8 @@ int PlayerContainerComponent::canAddObject(SceneObject* sceneObject, SceneObject
 			}
 		}
 
+		*/
+
 		if (object->isWeaponObject()) {
 			WeaponObject* weapon = cast<WeaponObject*>(object);
 			int bladeColor = weapon->getBladeColor();
@@ -100,10 +106,14 @@ int PlayerContainerComponent::canAddObject(SceneObject* sceneObject, SceneObject
 					return TransferErrorCode::PLAYERUSEMASKERROR;
 				}
 
+				/*
+
 				if (weapon->getCraftersName() != creo->getFirstName() && !ghost->isPrivileged()) {
 					errorDescription = "@jedi_spam:not_your_lightsaber";
 					return TransferErrorCode::PLAYERUSEMASKERROR;
 				}
+
+				*/
 			}
 		}
 	}
@@ -122,10 +132,13 @@ int PlayerContainerComponent::notifyObjectInserted(SceneObject* sceneObject, Sce
 		return 0;
 	}
 
+
+	/*
 	if (object->isArmorObject()) {
 		PlayerManager* playerManager = sceneObject->getZoneServer()->getPlayerManager();
-		playerManager->applyEncumbrancies(creo, cast<ArmorObject*>(object));
+		//playerManager->applyEncumbrancies(creo, cast<ArmorObject*>(object));
 	}
+	*/
 
 	if (object->isTangibleObject()) {
 		TangibleObject* tano = cast<TangibleObject*>(object);
@@ -156,6 +169,8 @@ int PlayerContainerComponent::notifyObjectInserted(SceneObject* sceneObject, Sce
 	// Jedi stuff below.
 	PlayerObject* ghost = creo->getPlayerObject();
 
+	/*
+
 	if (ghost && ghost->isJedi()) {
 
 		if (object->isRobeObject()) {
@@ -167,6 +182,8 @@ int PlayerContainerComponent::notifyObjectInserted(SceneObject* sceneObject, Sce
 			}
 		}
 	}
+
+	*/
 
 	return ContainerComponent::notifyObjectInserted(sceneObject, object);
 }
@@ -215,6 +232,7 @@ int PlayerContainerComponent::notifyObjectRemoved(SceneObject* sceneObject, Scen
 		tano->removeTemplateSkillMods(creo);
 	}
 
+	/*
 	// Jedi stuff below.
 	PlayerObject* ghost = creo->getPlayerObject();
 
@@ -222,7 +240,7 @@ int PlayerContainerComponent::notifyObjectRemoved(SceneObject* sceneObject, Scen
 		if (object->isRobeObject()) {
 			ghost->recalculateForcePower();
 		}
-	}
+	} */
 
 	return ContainerComponent::notifyObjectRemoved(sceneObject, object, destination);
 }

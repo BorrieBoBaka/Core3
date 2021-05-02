@@ -51,11 +51,13 @@ public:
 	void readObject(LuaObject* templateData);
 
 	inline uint8 getLotSize() const {
-		return lotSize;
+		//return lotSize;
+		return 0;
 	}
 
 	inline bool isAllowedZone(const String& zoneName) {
-		return allowedZones.contains(zoneName);
+		//return allowedZones.contains(zoneName);
+		return true;
 	}
 
 	inline bool isCivicStructure() const {

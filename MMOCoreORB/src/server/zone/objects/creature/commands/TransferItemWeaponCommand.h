@@ -137,12 +137,14 @@ public:
 					if (creature->isPlayerCreature()) {
 						CreatureObject* playerCreature = creature;
 
+						/*
+
 						if (weaponObject->isCertifiedFor(playerCreature)) {
 							weaponObject->setCertified(true);
 						} else {
 							playerCreature->sendSystemMessage("@combat_effects:no_proficiency"); //You lack the necessary skills to use this weapon properly. Damage with this weapon will be greatly reduced
 							weaponObject->setCertified(false);
-						}
+						} */
 
 						PlayerObject* ghost = playerCreature->getPlayerObject();
 

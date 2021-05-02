@@ -214,13 +214,13 @@ void ImageDesignSessionImplementation::updateImageDesign(CreatureObject* updater
 		}
 
 		// Award XP.
-		PlayerManager* playerManager = strongReferenceDesigner->getZoneServer()->getPlayerManager();
-
-		if (playerManager != nullptr && xpGranted > 0) {
-			if (strongReferenceDesigner == strongReferenceTarget)
-				xpGranted /= 2;
-			playerManager->awardExperience(strongReferenceDesigner, "imagedesigner", xpGranted, true);
-		}
+		//PlayerManager* playerManager = strongReferenceDesigner->getZoneServer()->getPlayerManager();
+		//
+		//if (playerManager != nullptr && xpGranted > 0) {
+		//	if (strongReferenceDesigner == strongReferenceTarget)
+		//		xpGranted /= 2;
+		//	playerManager->awardExperience(strongReferenceDesigner, "imagedesigner", xpGranted, true);
+		//}
 
 		// End the session
 		cancelSession();
