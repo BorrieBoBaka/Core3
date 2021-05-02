@@ -25,8 +25,10 @@ void ObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, Objec
 	ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 	int adminLevelCheck = ghost->getAdminLevel();
 
+	ManagedReference<SceneObject*> parent = sceneObject->getParent().get();
+
 	if (adminLevelCheck < 13) {
-		ManagedReference<SceneObject*> parent = sceneObject->getParent().get();
+		
 
 		if (parent == nullptr || !parent->isCellObject())
 			return;
