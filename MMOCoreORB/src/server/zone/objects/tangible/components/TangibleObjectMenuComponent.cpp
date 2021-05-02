@@ -54,7 +54,7 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 	menuResponse->addRadialMenuItemToRadialID(81, 83, 3, "Secondary");
 	menuResponse->addRadialMenuItemToRadialID(81, 84, 3, "Tertiary");
 
-	WearableObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player); 	
+	//WearableObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player); 	
 
 	if(player->getPlayerObject() != nullptr && player->getPlayerObject()->isPrivileged()) {
 		/// Viewing components used to craft item, for admins
