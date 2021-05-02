@@ -49,10 +49,16 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 			menuResponse->addRadialMenuItem(69, 3, "@slicing/slicing:slice"); // Slice
 	} */
 
-	menuResponse->addRadialMenuItem(81, 3, "Change Color");
-	menuResponse->addRadialMenuItemToRadialID(81, 82, 3, "Primary");
-	menuResponse->addRadialMenuItemToRadialID(81, 83, 3, "Secondary");
-	menuResponse->addRadialMenuItemToRadialID(81, 84, 3, "Tertiary");
+	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
+
+	if (inventory->hasObjectInContainer(sceneObject->getObjectID()) {
+		menuResponse->addRadialMenuItem(81, 3, "Change Color");
+		menuResponse->addRadialMenuItemToRadialID(81, 82, 3, "Primary");
+		menuResponse->addRadialMenuItemToRadialID(81, 83, 3, "Secondary");
+		menuResponse->addRadialMenuItemToRadialID(81, 84, 3, "Tertiary");
+	}
+
+	
 
 	//WearableObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player); 	
 

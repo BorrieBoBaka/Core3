@@ -26,6 +26,7 @@ void ObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, Objec
 	int adminLevelCheck = ghost->getAdminLevel();
 
 	ManagedReference<SceneObject*> parent = sceneObject->getParent().get();
+	ManagedReference<SceneObject*> playersParent = player->getParent().get();
 
 	if (adminLevelCheck < 13) {
 		
@@ -60,6 +61,11 @@ void ObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, Objec
 		menuResponse->addRadialMenuItemToRadialID(51, 52, 3, "@ui_radial:item_rotate_left");  // Rotate Left
 		menuResponse->addRadialMenuItemToRadialID(51, 53, 3, "@ui_radial:item_rotate_right"); // Rotate Right
 	} else {
+
+		if (sceneObject->isPlayerCreature() || sceneObject->isPet())
+			return;
+
+
 		menuResponse->addRadialMenuItem(72, 3, "@ui_radial:item_pickup"); // Pick up
 
 		menuResponse->addRadialMenuItem(54, 1, "@ui_radial:item_move");	  // Move
@@ -73,8 +79,11 @@ void ObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, Objec
 		menuResponse->addRadialMenuItemToRadialID(51, 52, 3, "@ui_radial:item_rotate_left");  // Rotate Left
 		menuResponse->addRadialMenuItemToRadialID(51, 53, 3, "@ui_radial:item_rotate_right"); // Rotate Right
 
-		if (parent == nullptr || !parent->isCellObject())
-			menuResponse->addRadialMenuItem(73, 3, "Drop Outside");
+		if (playersParent == nullptr) {
+			if (parent != nullptr) {
+				menuResponse->addRadialMenuItem(73, 3, "Drop Outside");
+			}
+		}
 	
 	}
 

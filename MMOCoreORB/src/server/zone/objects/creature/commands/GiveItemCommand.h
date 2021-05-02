@@ -171,10 +171,18 @@ public:
 					TangibleObject* oldClothing = cast<TangibleObject*>(object.get());
 
 					String objectTemplate = oldClothing->getObjectTemplate()->getClientTemplateFileName();
+					objectTemplate = objectTemplate.replaceAll("shared_", "");
+
 					Reference<SharedObjectTemplate*> shot = TemplateManager::instance()->getTemplate(objectTemplate.hashCode());
-					ManagedReference<TangibleObject*> clothing = (creature->getZoneServer()->createObject(shot->getServerObjectCRC(), 1)).castTo<TangibleObject*>();
+					TangibleObject* clothing = (vendor->getZoneServer()->createObject(shot->getServerObjectCRC(), 1)).castTo<TangibleObject*>();
 
+					if (clothing == nullptr) {
+						creature->sendSystemMessage("The object '" + objectTemplate + "' could not be created because the template could not be found.");
+						return;
+					}
 
+					Locker locker(object);
+					object->createChildObjects();
 
 					if (vendor == nullptr || vendor->getZone() == nullptr || vendor->getZone()->getCreatureManager() == nullptr)
 						return GENERALERROR;
