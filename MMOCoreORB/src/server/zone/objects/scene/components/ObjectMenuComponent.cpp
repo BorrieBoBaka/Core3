@@ -66,7 +66,7 @@ void ObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, Objec
 			return;
 
 		if (parent == nullptr || parent->isCellObject()) {
-			menuResponse->addRadialMenuItem(72, 3, "@ui_radial:item_pickup"); // Pick up
+			menuResponse->addRadialMenuItem(10, 3, "@ui_radial:item_pickup"); // Pick up
 
 			menuResponse->addRadialMenuItem(54, 1, "@ui_radial:item_move");	  // Move
 			menuResponse->addRadialMenuItem(51, 1, "@ui_radial:item_rotate"); // Rotate

@@ -174,6 +174,13 @@ public:
 					objectTemplate = objectTemplate.replaceAll("shared_", "");
 
 					Reference<SharedObjectTemplate*> shot = TemplateManager::instance()->getTemplate(objectTemplate.hashCode());
+
+					ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
+					if (inventory == nullptr || inventory->isContainerFullRecursive()) {
+						creature->sendSystemMessage("Your inventory is full, so the item could not be created.");
+						return;
+					}
+
 					TangibleObject* clothing = (vendor->getZoneServer()->createObject(shot->getServerObjectCRC(), 1)).castTo<TangibleObject*>();
 
 					if (clothing == nullptr) {
@@ -184,13 +191,28 @@ public:
 					Locker locker(clothing);
 					clothing->createChildObjects();
 
-					if (vendor == nullptr || vendor->getZone() == nullptr || vendor->getZone()->getCreatureManager() == nullptr)
-						return GENERALERROR;
+					if (inventory->transferObject(clothing, -1, true)) {
+						inventory->broadcastObject(clothing, true);
+					} else {
+						clothing->destroyObjectFromDatabase(true);
+						creature->sendSystemMessage("Error transferring object to inventory.");
+					}
 
-					if (vendor->getZone()->getCreatureManager()->addWearableItem(vendor, clothing))
-						return SUCCESS;
-					else
+					if (vendor == nullptr || vendor->getZone() == nullptr || vendor->getZone()->getCreatureManager() == nullptr) {
+						creature->sendSystemMessage("Target creature was not the correct type; or the zone it exists in does not exist.");
 						return GENERALERROR;
+					}
+
+
+						
+
+					if (vendor->getZone()->getCreatureManager()->addWearableItem(vendor, clothing)) {
+						return SUCCESS;
+					} else {
+						creature->sendSystemMessage("Could not add wearable item.");
+						return GENERALERROR;
+					}
+						
 
 					/* This is important, and we need to designate if an npc is a RP npc
 					String err;
