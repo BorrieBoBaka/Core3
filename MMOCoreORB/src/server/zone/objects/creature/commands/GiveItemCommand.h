@@ -181,8 +181,8 @@ public:
 						return GENERALERROR;
 					}
 
-					Locker locker(object);
-					object->createChildObjects();
+					Locker locker(clothing);
+					clothing->createChildObjects();
 
 					if (vendor == nullptr || vendor->getZone() == nullptr || vendor->getZone()->getCreatureManager() == nullptr)
 						return GENERALERROR;

@@ -65,25 +65,30 @@ void ObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, Objec
 		if (sceneObject->isPlayerCreature() || sceneObject->isPet())
 			return;
 
+		if (parent == nullptr || parent->isCellObject()) {
+			menuResponse->addRadialMenuItem(72, 3, "@ui_radial:item_pickup"); // Pick up
 
-		menuResponse->addRadialMenuItem(72, 3, "@ui_radial:item_pickup"); // Pick up
+			menuResponse->addRadialMenuItem(54, 1, "@ui_radial:item_move");	  // Move
+			menuResponse->addRadialMenuItem(51, 1, "@ui_radial:item_rotate"); // Rotate
 
-		menuResponse->addRadialMenuItem(54, 1, "@ui_radial:item_move");	  // Move
-		menuResponse->addRadialMenuItem(51, 1, "@ui_radial:item_rotate"); // Rotate
+			menuResponse->addRadialMenuItemToRadialID(54, 55, 3, "@ui_radial:item_move_forward"); // Move Forward
+			menuResponse->addRadialMenuItemToRadialID(54, 56, 3, "@ui_radial:item_move_back");	  // Move Back
+			menuResponse->addRadialMenuItemToRadialID(54, 57, 3, "@ui_radial:item_move_up");	  // Move Up
+			menuResponse->addRadialMenuItemToRadialID(54, 58, 3, "@ui_radial:item_move_down");	  // Move Down
 
-		menuResponse->addRadialMenuItemToRadialID(54, 55, 3, "@ui_radial:item_move_forward"); // Move Forward
-		menuResponse->addRadialMenuItemToRadialID(54, 56, 3, "@ui_radial:item_move_back");	  // Move Back
-		menuResponse->addRadialMenuItemToRadialID(54, 57, 3, "@ui_radial:item_move_up");	  // Move Up
-		menuResponse->addRadialMenuItemToRadialID(54, 58, 3, "@ui_radial:item_move_down");	  // Move Down
-
-		menuResponse->addRadialMenuItemToRadialID(51, 52, 3, "@ui_radial:item_rotate_left");  // Rotate Left
-		menuResponse->addRadialMenuItemToRadialID(51, 53, 3, "@ui_radial:item_rotate_right"); // Rotate Right
-
-		if (playersParent == nullptr) {
-			if (parent != nullptr) {
-				menuResponse->addRadialMenuItem(73, 3, "Drop Outside");
+			menuResponse->addRadialMenuItemToRadialID(51, 52, 3, "@ui_radial:item_rotate_left");  // Rotate Left
+			menuResponse->addRadialMenuItemToRadialID(51, 53, 3, "@ui_radial:item_rotate_right"); // Rotate Right
+		} else {
+			if (playersParent == nullptr) {
+				if (parent != nullptr) {
+					menuResponse->addRadialMenuItem(73, 3, "Drop Outside");
+				}
 			}
 		}
+
+		
+
+		
 	
 	}
 
