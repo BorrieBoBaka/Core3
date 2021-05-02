@@ -178,7 +178,7 @@ public:
 
 					if (clothing == nullptr) {
 						creature->sendSystemMessage("The object '" + objectTemplate + "' could not be created because the template could not be found.");
-						return;
+						return GENERALERROR;
 					}
 
 					Locker locker(object);
