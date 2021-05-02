@@ -174,8 +174,9 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 			ghost->addSuiBox(cbox);
 			player->sendMessage(cbox->generateMessage());
 		}
-	} else
-		return ObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
+	} 
+	
+	return ObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
 
 }
 
