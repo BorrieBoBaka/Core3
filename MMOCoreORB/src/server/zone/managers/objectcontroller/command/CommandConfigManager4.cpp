@@ -203,6 +203,37 @@
 #include "server/zone/objects/creature/commands/ToolCommand.h"
 #include "server/zone/objects/creature/commands/TrainCommand.h"
 
+#include "server/zone/objects/creature/commands/AimedattackCommand.h"
+#include "server/zone/objects/creature/commands/PowerattackCommand.h"
+#include "server/zone/objects/creature/commands/FlurryattackCommand.h"
+#include "server/zone/objects/creature/commands/TurnhelpCommand.h"
+#include "server/zone/objects/creature/commands/RpimphealCommand.h"
+#include "server/zone/objects/creature/commands/RpsliceCommand.h"
+#include "server/zone/objects/creature/commands/RpfmanipulateCommand.h"
+#include "server/zone/objects/creature/commands/RpfpushCommand.h"
+#include "server/zone/objects/creature/commands/RpfpullCommand.h"
+#include "server/zone/objects/creature/commands/RpfgripCommand.h"
+#include "server/zone/objects/creature/commands/RpfcrushCommand.h"
+#include "server/zone/objects/creature/commands/RpfspeedCommand.h"
+#include "server/zone/objects/creature/commands/RpfjumpCommand.h"
+#include "server/zone/objects/creature/commands/RpfabsorbCommand.h"
+#include "server/zone/objects/creature/commands/RpfdefenseCommand.h"
+#include "server/zone/objects/creature/commands/RpfpersuadeCommand.h"
+#include "server/zone/objects/creature/commands/RpfreadCommand.h"
+#include "server/zone/objects/creature/commands/RpftrickCommand.h"
+#include "server/zone/objects/creature/commands/RpfdominateCommand.h"
+#include "server/zone/objects/creature/commands/RpfshockCommand.h"
+#include "server/zone/objects/creature/commands/RpflightningCommand.h"
+#include "server/zone/objects/creature/commands/RpfchainCommand.h"
+#include "server/zone/objects/creature/commands/RpfstormCommand.h"
+#include "server/zone/objects/creature/commands/RpfstealthCommand.h"
+#include "server/zone/objects/creature/commands/RpfflashCommand.h"
+#include "server/zone/objects/creature/commands/RpftwistCommand.h"
+#include "server/zone/objects/creature/commands/RpfprojectCommand.h"
+#include "server/zone/objects/creature/commands/RpfsthrowCommand.h"
+#include "server/zone/objects/creature/commands/RpaddstateCommand.h"
+#include "server/zone/objects/creature/commands/RpstimpackCommand.h"
+
 
 using namespace server::zone::managers::objectcontroller::command;
 
@@ -367,6 +398,37 @@ void CommandConfigManager::registerCommands4() {
 	commandFactory.registerCommand<SkillRpCommand>(String("skillrp").toLowerCase());
 	commandFactory.registerCommand<ToolCommand>(String("tool").toLowerCase());
 	commandFactory.registerCommand<TrainCommand>(String("train").toLowerCase());
+
+	commandFactory.registerCommand<AimedattackCommand>(String("aimedattack").toLowerCase());
+	commandFactory.registerCommand<PowerattackCommand>(String("powerattack").toLowerCase());
+	commandFactory.registerCommand<FlurryattackCommand>(String("flurryattack").toLowerCase());
+	commandFactory.registerCommand<TurnhelpCommand>(String("turnhelp").toLowerCase());
+	commandFactory.registerCommand<RpimphealCommand>(String("rpimpheal").toLowerCase());
+	commandFactory.registerCommand<RpsliceCommand>(String("rpslice").toLowerCase());
+	commandFactory.registerCommand<RpfmanipulateCommand>(String("rpfmanipulate").toLowerCase());
+	commandFactory.registerCommand<RpfpushCommand>(String("rpfpush").toLowerCase());
+	commandFactory.registerCommand<RpfpullCommand>(String("rpfpull").toLowerCase());
+	commandFactory.registerCommand<RpfgripCommand>(String("rpfgrip").toLowerCase());
+	commandFactory.registerCommand<RpfcrushCommand>(String("rpfcrush").toLowerCase());
+	commandFactory.registerCommand<RpfspeedCommand>(String("rpfspeed").toLowerCase());
+	commandFactory.registerCommand<RpfjumpCommand>(String("rpfjump").toLowerCase());
+	commandFactory.registerCommand<RpfabsorbCommand>(String("rpfabsorb").toLowerCase());
+	commandFactory.registerCommand<RpfdefenseCommand>(String("rpfdefense").toLowerCase());
+	commandFactory.registerCommand<RpfpersuadeCommand>(String("rpfpersuade").toLowerCase());
+	commandFactory.registerCommand<RpfreadCommand>(String("rpfread").toLowerCase());
+	commandFactory.registerCommand<RpftrickCommand>(String("rpftrick").toLowerCase());
+	commandFactory.registerCommand<RpfdominateCommand>(String("rpfdominate").toLowerCase());
+	commandFactory.registerCommand<RpfshockCommand>(String("rpfshock").toLowerCase());
+	commandFactory.registerCommand<RpflightningCommand>(String("rpflightning").toLowerCase());
+	commandFactory.registerCommand<RpfchainCommand>(String("rpfchain").toLowerCase());
+	commandFactory.registerCommand<RpfstormCommand>(String("rpfstorm").toLowerCase());
+	commandFactory.registerCommand<RpfstealthCommand>(String("rpfstealth").toLowerCase());
+	commandFactory.registerCommand<RpfflashCommand>(String("rpfflash").toLowerCase());
+	commandFactory.registerCommand<RpftwistCommand>(String("rpftwist").toLowerCase());
+	commandFactory.registerCommand<RpfprojectCommand>(String("rpfproject").toLowerCase());
+	commandFactory.registerCommand<RpfsthrowCommand>(String("rpfsthrow").toLowerCase());
+	commandFactory.registerCommand<RpaddstateCommand>(String("rpaddstate").toLowerCase());
+	commandFactory.registerCommand<RpstimpackCommand>(String("rpstimpack").toLowerCase());
 
 
 }
