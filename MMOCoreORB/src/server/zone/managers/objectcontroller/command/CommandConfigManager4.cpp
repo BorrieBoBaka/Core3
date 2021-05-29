@@ -234,6 +234,16 @@
 #include "server/zone/objects/creature/commands/RpaddstateCommand.h"
 #include "server/zone/objects/creature/commands/RpstimpackCommand.h"
 
+#include "server/zone/objects/creature/commands/RpfbodyCommand.h"
+#include "server/zone/objects/creature/commands/RpfmeditateCommand.h"
+#include "server/zone/objects/creature/commands/RpfdeflectCommand.h"
+#include "server/zone/objects/creature/commands/RpgfocusCommand.h"
+#include "server/zone/objects/creature/commands/RpfrageCommand.h"
+#include "server/zone/objects/creature/commands/RpfhealCommand.h"
+#include "server/zone/objects/creature/commands/RpftargethealCommand.h"
+#include "server/zone/objects/creature/commands/RpfsightCommand.h"
+#include "server/zone/objects/creature/commands/RpfprecogCommand.h"
+
 
 using namespace server::zone::managers::objectcontroller::command;
 
@@ -429,6 +439,16 @@ void CommandConfigManager::registerCommands4() {
 	commandFactory.registerCommand<RpfsthrowCommand>(String("rpfsthrow").toLowerCase());
 	commandFactory.registerCommand<RpaddstateCommand>(String("rpaddstate").toLowerCase());
 	commandFactory.registerCommand<RpstimpackCommand>(String("rpstimpack").toLowerCase());
+
+	commandFactory.registerCommand<RpfbodyCommand>(String("rpfbody").toLowerCase());
+	commandFactory.registerCommand<RpfmeditateCommand>(String("rpfmeditate").toLowerCase());
+	commandFactory.registerCommand<RpfdeflectCommand>(String("rpfdeflect").toLowerCase());
+	commandFactory.registerCommand<RpgfocusCommand>(String("rpgfocus").toLowerCase());
+	commandFactory.registerCommand<RpfrageCommand>(String("rpfrage").toLowerCase());
+	commandFactory.registerCommand<RpfhealCommand>(String("rpfheal").toLowerCase());
+	commandFactory.registerCommand<RpftargethealCommand>(String("rpftargetheal").toLowerCase());
+	commandFactory.registerCommand<RpfsightCommand>(String("rpfsight").toLowerCase());
+	commandFactory.registerCommand<RpfprecogCommand>(String("rpfprecog").toLowerCase());
 
 
 }
