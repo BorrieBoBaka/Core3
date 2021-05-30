@@ -123,6 +123,7 @@ class CreatureObject extends TangibleObject {
 	protected GuildObject guild;
 
 	protected unsigned long targetID;
+	protected unsigned long storedTargetID;
 	protected byte moodID;
 	protected int performanceCounter;
 	protected int instrumentID;
@@ -652,6 +653,9 @@ class CreatureObject extends TangibleObject {
 	 */
 	@preLocked
 	public native void setTargetID(unsigned long targetID, boolean notifyClient = true);
+
+	@preLocked 
+	public native void setStoredTargetID(unsigned long targetID, boolean notifyClient = true);
 
 	/**
 	 * Adds the buff to the creature, activating it and sending packets if it is a player.
@@ -1773,6 +1777,11 @@ class CreatureObject extends TangibleObject {
 	@read
 	public unsigned long getTargetID() {
 		return targetID;
+	}
+
+	@read 
+	public unsigned long getStoredTargetID() {
+		return storedTargetID;
 	}
 
 	@read

@@ -304,6 +304,7 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	alm->insertAttribute("damage.wpn_damage_min", minDmg);
 
 	alm->insertAttribute("damage.wpn_damage_max", maxDmg);
+	alm->insertAttribute("damage.wpn_damage_max2", "HEYO");
 
 	StringBuffer woundsratio;
 

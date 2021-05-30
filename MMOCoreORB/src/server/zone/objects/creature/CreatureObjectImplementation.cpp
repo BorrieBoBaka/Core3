@@ -142,6 +142,7 @@ void CreatureObjectImplementation::initializeMembers() {
 	groupInviterID = 0;
 	groupInviteCounter = 0;
 	targetID = 0;
+	storedTargetID = 0;
 	moodID = 0;
 	performanceCounter = 0;
 	instrumentID = 0;
@@ -571,6 +572,18 @@ void CreatureObjectImplementation::setTargetID(uint64 targetID,
 
 		broadcastMessage(msg, false);
 	}
+}
+
+void CreatureObjectImplementation::setStoredTargetID(uint64 targetID, bool notifyClient) {
+	CreatureObjectImplementation::storedTargetID = targetID;
+	/*
+	if (notifyClient) {
+		CreatureObjectDeltaMessage6* msg = new CreatureObjectDeltaMessage6(asCreatureObject());
+		msg->updateTarget();
+		msg->close();
+
+		broadcastMessage(msg, false);
+	} */
 }
 
 void CreatureObjectImplementation::setHeight(float height, bool notifyClient) {
