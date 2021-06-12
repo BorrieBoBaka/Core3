@@ -305,9 +305,9 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	StringBuffer dmg;
 	if (bDamage > 0)
-		dmg << minDmg << "d" + maxDmg << " + " << bDamage;
+		dmg << minDmg << "d" << maxDmg << " + " << bDamage;
 	else 
-		dmg << minDmg << "d" + maxDmg;
+		dmg << minDmg << "d" << maxDmg;
 
 	alm->insertAttribute("damage.dmgdice", dmg);
 
