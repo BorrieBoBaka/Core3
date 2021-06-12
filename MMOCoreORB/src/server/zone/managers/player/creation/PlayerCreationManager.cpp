@@ -29,8 +29,8 @@
 
 PlayerCreationManager::PlayerCreationManager() :
 		Logger("PlayerCreationManager") {
-	setLogging(false);
-	setGlobalLogging(false);
+	setLogging(true);
+	setGlobalLogging(true);
 
 	zoneServer = ServerCore::getZoneServer();
 
@@ -55,6 +55,7 @@ PlayerCreationManager::~PlayerCreationManager() {
 }
 
 void PlayerCreationManager::loadRacialCreationData() {
+	info() << "Loading Racial Creation Data.";
 	TemplateManager* templateManager = TemplateManager::instance();
 	IffStream* iffStream = templateManager->openIffFile(
 			"datatables/creation/attribute_limits.iff");
