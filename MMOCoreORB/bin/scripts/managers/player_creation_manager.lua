@@ -10,13 +10,13 @@ startingBank = 1000
 skillPoints = 250
 
 professions = {
-	"combat_brawler",
-	"combat_marksman",
-	"crafting_artisan",
-	"jedi",
-	"outdoors_scout",
-	"science_medic",
-	"social_entertainer"
+	"rpg_bg_roleplayer"
+	--"combat_marksman",
+	--"crafting_artisan",
+	--"jedi",
+	--"outdoors_scout",
+	--"science_medic",
+	--"social_entertainer"
 }
 
 marksmanPistol = "object/weapon/ranged/pistol/pistol_cdef.iff"
@@ -48,13 +48,15 @@ marojMelon = "object/tangible/food/foraged/foraged_fruit_s1.iff"
 x31Speeder = "object/tangible/deed/vehicle_deed/landspeeder_x31_deed.iff"
 
 professionSpecificItems = {
-	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
-	combat_marksman = { marksmanPistol, marksmanCarbine, marksmanRifle },
-	crafting_artisan = { genericTool, mineralTool, chemicalTool },
-	jedi = { },
-	outdoors_scout = { genericTool },
-	science_medic = { foodTool },
-	social_entertainer = { slitherhorn }
+	--combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
+	--combat_marksman = { marksmanPistol, marksmanCarbine, marksmanRifle },
+	--crafting_artisan = { genericTool, mineralTool, chemicalTool },
+	--jedi = { },
+	--outdoors_scout = { genericTool },
+	--science_medic = { foodTool },
+	--social_entertainer = { slitherhorn }
+	rpg_bg_roleplayer = { },
 }
 
-commonStartingItems = { marojMelon, survivalKnife, x31Speeder }
+--commonStartingItems = { marojMelon, survivalKnife, x31Speeder }
+commonStartingItems = { }
