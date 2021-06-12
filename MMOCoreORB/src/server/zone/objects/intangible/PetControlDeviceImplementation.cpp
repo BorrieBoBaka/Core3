@@ -136,8 +136,8 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 
 	int currentlySpawned = 0;
 	int spawnedLevel = 0;
-	int maxPets = 1;
-	int maxLevelofPets = 10;
+	int maxPets = 2;
+	int maxLevelofPets = 9999;
 	int level = pet->getLevel();
 
 	if (pet->getCreatureTemplate() == nullptr) {

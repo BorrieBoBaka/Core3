@@ -1036,18 +1036,44 @@ void PlayerCreationManager::addRacialMods(CreatureObject* creature,
 		racialData = racialCreationData.get(0);
 
 	for (int i = 0; i < 9; ++i) {
-		int mod = racialData->getAttributeMod(i) + creature->getBaseHAM(i);
-		creature->setBaseHAM(i, mod, false);
-		creature->setHAM(i, mod, false);
-		creature->setMaxHAM(i, mod, false);
+		//int mod = racialData->getAttributeMod(i) + creature->getBaseHAM(i);
+		creature->setBaseHAM(i, 2, false);
+		creature->setHAM(i, 2, false);
+		creature->setMaxHAM(i, 2, false);
 	}
 
+	//Health
+	creature->setBaseHAM(0, 8, false);
+	creature->setHAM(0, 8, false);
+	creature->setMaxHAM(0, 8, false);
+	// Action
+	creature->setBaseHAM(3, 6, false);
+	creature->setHAM(3, 6, false);
+	creature->setMaxHAM(3, 6, false);
+	// Will
+	creature->setBaseHAM(6, 8, false);
+	creature->setHAM(6, 8, false);
+	creature->setMaxHAM(6, 8, false);
+
+
+	
 	if (startingSkills != nullptr) {
 		for (int i = 0; i < startingSkills->size(); ++i) {
 			SkillManager::instance()->awardSkill(startingSkills->get(i),
 					creature, false, true, true);
 		}
-	}
+	} 
+
+	SkillManager::instance()->awardSkill("rp_strength_novice", creature, false, true, true);
+	SkillManager::instance()->awardSkill("rp_precision_novice", creature, false, true, true);
+	SkillManager::instance()->awardSkill("rp_dexterity_novice", creature, false, true, true);
+	SkillManager::instance()->awardSkill("rp_awareness_novice", creature, false, true, true);
+	SkillManager::instance()->awardSkill("rp_intelligence_novice", creature, false, true, true);
+	SkillManager::instance()->awardSkill("rp_charisma_novice", creature, false, true, true);
+	SkillManager::instance()->awardSkill("rp_constitution_novice", creature, false, true, true);
+	SkillManager::instance()->awardSkill("rp_mindfulness_novice", creature, false, true, true);
+
+
 
 	// Get inventory.
 	if (!equipmentOnly) {

@@ -2990,6 +2990,39 @@ void PlayerObjectImplementation::recalculateForcePower() {
 	setForcePowerMax(maxForce, true);
 }
 
+void PlayerObjectImplementation::recalculateRoleplayHAM(bool notifyClient) {
+	ManagedReference<SceneObject*> parent = getParent().get();
+
+	if (parent == nullptr)
+		return;
+
+	CreatureObject* player = parent->asCreatureObject();
+
+	if (player == nullptr)
+		return;
+
+
+	int health = player->getSkillMod("rp_health") + 5;
+	int action = player->getSkillMod("rp_action") + 2;
+	int will = player->getSkillMod("rp_will");
+	int force = player->getSkillMod("rp_force");
+
+	// Health
+	player->setBaseHAM(0, health, notifyClient);
+	//player->setHAM(0, 8, notifyClient);
+	player->setMaxHAM(0, health, notifyClient);
+	// Action
+	player->setBaseHAM(3, action, notifyClient);
+	//player->setHAM(3, 6, notifyClient);
+	player->setMaxHAM(3, action, notifyClient);
+	// Will
+	player->setBaseHAM(6, will, notifyClient);
+	//player->setHAM(6, 8, notifyClient);
+	player->setMaxHAM(6, will, notifyClient);
+
+	setForcePowerMax(force, notifyClient);
+}
+
 String PlayerObjectImplementation::getMiliSecsTimeString(uint64 miliSecs, bool verbose) const {
 	uint64 ss = miliSecs / 1000;
 

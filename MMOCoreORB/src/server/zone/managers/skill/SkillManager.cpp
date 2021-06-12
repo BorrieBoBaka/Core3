@@ -308,6 +308,8 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		//Update maximum experience.
 		updateXpLimits(ghost);
 
+		// Update Roleplay HAM
+		ghost->recalculateRoleplayHAM(notifyClient);
 
 		// Update Force Power Max.
 		ghost->recalculateForcePower();

@@ -568,9 +568,11 @@ void TangibleObjectImplementation::fillAttributeList(AttributeListMessage* alm, 
 
 		alm->insertAttribute("volume", volume + objectCount);
 		alm->insertAttribute("contents", contentsString);
-	} else {
-		alm->insertAttribute("volume", volume);
-	}
+	} 
+	
+	//else {
+	//	alm->insertAttribute("volume", volume);
+	//}
 
 	if (!craftersName.isEmpty()) {
 		alm->insertAttribute("crafter", craftersName);

@@ -29,17 +29,17 @@ void DroidObjectImplementation::fillAttributeList(AttributeListMessage* msg, Cre
 
 	if (device != nullptr && device->isASubChildOf(object)) {
 		float percentPower = ((float)power / (float)MAX_POWER) * 100.0;
-		msg->insertAttribute("@obj_attr_n:battery_power", String::valueOf((int)percentPower) + "%");
+		//msg->insertAttribute("@obj_attr_n:battery_power", String::valueOf((int)percentPower) + "%");
 
 		if (paintCount > 0) {
-			msg->insertAttribute("customization_cnt", paintCount);
+			//msg->insertAttribute("customization_cnt", paintCount);
 		}
 
 		for (int i = 0; i < modules.size(); i++) {
 			auto& module = modules.get(i);
 
 			if (module != nullptr) {
-				module->fillAttributeList(msg, object);
+				//module->fillAttributeList(msg, object);
 			}
 		}
 	}
@@ -99,6 +99,7 @@ void DroidObjectImplementation::notifyInsertToZone(Zone* zone) {
 		return;
 
 	// Decay customized paint (if any)
+	/*
 	if (paintCount > 0) {
 		// Paint starts to fade when there are 4 calls left
 		if (paintCount <= 4) {
@@ -123,7 +124,7 @@ void DroidObjectImplementation::notifyInsertToZone(Zone* zone) {
 		}
 
 		--paintCount;
-	}
+	} */
 }
 
 int DroidObjectImplementation::rechargeFromBattery(CreatureObject* player) {
@@ -183,7 +184,7 @@ void DroidObjectImplementation::rechargeFromDroid() {
 
 void DroidObjectImplementation::rechargeOtherDroid(DroidObject* otherDroid) {
 	otherDroid->rechargeFromDroid();
-	usePower(100);
+	//usePower(100);
 }
 
 void DroidObjectImplementation::handleLowPower() {
@@ -347,8 +348,8 @@ void DroidObjectImplementation::runModulePowerDrain() {
 		auto& module = modules.get(i);
 		int drain = module->getBatteryDrain();
 
-		if (drain > 0)
-			usePower(drain);
+		//if (drain > 0)
+			//usePower(drain);
 	}
 }
 

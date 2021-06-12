@@ -57,7 +57,7 @@ void StimPackImplementation::fillAttributeList(AttributeListMessage* msg, Creatu
 	PharmaceuticalObjectImplementation::fillAttributeList(msg, object);
 
 	if (!isRangedStimPack() && !isDroidRepairKit()) {
-		Vector<byte> atts = getAttributes();
+		/*Vector<byte> atts = getAttributes();
 
 		if (atts.contains(CreatureAttribute::HEALTH)) {
 			msg->insertAttribute("examine_heal_damage_health", Math::getPrecision(effectiveness, 0));
@@ -73,9 +73,18 @@ void StimPackImplementation::fillAttributeList(AttributeListMessage* msg, Creatu
 
 		if (!isPetStimPack()) {
 			msg->insertAttribute("healing_ability", medicineUseRequired);
-		}
+		} */
+		StringBuffer dmg;
+		dmg << dieType << "d" + dieCount;
+		msg->insertAttribute("medrp.die", dmg);
+		msg->insertAttribute("medrp.meddc", dieCheck);
+
 	} else if (isDroidRepairKit()) {
-		msg->insertAttribute("examine_repair_energy", Math::getPrecision(effectiveness, 0));
+		//msg->insertAttribute("examine_repair_energy", Math::getPrecision(effectiveness, 0));
+		StringBuffer dmg;
+		dmg << dieType << "d" + dieCount;
+		msg->insertAttribute("drdrp.die", dmg);
+		msg->insertAttribute("drdrp.drddc", dieCheck);
 	}
 }
 

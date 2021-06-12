@@ -215,11 +215,12 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	bool res = isCertifiedFor(object);
 
+	/*
 	if (res) {
 		alm->insertAttribute("weapon_cert_status", "Yes");
 	} else {
 		alm->insertAttribute("weapon_cert_status", "No");
-	}
+	} */
 
 	/*if (usesRemaining > 0)
 		alm->insertAttribute("count", usesRemaining);*/
@@ -255,7 +256,7 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	alm->insertAttribute("wpn_armor_pierce_rating", ap);
 
-	alm->insertAttribute("wpn_attack_speed", Math::getPrecision(getAttackSpeed(), 1));
+	//alm->insertAttribute("wpn_attack_speed", Math::getPrecision(getAttackSpeed(), 1));
 
 	if (getDamageRadius() != 0.0f)
 		alm->insertAttribute("area", Math::getPrecision(getDamageRadius(), 0));
@@ -300,11 +301,17 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	float minDmg = round(getMinDamage());
 	float maxDmg = round(getMaxDamage());
+	int bDamage = getBonusDamage();
 
-	alm->insertAttribute("damage.wpn_damage_min", minDmg);
+	StringBuffer dmg;
+	if (bDamage > 0)
+		dmg << minDmg << "d" + maxDmg << " + " << bDamage;
+	else 
+		dmg << minDmg << "d" + maxDmg;
 
-	alm->insertAttribute("damage.wpn_damage_max", maxDmg);
-	alm->insertAttribute("damage.wpn_damage_max2", "HEYO");
+	alm->insertAttribute("damage.dmgdice", dmg);
+
+	//alm->insertAttribute("damage.wpn_damage_max", maxDmg);
 
 	StringBuffer woundsratio;
 
@@ -312,7 +319,7 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	woundsratio << wnd << "%";
 
-	alm->insertAttribute("damage.wpn_wound_chance", woundsratio);
+	//alm->insertAttribute("damage.wpn_wound_chance", woundsratio);
 
 	//Accuracy Modifiers
 	StringBuffer pblank;
@@ -337,21 +344,23 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	alm->insertAttribute("cat_wpn_rangemods.wpn_range_max", maxrange);
 
 	//Special Attack Costs
-	alm->insertAttribute("cat_wpn_attack_cost.health", getHealthAttackCost());
-
-	alm->insertAttribute("cat_wpn_attack_cost.action", getActionAttackCost());
-
-	alm->insertAttribute("cat_wpn_attack_cost.mind", getMindAttackCost());
+	//alm->insertAttribute("cat_wpn_attack_cost.health", getHealthAttackCost());
+	//
+	//alm->insertAttribute("cat_wpn_attack_cost.action", getActionAttackCost());
+	//
+	//alm->insertAttribute("cat_wpn_attack_cost.mind", getMindAttackCost());
 
 	//Anti Decay Kit
-	if(hasAntiDecayKit()){
-		alm->insertAttribute("@veteran_new:antidecay_examine_title", "@veteran_new:antidecay_examine_text");
-	}
+	//if(hasAntiDecayKit()){
+	//	alm->insertAttribute("@veteran_new:antidecay_examine_title", "@veteran_new:antidecay_examine_text");
+	//}
+	//
+	//// Force Cost
+	//if (getForceCost() > 0)
+	//	alm->insertAttribute("forcecost", (int)getForceCost());
+	//
 
-	// Force Cost
-	if (getForceCost() > 0)
-		alm->insertAttribute("forcecost", (int)getForceCost());
-
+	/*
 	for (int i = 0; i < getNumberOfDots(); i++) {
 
 			String dt;
@@ -441,6 +450,7 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	if (hasPowerup())
 		powerupObject->fillWeaponAttributeList(alm, _this.getReferenceUnsafeStaticCast());
 
+	*/
 	if (sliced == 1)
 		alm->insertAttribute("wpn_attr", "@obj_attr_n:hacked1");
 
@@ -533,6 +543,10 @@ float WeaponObjectImplementation::getMinDamage(bool withPup) const {
 	}
 
 	return damage - getConditionReduction(damage);
+}
+
+float WeaponObjectImplementation::getBonusDamage() const {
+	return bonusDamage;
 }
 
 float WeaponObjectImplementation::getWoundsRatio(bool withPup) const {

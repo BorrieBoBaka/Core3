@@ -69,6 +69,7 @@ class TangibleObject extends SceneObject {
 	protected int junkValue;
 
 	protected string objectSerial;
+	protected string rpDescription;
 
 	@transactional
 	protected transient ThreatMap threatMap;
@@ -80,6 +81,7 @@ class TangibleObject extends SceneObject {
 	protected boolean sliced;
 
 	protected boolean copyable;
+	protected boolean imbued;
 
 	@dereferenced
 	protected SortedVector<ActiveArea> activeAreas;
@@ -130,6 +132,7 @@ class TangibleObject extends SceneObject {
 		sliceable = false;
 		sliced = false;
 		copyable = false;
+		imbued = false;
 		isCraftedEnhancedItem = false;
 
 		threatMap = null;
@@ -687,6 +690,15 @@ class TangibleObject extends SceneObject {
 		copyable = value;
 	}
 
+	@read 
+	public boolean isImbued() {
+		return imbued;
+	}
+
+	public void setImbued(boolean value) {
+		imbued = value;
+	}
+
 	@read
 	public boolean isJediRobe() {
 		return jediRobe;
@@ -738,6 +750,15 @@ class TangibleObject extends SceneObject {
 	@dirty
 	public abstract string getSerialNumber() {
 		return objectSerial;
+	}
+
+	public abstract void setRpDescription(string value) {
+			rpDescription = value;
+	}
+
+	@dirty 
+	public abstract string getRpDescription() {
+		return rpDescription;
 	}
 
 	@local

@@ -76,7 +76,7 @@ int CreatureImplementation::handleObjectMenuSelect(CreatureObject* player, byte 
 
 void CreatureImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* player) {
 	AiAgentImplementation::fillAttributeList(alm, player);
-
+	/*
 	int creaKnowledge = player->getSkillMod("creature_knowledge");
 
 	if (getHideType().isEmpty() && getBoneType().isEmpty() && getMeatType().isEmpty()) {
@@ -181,7 +181,7 @@ void CreatureImplementation::fillAttributeList(AttributeListMessage* alm, Creatu
 		StringBuffer damageMsg;
 		damageMsg << getDamageMin() << "-" << getDamageMax();
 		alm->insertAttribute("cat_wpn_damage", damageMsg.toString());
-	}
+	} */
 }
 
 void CreatureImplementation::scheduleDespawn() {

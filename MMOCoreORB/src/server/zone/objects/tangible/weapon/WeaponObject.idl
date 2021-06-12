@@ -42,6 +42,7 @@ class WeaponObject extends TangibleObject {
 
 	protected float minDamage;
 	protected float maxDamage;
+	public int bonusDamage;
 
 	protected float damageRadius;
 
@@ -105,6 +106,7 @@ class WeaponObject extends TangibleObject {
 
 		minDamage = 1;
 		maxDamage = 10;
+		bonusDamage = 0;
 
 		woundsRatio = 0;
 
@@ -289,6 +291,13 @@ class WeaponObject extends TangibleObject {
 
 	public void setMinDamage(float value) {
 		minDamage = value;
+	}
+
+	@read 
+	public native float getBonusDamage();
+
+	public void setBonusDamage(float value) {
+		bonusDamage = value;
 	}
 
 	@read

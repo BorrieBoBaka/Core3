@@ -18,12 +18,18 @@ include system.lang.String;
 class StimPack extends PharmaceuticalObject {
 	protected float effectiveness;
 	protected int medicineClass;
+	public int dieType;
+	public int dieCount;
+	public int dieCheck;
 
 	public StimPack() {
 		setLoggingName("StimPack");
 
 		effectiveness = 0;
 		medicineClass = 0;
+		dieType = 1;
+		dieCount = 2;
+		dieCheck = 5;
 	}
 
 	@local
