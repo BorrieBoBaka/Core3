@@ -79,6 +79,8 @@ class TangibleObject extends SceneObject {
 	protected boolean sliceable;
 	protected boolean sliced;
 
+	protected boolean copyable;
+
 	@dereferenced
 	protected SortedVector<ActiveArea> activeAreas;
 
@@ -127,6 +129,7 @@ class TangibleObject extends SceneObject {
 
 		sliceable = false;
 		sliced = false;
+		copyable = false;
 		isCraftedEnhancedItem = false;
 
 		threatMap = null;
@@ -673,6 +676,15 @@ class TangibleObject extends SceneObject {
 
 	public void setSliced(boolean slice) {
 		sliced = slice;
+	}
+
+	@read 
+	public boolean isCopyable() {
+		return copyable;
+	}
+
+	public void setCopyable(boolean value) {
+		copyable = value;
 	}
 
 	@read

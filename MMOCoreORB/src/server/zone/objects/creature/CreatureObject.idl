@@ -183,6 +183,9 @@ class CreatureObject extends TangibleObject {
 	@dereferenced
 	private VectorMap<string, unsigned long> screenPlayStates;
 
+	@dereferenced 
+	private VectorMap<string, string> localData;
+
 	@dereferenced
 	protected SynchronizedVectorMap<unsigned long, unsigned long> personalEnemyFlags;
 
@@ -1440,6 +1443,24 @@ class CreatureObject extends TangibleObject {
 		synchronized (screenPlayStatesMutex) {
 			screenPlayStates.put(screenPlay, state);
 		}
+	}
+
+	@read 
+	public final string getLocalData(final string dataName) {
+		if (localData.contains(dataName))
+			return localData.get(dataName);
+		else
+			return "XXERRORXX";
+	}
+
+	@local 
+	@preLocked 
+	public VectorMap<string, string> getAllLocalData() {
+		return localData;
+	}
+
+	public void setLocalData(final string dataName, final string data) {
+		localData.put(dataName, data);
 	}
 
 	public void updateCooldownTimer(final string coooldownTimer, unsigned long miliSecondsToAdd = 0) {

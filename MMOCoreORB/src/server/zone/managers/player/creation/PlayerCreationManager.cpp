@@ -77,11 +77,15 @@ void PlayerCreationManager::loadRacialCreationData() {
 
 	delete iffStream;
 
+	info() << "Loading " << attributeLimitsTable.getTotalRows() << " rows from Attribute Limits Table.";
+
 	for (int i = 0; i < attributeLimitsTable.getTotalRows(); ++i) {
 		DataTableRow* attributeLimitRow = attributeLimitsTable.getRow(i);
 
 		String maleTemplate;
 		String femaleTemplate;
+
+		info() << "Loading row " << i << "  from Attribute Limits Table.";
 
 		attributeLimitRow->getValue(0, maleTemplate);
 		attributeLimitRow->getValue(1, femaleTemplate);
