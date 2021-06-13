@@ -1037,9 +1037,9 @@ void PlayerCreationManager::addRacialMods(CreatureObject* creature,
 
 	for (int i = 0; i < 9; ++i) {
 		//int mod = racialData->getAttributeMod(i) + creature->getBaseHAM(i);
-		creature->setBaseHAM(i, 2, false);
-		creature->setHAM(i, 2, false);
-		creature->setMaxHAM(i, 2, false);
+		creature->setBaseHAM(i, 1, false);
+		creature->setHAM(i, 1, false);
+		creature->setMaxHAM(i, 1, false);
 	}
 
 	//Health

@@ -1292,12 +1292,14 @@ void CreatureObjectImplementation::setMaxHAM(int type, int value,
 		maxHamList.set(type, value, nullptr);
 	}
 
+
+	/*
 	if (wounds.get(type) >= maxHamList.get(type)) // this will reset our wounds to not overflow max value
 		setWounds(type, wounds.get(type), notifyClient);
 
 	if (type % 3 != 0) { //changing secondary stats, updating current value
 		healDamage(asCreatureObject(), type, value - hamList.get(type), notifyClient);
-	}
+	} */
 }
 
 void CreatureObjectImplementation::setEncumbrance(int type, int value,

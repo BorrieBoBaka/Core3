@@ -312,7 +312,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		ghost->recalculateRoleplayHAM(notifyClient);
 
 		// Update Force Power Max.
-		ghost->recalculateForcePower();
+		//ghost->recalculateForcePower();
 
 		ManagedReference<PlayerManager*> playerManager = creature->getZoneServer()->getPlayerManager();
 
