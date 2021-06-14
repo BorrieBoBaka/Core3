@@ -1046,14 +1046,38 @@ void PlayerCreationManager::addRacialMods(CreatureObject* creature,
 	creature->setBaseHAM(0, 8, false);
 	creature->setHAM(0, 8, false);
 	creature->setMaxHAM(0, 8, false);
+
+	creature->setBaseHAM(1, 8, false);
+	creature->setHAM(1, 8, false);
+	creature->setMaxHAM(1, 8, false);
+
+	creature->setBaseHAM(2, 8, false);
+	creature->setHAM(2, 8, false);
+	creature->setMaxHAM(2, 8, false);
 	// Action
 	creature->setBaseHAM(3, 3, false);
 	creature->setHAM(3, 3, false);
 	creature->setMaxHAM(3, 3, false);
+
+	creature->setBaseHAM(4, 3, false);
+	creature->setHAM(4, 3, false);
+	creature->setMaxHAM(4, 3, false);
+
+	creature->setBaseHAM(5, 3, false);
+	creature->setHAM(5, 3, false);
+	creature->setMaxHAM(5, 3, false);
 	// Will
-	creature->setBaseHAM(6, 8, false);
-	creature->setHAM(6, 8, false);
-	creature->setMaxHAM(6, 8, false);
+	creature->setBaseHAM(6, 5, false);
+	creature->setHAM(6, 5, false);
+	creature->setMaxHAM(6, 5, false);
+
+	creature->setBaseHAM(7, 5, false);
+	creature->setHAM(7, 5, false);
+	creature->setMaxHAM(7, 5, false);
+
+	creature->setBaseHAM(8, 8, false);
+	creature->setHAM(8, 8, false);
+	creature->setMaxHAM(8, 8, false);
 
 
 	
