@@ -3002,25 +3002,37 @@ void PlayerObjectImplementation::recalculateRoleplayHAM(bool notifyClient) {
 		return;
 
 
-	int health = player->getSkillMod("rp_health") + 5;
-	int action = player->getSkillMod("rp_action") + 2;
+	int health = player->getSkillMod("rp_health"); //+ 5;
+	int action = player->getSkillMod("rp_action"); //+ 2;
 	int will = player->getSkillMod("rp_will");
 	int force = player->getSkillMod("rp_force");
 
 	// Health
 	player->setBaseHAM(0, health, notifyClient);
-	//player->setHAM(0, 8, notifyClient);
 	player->setMaxHAM(0, health, notifyClient);
+	player->setBaseHAM(1, health, notifyClient);
+	player->setMaxHAM(1, health, notifyClient);
+	player->setBaseHAM(2, health, notifyClient);
+	player->setMaxHAM(2, health, notifyClient);
 	// Action
 	player->setBaseHAM(3, action, notifyClient);
-	//player->setHAM(3, 6, notifyClient);
 	player->setMaxHAM(3, action, notifyClient);
+	player->setBaseHAM(4, action, notifyClient);
+	player->setMaxHAM(4, action, notifyClient);
+	player->setBaseHAM(5, action, notifyClient);
+	player->setMaxHAM(5, action, notifyClient);
 	// Will
 	player->setBaseHAM(6, will, notifyClient);
-	//player->setHAM(6, 8, notifyClient);
 	player->setMaxHAM(6, will, notifyClient);
+	player->setBaseHAM(7, will, notifyClient);
+	player->setMaxHAM(7, will, notifyClient);
+	player->setBaseHAM(8, will, notifyClient);
+	player->setMaxHAM(8, will, notifyClient);
 
-	setForcePowerMax(force, notifyClient);
+	if (getJediState() > 0)
+		setForcePowerMax(force, notifyClient);
+	else 
+		setForcePowerMax(0, notifyClient);
 }
 
 String PlayerObjectImplementation::getMiliSecsTimeString(uint64 miliSecs, bool verbose) const {
