@@ -7,7 +7,7 @@
 
 //#include "templates/roleplay/RoleplayManager.h"
 
-#include "server/zone/borrie/BorrieRPG.h";
+#include "server/zone/borrie/BorrieRPG.h"
 
 #include "server/db/ServerDatabase.h"
 
@@ -29,7 +29,7 @@ public:
 	static void ModPool(CreatureObject* creature, String pool, int mod) {
 		int max = 0;
 		int current = 0;
-		int finalMod = mod;
+		int finalPool = 0;
 		int poolID = GetHAMFromPool(pool);
 		if (poolID == -1) {
 			creature->sendSystemMessage("ERROR: You've not specified an actual pool. Valid pools are: health, action, will, and force.");
@@ -38,13 +38,13 @@ public:
 		if (poolID > 8) { //If above 8, its a force pool.
 			if (creature->isPlayerCreature()) {
 				max = creature->getPlayerObject()->getForcePowerMax();
-				current = creature->getForcePower();
+				current = creature->getPlayerObject()->getForcePower();
 				if (current + mod > max)
 					finalPool = 0;
-				else if (currentPool + mod > maxPool)
-					finalPool = maxPool;
+				else if (current + mod > max)
+					finalPool = max;
 				else
-					finalPool = currentPool + mod;
+					finalPool = current + mod;
 
 				creature->getPlayerObject()->setForcePower(finalPool, true);
 				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + "'s " + pool + " pool has changed by " + String::valueOf(mod) + "! (Was: " + String::valueOf(current) + ")");
@@ -54,10 +54,10 @@ public:
 			current = creature->getHAM(poolID);
 			if (current + mod > max)
 				finalPool = 0;
-			else if (currentPool + mod > maxPool)
-				finalPool = maxPool;
+			else if (current + mod > max)
+				finalPool = max;
 			else
-				finalPool = currentPool + mod;
+				finalPool = current + mod;
 
 			creature->setHAM(poolID, finalPool, true);	
 			BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + "'s " + pool + " pool has changed by " + String::valueOf(mod) + "! (Was: " + String::valueOf(current) + ")");
@@ -74,7 +74,7 @@ public:
 		if (poolID != -1) {
 			if (poolID > 8) { //Force Power
 				max = creature->getPlayerObject()->getForcePowerMax();
-				current = creature->getForcePower();
+				current = creature->getPlayerObject()->getForcePower();
 				creature->getPlayerObject()->setForcePower(max, true);
 				if (!suppressMessage)
 					BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + "'s " + pool + " pool has been filled! (Was: " + String::valueOf(current) + ")");
@@ -94,7 +94,10 @@ public:
 		int lastHealth = creature->getHAM(0);
 		int lastAction = creature->getHAM(3);
 		int lastWill = creature->getHAM(6);
-		int lastForce = creature->getForcePower();
+		int lastForce 0;
+		if (creature->isPlayerCreature()) {
+			lastForce = creature->getPlayerObject()->getForcePower(); 
+		}
 
 		FillPool(creature, "health", true);
 		FillPool(creature, "action", true);
@@ -106,11 +109,17 @@ public:
 		report += ", A:" + String::valueOf(lastAction);
 		report += ", W:" + String::valueOf(lastWill);
 
-		if (creature->getForcePowerMax() > 0) {
-			report += ", F:" + String::valueOf(lastForce) + ")";
+		if (creature->isPlayerCreature()) {
+			if (creature->getPlayerObject()->getForcePowerMax() > 0) {
+				report += ", F:" + String::valueOf(lastForce) + ")";
+			} else {
+				report += ")";
+			}
 		} else {
 			report += ")";
 		}
+
+		
 
 		if (!suppressMessage)
 			BorrieRPG::BroadcastMessage(creature, report);

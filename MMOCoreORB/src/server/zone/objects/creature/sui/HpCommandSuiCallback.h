@@ -10,10 +10,10 @@ class HpCommandSuiCallback : public SuiCallback {
 private:
 	int state;
 	int pool;
-	uint64& target;
+	uint64 target;
 	int adminLevel;
 
-public: HpCommandSuiCallback(ZoneServer* server, uint64& _target, int _state, int _pool, int _adminLevel)
+public: HpCommandSuiCallback(ZoneServer* server, uint64 _target, int _state, int _pool, int _adminLevel)
 		: SuiCallback(server) {
 		state = _state;
 		pool = _pool;
@@ -40,11 +40,11 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64& _target, int _state, in
 		int index = Integer::valueOf(args->get(0).toString());
 
 
-		ManagedReference<SceneObject*> targetCreature;
+		ManagedReference<CreatureObject*> targetCreature;
 		if (adminLevel > 0) {
 			ManagedReference<SceneObject*> object;
 			if (target != 0) {
-				object = server->getZoneServer()->getObject(target, false);
+				object = player->getZoneServer()->getObject(target, false);
 			}
 
 			if (object->isCreatureObject()) {
@@ -59,7 +59,7 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64& _target, int _state, in
 		if (state == 0) { //Initial Menu
 			ManagedReference<SuiListBox*> box = new SuiListBox(player, SuiWindowType::JUKEBOX_SELECTION);
 			
-			if (adminLevl > 0) {
+			if (adminLevel > 0) {
 				box->setPromptTitle("HP Pool Menu, Target: " + targetCreature->getFirstName());
 			} else {
 				box->setPromptTitle("HP Pool Menu");
@@ -119,7 +119,7 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64& _target, int _state, in
 
 			if (state == 1) {
 				//Open a new Menu 
-				hpModifyBox = new SuiInputBox(player, SuiWindowType::STRUCTURE_SET_ACCESS_FEE);
+				ManagedReference<SuiInputBox*> hpModifyBox = new SuiInputBox(player, SuiWindowType::STRUCTURE_SET_ACCESS_FEE);
 				hpModifyBox->setCallback(new HpCommandSuiCallback(player->getZoneServer(), target, 3, index, adminLevel));
 				hpModifyBox->setPromptTitle("Modify " + pool + " pool"); // Access Fee
 				hpModifyBox->setMaxInputSize(3);

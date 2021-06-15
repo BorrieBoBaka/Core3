@@ -38,7 +38,7 @@ public:
 			object = server->getZoneServer()->getObject(target, false);
 		}
 
-		ManagedReference<SceneObject*> targetCreature;
+		ManagedReference<CreatureObject*> targetCreature;
 
 		if (adminLevelCheck > 0) {
 			if (object->isCreatureObject()) {
@@ -68,7 +68,6 @@ public:
 					}
 				} else {
 					creature->sendSystemMessage("Invalid arguments for HP command. Requires value to edit pool with.");
-					return;
 				}
 
 			} else {
@@ -87,12 +86,11 @@ public:
 				box->addMenuItem("Max out all pools");
 				creature->getPlayerObject()->addSuiBox(box);
 				creature->sendMessage(box->generateMessage());
-
 			}
 
 			
 
-		} catch {
+		} catch (Exception& e) {
 			creature->sendSystemMessage("Invalid arguments for HP command.");
 		}
 
