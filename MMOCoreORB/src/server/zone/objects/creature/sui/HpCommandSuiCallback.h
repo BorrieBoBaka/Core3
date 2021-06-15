@@ -47,11 +47,16 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64 _target, int _state, int
 				object = player->getZoneServer()->getObject(target, false);
 			}
 
-			if (object->isCreatureObject()) {
-				targetCreature = object->asCreatureObject();
+			if (object != nullptr) {
+				if (object->isCreatureObject()) {
+					targetCreature = object->asCreatureObject();
+				} else {
+					targetCreature = player;
+				}
 			} else {
 				targetCreature = player;
 			}
+			
 		} else {
 			targetCreature = player;
 		}

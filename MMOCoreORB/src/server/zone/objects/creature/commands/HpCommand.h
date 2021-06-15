@@ -41,11 +41,15 @@ public:
 		ManagedReference<CreatureObject*> targetCreature;
 
 		if (adminLevelCheck > 0) {
-			if (object->isCreatureObject()) {
-				targetCreature = object->asCreatureObject();
+			if (object != nullptr) {
+				if (object->isCreatureObject()) {
+					targetCreature = object->asCreatureObject();
+				} else {
+					targetCreature = creature;
+				}
 			} else {
 				targetCreature = creature;
-			}
+			}			
 		} else {
 			targetCreature = creature;
 		}
