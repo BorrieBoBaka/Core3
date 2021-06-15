@@ -8,7 +8,7 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/creature/ai/AiAgent.h"
 
-#include "server/zone/borrie/BorCharacter.h";
+#include "server/zone/borrie/BorCharacter.h"
 
 #include "server/zone/objects/creature/sui/HpCommandSuiCallback.h"
 

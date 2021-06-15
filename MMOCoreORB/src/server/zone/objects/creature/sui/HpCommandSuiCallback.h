@@ -133,8 +133,9 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64 _target, int _state, int
 			}
 
 		} else if (state == 3) { //Modify Value 
-			int mod = Integer::valueOf(args->get(0).toString());
-			player->sendExecuteConsoleCommand("/hp " + pool + " " + String::valueOf(mod));
+			String newCommand = "/hp " + pool + " " + args->get(0).toString();
+			
+			player->sendExecuteConsoleCommand(newCommand);
 		} 
 		 
 		
