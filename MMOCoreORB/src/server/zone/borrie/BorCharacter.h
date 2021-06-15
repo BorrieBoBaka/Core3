@@ -94,7 +94,7 @@ public:
 		int lastHealth = creature->getHAM(0);
 		int lastAction = creature->getHAM(3);
 		int lastWill = creature->getHAM(6);
-		int lastForce 0;
+		int lastForce = 0;
 		if (creature->isPlayerCreature()) {
 			lastForce = creature->getPlayerObject()->getForcePower(); 
 		}
