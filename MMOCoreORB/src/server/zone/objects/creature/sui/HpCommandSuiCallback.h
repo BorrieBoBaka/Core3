@@ -140,7 +140,8 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64 _target, int _state, int
 		} else if (state == 3) { //Modify Value 
 			StringBuffer newCom;
 			newCom << "/hp " << pool << " " << args->get(0).toString();
-			
+			player->sendSystemMessage(newCom.toString()); //debug
+			player->sendSystemMessage("modifying value."); //Debug too
 			player->sendExecuteConsoleCommand(newCom.toString());
 		} 
 		 

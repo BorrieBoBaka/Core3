@@ -67,11 +67,16 @@ public:
 						} else {
 							BorCharacter::ModPool(creature, command, Integer::valueOf(subCommand));
 						}
-					} else if (command == "max" || command == "fill" || command == "rest" || command == "reset") {
-						BorCharacter::FillAllPools(targetCreature);
+					} else {
+						creature->sendSystemMessage("Invalid arguments for HP command. Requires value to edit pool with.");
 					}
 				} else {
-					creature->sendSystemMessage("Invalid arguments for HP command. Requires value to edit pool with.");
+					if (command == "max" || command == "fill" || command == "rest" || command == "reset") {
+						BorCharacter::FillAllPools(targetCreature);
+					} else {
+						creature->sendSystemMessage("Invalid arguments for HP command. Requires you to specify a pool you wish to modify, and the value to modify it by, or 'fill' to max out all values.");
+					}
+					
 				}
 
 			} else {
