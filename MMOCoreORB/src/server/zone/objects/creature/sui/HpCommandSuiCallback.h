@@ -2,8 +2,8 @@
 #define HPCOMMANDSUICALLBACK_H_
 
 #include "server/zone/objects/player/sui/SuiCallback.h"
-#include "server/zone/objects/tangible/eventperk/Jukebox.h"
-#include "server/zone/managers/player/JukeboxSong.h"
+//#include "server/zone/objects/tangible/eventperk/Jukebox.h"S949US949&oq=redd&aqs=chrome.1.69i57j0i271l3j69i60l3.1129j0j1&s
+//#include "server/zone/managers/player/JukeboxSong.h"
 //#include "server/zone/objects/creature/commands/sovrp/sovrpfunc.h"
 
 class HpCommandSuiCallback : public SuiCallback {
@@ -24,10 +24,11 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64 _target, int _state, int
 	void run(CreatureObject* player, SuiBox* suiBox, uint32 eventIndex, Vector<UnicodeString>* args) {
 		bool cancelPressed = (eventIndex == 1);
 
-		if (!suiBox->isListBox() || cancelPressed)
+		//if (!suiBox->isListBox() || cancelPressed)
+		if (cancelPressed)
 			return;
 
-		SuiListBox* listBox = cast<SuiListBox*>(suiBox);
+		//SuiListBox* listBox = cast<SuiListBox*>(suiBox);
 
 		PlayerManager* playerManager = player->getZoneServer()->getPlayerManager();
 
@@ -140,8 +141,8 @@ public: HpCommandSuiCallback(ZoneServer* server, uint64 _target, int _state, int
 		} else if (state == 3) { //Modify Value 
 			StringBuffer newCom;
 			newCom << "/hp " << pool << " " << args->get(0).toString();
-			player->sendSystemMessage(newCom.toString()); //debug
-			player->sendSystemMessage("modifying value."); //Debug too
+			//player->sendSystemMessage(newCom.toString()); //debug
+			//player->sendSystemMessage("modifying value."); //Debug too
 			player->sendExecuteConsoleCommand(newCom.toString());
 		} 
 		 

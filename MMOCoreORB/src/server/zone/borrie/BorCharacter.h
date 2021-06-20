@@ -104,7 +104,7 @@ public:
 		FillPool(creature, "will", true);
 		FillPool(creature, "force", true);
 
-		String report = creature->getFirstName() + "has fully rested, filling all of their pools.";
+		String report = creature->getFirstName() + " has fully rested, filling all of their pools.";
 		report += " (Was H:" + String::valueOf(lastHealth);
 		report += ", A:" + String::valueOf(lastAction);
 		report += ", W:" + String::valueOf(lastWill);
