@@ -127,11 +127,11 @@ public:
 		
 		} else if (state == 3) { //Train a Attribute
 			String skill = GetAttributeStringFromID(selection);
-			int currentRank = player->getSkillMod("rp_" + skillName);
-			if (CanTrainNextSkill(player, currentRank + 1, skillName)) {
+			int currentRank = player->getSkillMod("rp_" + skill);
+			if (CanTrainNextSkill(player, currentRank + 1, skill)) {
 				//Train it
 				SkillManager* skillManager = SkillManager::instance();
-				skillManager->awardSkill("rp_" + skill + GetSkillSuffixFromValue(rank), player, true, false, false);
+				skillManager->awardSkill("rp_" + skill + GetSkillSuffixFromValue(currentRank + 1), player, true, false, false);
 			} else {
 				//Something happened
 				player->sendSystemMessage("ERROR: Something happened. You were eligible for the skill you selected when you selected it, but you are no longer eligible.");
@@ -262,7 +262,7 @@ public:
 	bool CanTrainNextSkill(CreatureObject* creature, int rank, String skill, String parentAttribute = "") {
 		String skill = "rp_" + skill + GetSkillSuffixFromValue(rank);
 		SkillManager* skillManager = SkillManager::instance();
-		bool hasXP = skillManager->canLearnSkill(skill, student, false);
+		bool hasXP = skillManager->canLearnSkill(skill, creature, false);
 		if (parentAttribute != "") {
 			int parentValue = creature->getSkillMod("rp_" + parentAttribute);
 			if (parentValue < rank)
