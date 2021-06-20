@@ -39,6 +39,7 @@ public:
 			box->setPromptTitle("Training Menu");
 			box->setPromptText("What would you like to do?");
 			box->setCancelButton(true, "@cancel");
+			box->setOkButton(false, "@");
 			box->addMenuItem("Train an Attribute");
 			box->addMenuItem("Train a Skill");
 			box->addMenuItem("Convert General Roleplay XP");

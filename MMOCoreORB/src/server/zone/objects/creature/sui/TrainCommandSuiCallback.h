@@ -34,15 +34,20 @@ public:
 			box->setPromptTitle("Training Menu");
 			box->setPromptText("What would you like to do?");
 			box->setCancelButton(true, "@cancel");
+			box->setOkButton(false, "@");
 			box->addMenuItem("Train an Attribute");
 			box->addMenuItem("Train a Skill");
 			box->addMenuItem("Convert General Roleplay XP");
 			player->getPlayerObject()->addSuiBox(box);
 			player->sendMessage(box->generateMessage());
-		} else if (state == 0) { //Primary Menu			
+		} else if (state == 0) { //Primary Menu		
+			if (cancelPressed)
+				return;
+
 			if (index == 0 || index == 1) {		
 				ManagedReference<SuiListBox*> box = new SuiListBox(player, SuiWindowType::JUKEBOX_SELECTION);
 				box->setCancelButton(true, "Back");
+				box->setOkButton(false, "@");
 				if (index == 0) { // Train Attribute
 					box->setCallback(new TrainCommandSuiCallback(server, 1, index));
 					box->setPromptTitle("Training Attribute Menu");
@@ -122,7 +127,9 @@ public:
 				//suibox->setCallback(new PlayerTeachConfirmSuiCallback(server, skill));
 				suibox->setCallback(new TrainCommandSuiCallback(server, -1, state));
 				suibox->setCancelButton(true, "Go Back");
-			}		
+			}	
+			player->getPlayerObject()->addSuiBox(suibox);
+			player->sendMessage(suibox->generateMessage());
 		} else if (state == 2) { //Select Skill
 		
 		} else if (state == 3) { //Train a Attribute
