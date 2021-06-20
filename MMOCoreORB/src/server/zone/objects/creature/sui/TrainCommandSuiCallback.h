@@ -260,9 +260,9 @@ public:
 	}
 
 	bool CanTrainNextSkill(CreatureObject* creature, int rank, String skill, String parentAttribute = "") {
-		String skill = "rp_" + skill + GetSkillSuffixFromValue(rank);
+		String skillName = "rp_" + skill + GetSkillSuffixFromValue(rank);
 		SkillManager* skillManager = SkillManager::instance();
-		bool hasXP = skillManager->canLearnSkill(skill, creature, false);
+		bool hasXP = skillManager->canLearnSkill(skillName, creature, false);
 		if (parentAttribute != "") {
 			int parentValue = creature->getSkillMod("rp_" + parentAttribute);
 			if (parentValue < rank)
