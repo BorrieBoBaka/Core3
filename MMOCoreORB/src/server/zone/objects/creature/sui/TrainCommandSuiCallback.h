@@ -34,7 +34,7 @@ public:
 			box->setPromptTitle("Training Menu");
 			box->setPromptText("What would you like to do?");
 			box->setCancelButton(true, "@cancel");
-			box->setOkButton(false, "@");
+			//box->setOkButton(false, "@");
 			box->addMenuItem("Train an Attribute");
 			box->addMenuItem("Train a Skill");
 			box->addMenuItem("Convert General Roleplay XP");
@@ -47,7 +47,7 @@ public:
 			if (index == 0 || index == 1) {		
 				ManagedReference<SuiListBox*> box = new SuiListBox(player, SuiWindowType::JUKEBOX_SELECTION);
 				box->setCancelButton(true, "Back");
-				box->setOkButton(false, "@");
+				//box->setOkButton(false, "@");
 				if (index == 0) { // Train Attribute
 					box->setCallback(new TrainCommandSuiCallback(server, 1, index));
 					box->setPromptTitle("Training Attribute Menu");
@@ -138,7 +138,7 @@ public:
 			if (CanTrainNextSkill(player, currentRank + 1, skill)) {
 				//Train it
 				SkillManager* skillManager = SkillManager::instance();
-				skillManager->awardSkill("rp_" + skill + GetSkillSuffixFromValue(currentRank + 1), player, true, false, false);
+				skillManager->awardSkill("rp_" + skill + "_" + GetSkillSuffixFromValue(currentRank + 1), player, true, false, false);
 			} else {
 				//Something happened
 				player->sendSystemMessage("ERROR: Something happened. You were eligible for the skill you selected when you selected it, but you are no longer eligible.");
@@ -267,7 +267,7 @@ public:
 	}
 
 	bool CanTrainNextSkill(CreatureObject* creature, int rank, String skill, String parentAttribute = "") {
-		String skillName = "rp_" + skill + GetSkillSuffixFromValue(rank);
+		String skillName = "rp_" + skill + "_" + GetSkillSuffixFromValue(rank);
 		SkillManager* skillManager = SkillManager::instance();
 		bool hasXP = skillManager->canLearnSkill(skillName, creature, false);
 		if (parentAttribute != "") {
