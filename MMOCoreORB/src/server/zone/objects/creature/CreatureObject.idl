@@ -206,7 +206,8 @@ class CreatureObject extends TangibleObject {
 	@dereferenced
 	protected transient Vector3 lastCombatPosition;
 
-	public Vector3 lastMovementPosition;
+	@dereferenced 
+	public transient Vector3 lastMovementPosition;
 
 	protected transient string alternateAppearance;
 
