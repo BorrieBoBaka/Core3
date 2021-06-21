@@ -258,8 +258,7 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	//alm->insertAttribute("wpn_attack_speed", Math::getPrecision(getAttackSpeed(), 1));
 
-	if (getDamageRadius() != 0.0f)
-		alm->insertAttribute("area", Math::getPrecision(getDamageRadius(), 0));
+	
 
 	//Damage Information
 	StringBuffer dmgtxt;
@@ -310,6 +309,9 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 		dmg << minDmg << "d" << maxDmg;
 
 	alm->insertAttribute("damage.dmgdice", dmg);
+
+	if (getDamageRadius() != 0.0f)
+		alm->insertAttribute("damage.radius", Math::getPrecision(getDamageRadius(), 0));
 
 	//alm->insertAttribute("damage.wpn_damage_max", maxDmg);
 

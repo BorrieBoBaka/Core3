@@ -113,6 +113,9 @@ class CreatureObject extends TangibleObject {
 	protected string performanceAnimation;
 	protected string moodString;
 
+	public string lastRolledSkill;
+	public int lastSkillRoll;
+
 	protected WeaponObject weapon;
 
 	protected GroupObject group;
@@ -125,6 +128,7 @@ class CreatureObject extends TangibleObject {
 	protected unsigned long targetID;
 	protected unsigned long storedTargetID;
 	protected byte moodID;
+	public byte rpCombatStance;
 	protected int performanceCounter;
 	protected int instrumentID;
 
@@ -201,6 +205,8 @@ class CreatureObject extends TangibleObject {
 
 	@dereferenced
 	protected transient Vector3 lastCombatPosition;
+
+	public Vector3 lastMovementPosition;
 
 	protected transient string alternateAppearance;
 
@@ -1808,6 +1814,11 @@ class CreatureObject extends TangibleObject {
 	@read
 	public byte getMoodID() {
 		return moodID;
+	}
+
+	@read 
+	public byte getRpCombatStance() {
+		return rpCombatStance;
 	}
 
 	@read

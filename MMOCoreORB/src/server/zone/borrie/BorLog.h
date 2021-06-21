@@ -1,6 +1,7 @@
 #ifndef BORLOG_H_
 #define BORLOG_H_
 
+#include "engine/engine.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/packets/chat/ChatSystemMessage.h"
@@ -16,9 +17,32 @@ public:
 
 		StringBuffer text;
 
-		text << "[DM " << dm->getFirstName() << " used '" << command << "' on target " << targetName << "]: " << message;
+		Time currentTime;
+		text << currentTime.getFormattedTime();
 
-		File* file = new File("custom_scripts/borlogs/DMLog.lua");
+		text << " [DM " << dm->getFirstName() << " used '" << command << "' on target " << targetName << "]: " << message;
+
+		File* file = new File("custom_scripts/borlogs/DMLog.txt");
+		FileWriter* writer = new FileWriter(file, true); // true for appending new lines
+
+		writer->writeLine(text.toString());
+
+		writer->close();
+		delete file;
+		delete writer;
+	}
+
+	static void LogDMMessage(CreatureObject* dm, String message) {
+		string targetName = GetTargetName(target);
+
+		StringBuffer text;
+
+		Time currentTime;
+		text << currentTime.getFormattedTime();
+
+		text << " [DM " << dm->getFirstName() << "]:" << message;
+
+		File* file = new File("custom_scripts/borlogs/DMLog.txt");
 		FileWriter* writer = new FileWriter(file, true); // true for appending new lines
 
 		writer->writeLine(text.toString());

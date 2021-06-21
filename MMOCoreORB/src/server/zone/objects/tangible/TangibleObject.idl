@@ -89,6 +89,10 @@ class TangibleObject extends SceneObject {
 	protected SceneObject antiDecayKitObject;
 
 	protected boolean jediRobe;
+	
+	protected boolean trainingDevice;
+	protected string rpTrainingSkill;
+	protected int rpTrainingLevel;
 
 	/**
 	 * TangibleObject constructor, used to initialized the object
@@ -106,6 +110,10 @@ class TangibleObject extends SceneObject {
 		antiDecayKitObject = null;
 
 		jediRobe = false;
+
+		trainingDevice = false;
+		rpTrainingSkill = "";
+		rpTrainingLevel = 0;
 
 		luaStringData.setAllowOverwriteInsertPlan();
 	}

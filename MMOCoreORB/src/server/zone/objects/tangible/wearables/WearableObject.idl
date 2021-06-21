@@ -25,6 +25,8 @@ class WearableObject extends TangibleObject {
 
 	public static final int MAXSOCKETS = 4;
 
+	public boolean protectsAgainstBlind;
+
 	@dereferenced
 	protected VectorMap<string, int> wearableSkillMods;
 
@@ -34,6 +36,7 @@ class WearableObject extends TangibleObject {
 		objectCreatedPreUsedSocketCountFix = true;
 		usedSocketCount = 0;
 		modsNotInSockets = 0;
+		protectsAgainstBlind = false;
 		wearableSkillMods.setAllowOverwriteInsertPlan();
 		Logger.setLoggingName("WearableObject");
 	}
@@ -80,6 +83,11 @@ class WearableObject extends TangibleObject {
 	@read
 	public int socketsLeft() {
 		return getMaxSockets() - socketsUsed();
+	}
+
+	@read 
+	public boolean getProtectsAgainstBlind() {
+		return protectsAgainstBlind;
 	}
 
 	private native void generateSockets(CraftingValues craftingValues);

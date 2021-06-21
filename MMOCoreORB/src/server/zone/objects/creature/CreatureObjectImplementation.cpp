@@ -175,6 +175,9 @@ void CreatureObjectImplementation::initializeMembers() {
 	actionWoundHeal = 0;
 	mindWoundHeal = 0;
 
+	lastRolledSkill = "";
+    lastSkillRoll = 0;
+
 	setContainerInheritPermissionsFromParent(false);
 	setContainerDefaultDenyPermission(ContainerPermissions::MOVECONTAINER);
 	setContainerDenyPermission("owner", ContainerPermissions::MOVECONTAINER);

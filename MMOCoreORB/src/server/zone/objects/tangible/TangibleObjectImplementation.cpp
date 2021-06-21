@@ -597,6 +597,11 @@ void TangibleObjectImplementation::fillAttributeList(AttributeListMessage* alm, 
 			alm->insertAttribute( "lock_mechanism", "@obj_attr_n:broken" );
 		}
 	}
+
+	if (trainingDevice) {
+		alm->insertAttribute("trainingrepo.rpskill", "@skl_n:" + rpTrainingSkill);
+		alm->insertAttribute("trainingrepo.rpskillevel", rpTrainingLevel);
+	}
 }
 
 void TangibleObjectImplementation::setCustomizationVariable(byte type, int16 value, bool notifyClient) {

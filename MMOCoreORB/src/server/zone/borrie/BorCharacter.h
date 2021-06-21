@@ -8,6 +8,7 @@
 //#include "templates/roleplay/RoleplayManager.h"
 
 #include "server/zone/borrie/BorrieRPG.h"
+#include "server/zone/borrie/BorSkill.h"
 
 #include "server/db/ServerDatabase.h"
 
@@ -136,6 +137,87 @@ public:
 			return 999;
 		else
 			return -1;
+	}
+
+	static int GetPlayerLevel(CreatureObject* creature) {
+		int level = 1;
+
+		level += GetSkillLevelValue(creature, "melee");
+		level += GetSkillLevelValue(creature, "intimidation");
+		level += GetSkillLevelValue(creature, "unarmed");
+		level += GetSkillLevelValue(creature, "lightsaber");
+		level += GetSkillLevelValue(creature, "ranged");
+		level += GetSkillLevelValue(creature, "mechanics");
+		level += GetSkillLevelValue(creature, "demolitions");
+		level += GetSkillLevelValue(creature, "engineering");
+		level += GetSkillLevelValue(creature, "larceny");
+		level += GetSkillLevelValue(creature, "stealth");
+		level += GetSkillLevelValue(creature, "maneuverability");
+		level += GetSkillLevelValue(creature, "throwing");
+		level += GetSkillLevelValue(creature, "investigation");
+		level += GetSkillLevelValue(creature, "piloting");
+		level += GetSkillLevelValue(creature, "survival");
+		level += GetSkillLevelValue(creature, "sense");
+		level += GetSkillLevelValue(creature, "slicing");
+		level += GetSkillLevelValue(creature, "computers");
+		level += GetSkillLevelValue(creature, "medicine");
+		level += GetSkillLevelValue(creature, "science");
+		level += GetSkillLevelValue(creature, "persuasion");
+		level += GetSkillLevelValue(creature, "bluff");
+		level += GetSkillLevelValue(creature, "composure");
+		level += GetSkillLevelValue(creature, "resolve");
+		level += GetSkillLevelValue(creature, "athletics");
+		level += GetSkillLevelValue(creature, "lightning");
+		level += GetSkillLevelValue(creature, "armor");
+		level += GetSkillLevelValue(creature, "defending");
+		level += GetSkillLevelValue(creature, "telekinesis");
+		level += GetSkillLevelValue(creature, "control");
+		level += GetSkillLevelValue(creature, "alter");
+		level += GetSkillLevelValue(creature, "inward");
+
+		return level;
+	}
+
+	static int GetSkillLevelValue(CreatureObject* creature, String skill) {
+		int level = 0;
+		int skillMod = creature->getSkillMod("rp_" + skill);
+		if (skillMod >= 5 && skillMod < 10)
+			level += 1;
+		else if (skillMod == 10)
+			level += 2;
+		return level;
+	}
+
+	static void RewardXPForLastRoll(CreatureObject* creature, CreatureObject* dm) {
+		int roll = creature.lastSkillRoll;
+		String skill = creature.lastRolledSkill;
+		String skillParent = BorSkill::GetSkillParent(skill);
+		if (skillParent != "") { //Skill was rolled.
+			//Reward Parent 10%
+			int parentReward = roll / 10;
+			player->getZoneServer()->getPlayerManager()->awardExperience(player, skill, roll, true); 
+			player->getZoneServer()->getPlayerManager()->awardExperience(player, parentReward, roll, true); 
+			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(roll) + " @skl_n:" + skill + " experience.");
+		} else { //Attribute was rolled.
+			int reward = roll / 10;
+			player->getZoneServer()->getPlayerManager()->awardExperience(player, skill, reward, true); 
+			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(reward) + " @skl_n:" + skill + " experience.");
+		}
+	}
+
+	static void RewardXPForRoll(CreatureObject* creature, CreatureObject* dm, String skill, int roll) {
+		String skillParent = BorSkill::GetSkillParent(skill);
+		if (skillParent != "") { // Skill was rolled.
+			// Reward Parent 10%
+			int parentReward = roll / 10;
+			player->getZoneServer()->getPlayerManager()->awardExperience(player, skill, roll, true);
+			player->getZoneServer()->getPlayerManager()->awardExperience(player, parentReward, roll, true);
+			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(roll) + " @skl_n:" + skill + " experience.");
+		} else { // Attribute was rolled.
+			int reward = roll / 10;
+			player->getZoneServer()->getPlayerManager()->awardExperience(player, skill, reward, true);
+			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(reward) + " @skl_n:" + skill + " experience.");
+		}
 	}
 };
 

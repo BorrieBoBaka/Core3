@@ -833,7 +833,7 @@ void AiAgentImplementation::doRecovery(int latency) {
 		return;
 
 	//activateHAMRegeneration(latency);
-	activateStateRecovery();
+	//activateStateRecovery();
 	//activatePostureRecovery();
 
 	/* //We're disabling recovery because this is no longer a real-time game. 
@@ -2743,7 +2743,41 @@ void AiAgentImplementation::fillAttributeList(AttributeListMessage* alm, Creatur
 		if (getLightSaber() < 0)
 			alm->insertAttribute("cat_armor_vulnerability.armor_eff_restraint", "-");
 
-		//TODO: Show skills.
+		//Show Skills
+		alm->insertAttribute("rpstat.awareness", getSkillMod("rp_strength"));
+		alm->insertAttribute("rpstat.charisma", getSkillMod("rp_awareness"));
+		alm->insertAttribute("rpstat.constitution", getSkillMod("rp_strength"));
+		alm->insertAttribute("rpstat.dexterity", getSkillMod("rp_strength"));
+		alm->insertAttribute("rpstat.intelligence", getSkillMod("rp_strength"));
+		alm->insertAttribute("rpstat.mindfulness", getSkillMod("rp_strength"));
+		alm->insertAttribute("rpstat.precision", getSkillMod("rp_strength"));
+		alm->insertAttribute("rpstat.strength", getSkillMod("rp_strength"));
+
+		alm->insertAttribute("rpskill.armor", getSkillMod("rp_armor"));
+		alm->insertAttribute("rpskill.athletics", getSkillMod("rp_athletics"));
+		alm->insertAttribute("rpskill.bluff", getSkillMod("rp_bluff"));
+		alm->insertAttribute("rpskill.composure", getSkillMod("rp_composure"));
+		alm->insertAttribute("rpskill.computers", getSkillMod("rp_computers"));
+		alm->insertAttribute("rpskill.defending", getSkillMod("rp_defending"));
+		alm->insertAttribute("rpskill.demolitions", getSkillMod("rp_demolitions"));
+		alm->insertAttribute("rpskill.engineering", getSkillMod("rp_engineering"));
+		alm->insertAttribute("rpskill.intimidation", getSkillMod("rp_intimidation"));
+		alm->insertAttribute("rpskill.investigation", getSkillMod("rp_investigation"));
+		alm->insertAttribute("rpskill.larceny", getSkillMod("rp_larceny"));
+		alm->insertAttribute("rpskill.maneuverability", getSkillMod("rp_maneuverability"));
+		alm->insertAttribute("rpskill.mechanics", getSkillMod("rp_mechanics"));
+		alm->insertAttribute("rpskill.medicine", getSkillMod("rp_medicine"));
+		alm->insertAttribute("rpskill.melee", getSkillMod("rp_melee"));
+		alm->insertAttribute("rpskill.persuasion", getSkillMod("rp_persuasion"));
+		alm->insertAttribute("rpskill.piloting", getSkillMod("rp_piloting"));
+		alm->insertAttribute("rpskill.ranged", getSkillMod("rp_ranged"));
+		alm->insertAttribute("rpskill.resolve", getSkillMod("rp_resolve"));
+		alm->insertAttribute("rpskill.science", getSkillMod("rp_science"));
+		alm->insertAttribute("rpskill.slicing", getSkillMod("rp_slicing"));
+		alm->insertAttribute("rpskill.stealth", getSkillMod("rp_stealth"));
+		alm->insertAttribute("rpskill.survival", getSkillMod("rp_survival"));
+		alm->insertAttribute("rpskill.throwing", getSkillMod("rp_throwing"));
+		alm->insertAttribute("rpskill.unarmed", getSkillMod("rp_unarmed"));
 	}
 
 	

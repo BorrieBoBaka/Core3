@@ -196,6 +196,27 @@ public:
 		return protectionArmorMap.get((uint8)ArmorObjectTemplate::NOLOCATION);
 	}
 
+	ManagedReference<ArmorObject*> getArmorAtSlot(String slotName) const {
+		Vector<ManagedReference<ArmorObject*>> armor;
+		 if (slotName == "shoes" || slotName == "pants1") {
+			armor = protectionArmorMap.get((uint8)ArmorObjectTemplate::LEGS); // LEGS
+		} else if (slotName == "bicep_r" || slotName == "bracer_upper_r" || slotName == "bicep_l" || slotName == "bracer_upper_l" || slotName == "gloves") {
+			armor = protectionArmorMap.get((uint8)ArmorObjectTemplate::ARMS); // ARMS
+		} else if (slotName == "hat") {
+			armor = protectionArmorMap.get((uint8)ArmorObjectTemplate::HEAD); // HEAD
+		} else { //Chest by default.
+			armor = protectionArmorMap.get((uint8)ArmorObjectTemplate::CHEST); // CHEST
+		}
+
+		for (int i = armor.size() - 1; i >= 0; i--) {
+			ManagedReference<ArmorObject*> obj = armor.get(i);
+			if (obj->hasArrangementDescriptor(slotName))
+				return obj;
+		}
+
+		return nullptr;
+	}
+
 	void addArmor(uint8 hitLocation, ManagedReference<ArmorObject*> armor) {
 		Vector<ManagedReference<ArmorObject*> > armors = protectionArmorMap.get(hitLocation);
 		armors.add(armor);
