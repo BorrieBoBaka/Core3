@@ -202,8 +202,8 @@ public:
 	}
 
 	static void RewardXPForLastRoll(CreatureObject* creature, CreatureObject* dm) {
-		int roll = creature->lastSkillRoll;
-		String skill = creature->lastRolledSkill;
+		int roll = creature->getLastSkillRoll();
+		String skill = creature->getLastRolledSkill();
 		String skillParent = BorSkill::GetSkillParent(skill);
 		if (skillParent != "") { //Skill was rolled.
 			//Reward Parent 10%

@@ -113,8 +113,8 @@ class CreatureObject extends TangibleObject {
 	protected string performanceAnimation;
 	protected string moodString;
 
-	public string lastRolledSkill;
-	public int lastSkillRoll;
+	protected string lastRolledSkill;
+	protected int lastSkillRoll;
 
 	protected WeaponObject weapon;
 
@@ -1820,6 +1820,24 @@ class CreatureObject extends TangibleObject {
 	@read 
 	public byte getRpCombatStance() {
 		return rpCombatStance;
+	}
+
+	//protected string lastRolledSkill;
+	//protected int lastSkillRoll;
+	public string getLastRolledSkill() {
+		return lastRolledSkill;
+	}
+
+	public void setLastRolledSkill(string value) {
+		lastRolledSkill = value;
+	}
+
+	public int getlastSkillRoll() {
+		return lastSkillRoll;
+	}
+
+	public void setLastSkillRoll(int value) {
+		lastSkillRoll = value;
 	}
 
 	@read
