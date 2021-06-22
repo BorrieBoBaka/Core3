@@ -1832,7 +1832,7 @@ class CreatureObject extends TangibleObject {
 		lastRolledSkill = value;
 	}
 
-	public int getlastSkillRoll() {
+	public int getLastSkillRoll() {
 		return lastSkillRoll;
 	}
 
