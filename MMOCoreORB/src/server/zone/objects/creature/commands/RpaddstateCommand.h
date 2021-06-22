@@ -17,6 +17,10 @@ class RpaddstateCommand : public QueueCommand {
 
 public: 
 	RpaddstateCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+	}
+
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!creature->isPlayerCreature())
 			return GENERALERROR;
 
@@ -58,13 +62,13 @@ public:
 				if (args.hasMoreTokens()) {
 					args.getStringToken(subCommand);
 					if (command == "add") {
-						//Add state specified by subcommand
+						// Add state specified by subcommand
 					} else if (command == "remove") {
-						//Remove state specified by subcommand
+						// Remove state specified by subcommand
 					}
 				} else {
 					if (command == "reset" || command == "clear") {
-						//Reset all States
+						// Reset all States
 					} else {
 						creature->sendSystemMessage("Invalid arguments for command. Try /rpaddstate <add/remove/reset> <stateName>");
 					}
@@ -90,9 +94,6 @@ public:
 		} catch (Exception& e) {
 			creature->sendSystemMessage("Invalid arguments for rpaddstat command.");
 		}
-	}
-
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 	
 		return SUCCESS;
 	}
