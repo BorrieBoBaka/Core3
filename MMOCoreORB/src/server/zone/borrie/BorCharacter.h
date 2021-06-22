@@ -209,7 +209,7 @@ public:
 			//Reward Parent 10%
 			int parentReward = roll / 10;
 			creature->getZoneServer()->getPlayerManager()->awardExperience(creature, skill, roll, true); 
-			creature->getZoneServer()->getPlayerManager()->awardExperience(creature, parentReward, roll, true); 
+			creature->getZoneServer()->getPlayerManager()->awardExperience(creature, skillParent, parentReward, true); 
 			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(roll) + " @skl_n:" + skill + " experience.");
 		} else { //Attribute was rolled.
 			int reward = roll / 10;
@@ -224,7 +224,7 @@ public:
 			// Reward Parent 10%
 			int parentReward = roll / 10;
 			creature->getZoneServer()->getPlayerManager()->awardExperience(creature, skill, roll, true);
-			creature->getZoneServer()->getPlayerManager()->awardExperience(creature, parentReward, roll, true);
+			creature->getZoneServer()->getPlayerManager()->awardExperience(creature, skillParent, parentReward, true);
 			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(roll) + " @skl_n:" + skill + " experience.");
 		} else { // Attribute was rolled.
 			int reward = roll / 10;
