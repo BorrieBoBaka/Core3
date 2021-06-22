@@ -11,7 +11,7 @@
 
 class BorSkill : public Logger {
 public:
-	static bool GetStringIsAttribute(string input) {
+	static bool GetStringIsAttribute(String input) {
 		if (input == "strength")
 			return true;
 		else if (input == "precision")
@@ -33,7 +33,7 @@ public:
 	}
 
 	static String GetSkillParent(String skill) {
-		if (skill = "melee")
+		if (skill == "melee")
 			return "strength";
 		else if (skill == "intimidation")
 			return "strength";

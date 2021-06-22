@@ -27,6 +27,19 @@ public:
 			return false;
 	}
 
+
+	static void AddState(CreatureObject* creature, String state) {
+	
+	}
+
+	static void RemoveState(CreatureObject* creature, String state) {
+
+	}
+
+	static void ClearStates(CreatureObject* creature, String state) {
+
+	}
+
 	static void ModPool(CreatureObject* creature, String pool, int mod) {
 		int max = 0;
 		int current = 0;
@@ -189,18 +202,18 @@ public:
 	}
 
 	static void RewardXPForLastRoll(CreatureObject* creature, CreatureObject* dm) {
-		int roll = creature.lastSkillRoll;
-		String skill = creature.lastRolledSkill;
+		int roll = creature->lastSkillRoll;
+		String skill = creature->lastRolledSkill;
 		String skillParent = BorSkill::GetSkillParent(skill);
 		if (skillParent != "") { //Skill was rolled.
 			//Reward Parent 10%
 			int parentReward = roll / 10;
-			player->getZoneServer()->getPlayerManager()->awardExperience(player, skill, roll, true); 
-			player->getZoneServer()->getPlayerManager()->awardExperience(player, parentReward, roll, true); 
+			creature->getZoneServer()->getPlayerManager()->awardExperience(player, skill, roll, true); 
+			creature->getZoneServer()->getPlayerManager()->awardExperience(player, parentReward, roll, true); 
 			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(roll) + " @skl_n:" + skill + " experience.");
 		} else { //Attribute was rolled.
 			int reward = roll / 10;
-			player->getZoneServer()->getPlayerManager()->awardExperience(player, skill, reward, true); 
+			creature->getZoneServer()->getPlayerManager()->awardExperience(player, skill, reward, true); 
 			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(reward) + " @skl_n:" + skill + " experience.");
 		}
 	}
