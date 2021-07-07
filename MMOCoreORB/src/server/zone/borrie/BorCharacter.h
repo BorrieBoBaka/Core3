@@ -32,26 +32,26 @@ public:
 		if (state == "stunned" || state == "stun") {
 			creature->setState(CreatureState::STUNNED);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been stunned!";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been stunned!");
 		} else if (state == "blinded" || state == "blind") {
 			creature->setState(CreatureState::BLINDED);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been blinded!";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been blinded!");
 		} else if (state == "immobilized" || state == "immobile") {
 			creature->setState(CreatureState::IMMOBILIZED);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been immobilized!";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been immobilized!");
 		} else if (state == "knockeddown" || state == "knockdown" || state == "kd") {
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been knocked down!";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been knocked down!");
 		} else if (state == "burning" || state == "onfire" || state == "fire" || state == "burn") {
 			creature->setState(CreatureState::ONFIRE);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has set on fire!";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has set on fire!");
 		} else if (state == "bleeding" || state == "bleed" || state == "bleeding") {
 			creature->setState(CreatureState::BLEEDING);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has started bleeding!";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has started bleeding!");
 		} else {
 			creature->sendSystemMessage("ERROR: Invalid state specified. Try stun, blind, immobile, knockdown, fire, or bleed.");
 		}
@@ -61,23 +61,23 @@ public:
 		if (state == "stunned" || state == "stun") {
 			creature->clearState(CreatureState::STUNNED);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer stunned.";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer stunned.");
 		} else if (state == "blinded" || state == "blind") {
 			creature->clearState(CreatureState::BLINDED);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer blind.";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer blind.");
 		} else if (state == "immobilized" || state == "immobile") {
 			creature->clearState(CreatureState::IMMOBILIZED);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer immobilized.";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer immobilized.");
 		} else if (state == "burning" || state == "onfire" || state == "fire" || state == "burn") {
 			creature->clearState(CreatureState::ONFIRE);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer on fire.";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer on fire.");
 		} else if (state == "bleeding" || state == "bleed" || state == "bleeding") {
 			creature->clearState(CreatureState::BLEEDING);
 			if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer bleeding.";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer bleeding.");
 		} else {
 			creature->sendSystemMessage("ERROR: Invalid state specified. Try stun, blind, immobile, knockdown, fire, or bleed.");
 		}
@@ -90,7 +90,7 @@ public:
 		creature->clearState(CreatureState::ONFIRE);
 		creature->clearState(CreatureState::BLEEDING);
 		if (alertEveryone)
-				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been cleared of all states.";
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been cleared of all states.");
 	}
 
 	static void ModPool(CreatureObject* creature, String pool, int mod) {
@@ -171,7 +171,7 @@ public:
 		FillPool(creature, "will", true);
 		FillPool(creature, "force", true);
 
-		String report = creature->getFirstName() + " has fully rested, filling all of their pools.";
+		String report = creature->getFirstName() + " has fully rested, filling all of their pools.");
 		report += " (Was H:" + String::valueOf(lastHealth);
 		report += ", A:" + String::valueOf(lastAction);
 		report += ", W:" + String::valueOf(lastWill);
@@ -289,11 +289,11 @@ public:
 	static int GetTargetDistance(CreatureObject* creature, SceneObject* object) {
 		if (object == nullptr)
 			return -1;
-		return (int)creature->getDistanceTo(object);
+		return (int)(creature->getDistanceTo(object));
 	}
 
 	static int GetDistance(CreatureObject* creature, float x, float z, float y) {
-		return (int)creature->getDistanceTo(Coordinate(x, z, y));
+		return (int)(creature->getDistanceTo(Coordinate(x, z, y)));
 	}
 
 	static void InitializeRoleplayMove(CreatureObject* creature) {
