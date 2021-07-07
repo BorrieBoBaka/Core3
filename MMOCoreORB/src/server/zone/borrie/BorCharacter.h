@@ -293,7 +293,7 @@ public:
 	}
 
 	static int GetDistance(CreatureObject* creature, float x, float z, float y) {
-		Coordinate coord(x,z,y);
+		Coordinate* coord(x,z,y);
 		return (int)(creature->getDistanceTo(coord));
 	}
 
