@@ -201,8 +201,53 @@ public:
 		}
 	}
 
-	static bool GetQualifiedForSkill(CreatureObject* creature, String skill, int desiredLevel) {
+	static int GetSkillLevelFromString(String input) {
+		StringTokenizer args(input);
+		String output;
+		args.setDelimeter("_");
+		if (!args.hasMoreTokens())
+			return -1;
+		else {
+			if (args.hasMoreTokens()) { //skill name
+				if (args.hasMoreTokens()) { //Skill Value
+					String value = args.getStringToken(output);
+					int result = -1;
+					if (value == "novice")
+						return 1;
+					else if (value == "a01")
+						return 2;
+					else if (value == "a02")
+						return 3;
+					else if (value == "a03")
+						return 4;
+					else if (value == "a04")
+						return 5;
+					else if (value == "b01")
+						return 6;
+					else if (value == "b02")
+						return 7;
+					else if (value == "b03")
+						return 8;
+					else if (value == "b04")
+						return 9;
+					else if (value == "master")
+						return 10;
+					else
+						return 0;
+					return output;
+				} else {
+					return -1;
+				}
+			} else
+				return -1;
+		}
+	}
+
+	static bool GetQualifiedForSkill(CreatureObject* creature, String skill) {
 		if (GetStringIsSkill(skill)) {
+			int desiredLevel = GetSkillLevelFromString(skill);
+			if (desiredLevel == -1)
+				return false;
 			String parent = GetSkillParent(skill);
 			return creature->getSkillMod("rp_" + parent) >= desiredLevel;
 		} else {

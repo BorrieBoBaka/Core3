@@ -698,11 +698,11 @@ bool SkillManager::canLearnSkill(const String& skillName, CreatureObject* creatu
 		return false;
 	}
 
-	if (!BorSkill::GetQualifiedForSkill(creature, BorSkill::GetSkillRealName(skillName)) {
+	if (!BorSkill::GetQualifiedForSkill(creature, BorSkill::GetSkillRealName(skillName))) {
 		return false;
 	}
 
-	ManagedReference<PlayerObject* > ghost = creature->getPlayerObject();
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 	if (ghost != nullptr) {
 		//Check if player has enough xp to learn the skill.
 		if (!noXpRequired) {
