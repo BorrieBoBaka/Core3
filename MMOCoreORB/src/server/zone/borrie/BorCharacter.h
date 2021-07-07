@@ -331,7 +331,8 @@ public:
 
 
 
-		BorrieRPG::BroadcastMessage(creature->getFirstName() + " has begun to move. Their range is " + String::valueOf(roll + Athletics) + "m. (Roll: 1d10 = " + String::valueOf(roll) + ")");
+		BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has begun to move. Their range is " + String::valueOf(roll + Athletics) +
+									"m. (Roll: 1d10 = " + String::valueOf(roll) + ")");
 									
 		creature->sendSystemMessage("Move to your desired destination, using the Last Position waypoint to keep track of your distance. Use the move (rpmove) ability to confirm your movement.");
 	}
@@ -345,7 +346,7 @@ public:
 		// Get previous movement waypoint
 		ManagedReference<WaypointObject*> waypoint = ghost->getSurveyWaypoint();
 		int distance = GetDistance(creature, waypoint->getPositionX(), waypoint->getPositionZ(), waypoint->getPositionY());
-		BorrieRPG::BroadcastMessage(creature->getFirstName() + " moved " + String::valueOf(distance) + " meters from their last position.");
+		BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " moved " + String::valueOf(distance) + " meters from their last position.");
 	}
 };
 

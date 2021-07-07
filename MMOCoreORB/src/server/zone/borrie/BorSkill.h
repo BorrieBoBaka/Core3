@@ -4,6 +4,7 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/packets/chat/ChatSystemMessage.h"
+#include "engine/util/u3d/Coordinate.h"
 
 //#include "templates/roleplay/RoleplayManager.h"
 
@@ -203,14 +204,14 @@ public:
 
 	static int GetSkillLevelFromString(String input) {
 		StringTokenizer args(input);
-		String output;
+		String value;
 		args.setDelimeter("_");
 		if (!args.hasMoreTokens())
 			return -1;
 		else {
 			if (args.hasMoreTokens()) { //skill name
 				if (args.hasMoreTokens()) { //Skill Value
-					String value = args.getStringToken(output);
+					args.getStringToken(output);
 					if (value == "novice")
 						return 1;
 					else if (value == "a01")
