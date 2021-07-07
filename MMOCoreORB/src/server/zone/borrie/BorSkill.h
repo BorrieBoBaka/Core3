@@ -211,7 +211,7 @@ public:
 		else {
 			if (args.hasMoreTokens()) { //skill name
 				if (args.hasMoreTokens()) { //Skill Value
-					args.getStringToken(output);
+					args.getStringToken(value);
 					if (value == "novice")
 						return 1;
 					else if (value == "a01")
