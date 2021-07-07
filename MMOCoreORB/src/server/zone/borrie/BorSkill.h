@@ -101,7 +101,7 @@ public:
 			return "";
 	}
 
-	static String GetStringIsSkill(String skill) {
+	static bool GetStringIsSkill(String skill) {
 		if (skill == "strength")
 			return true;
 		else if (skill == "precision")
@@ -186,7 +186,7 @@ public:
 			return false;
 	}
 
-	String GetSkillRealName(String input) {
+	static String GetSkillRealName(String input) {
 		StringTokenizer args(input);
 		String output;
 		args.setDelimeter("_");
@@ -201,7 +201,7 @@ public:
 		}
 	}
 
-	bool GetQualifiedForSkill(CreatureObject* creature, String skill, int desiredLevel) {
+	static bool GetQualifiedForSkill(CreatureObject* creature, String skill, int desiredLevel) {
 		if (GetStringIsSkill(skill)) {
 			String parent = GetSkillParent(skill);
 			return creature->getSkillMod("rp_" + parent) >= desiredLevel;

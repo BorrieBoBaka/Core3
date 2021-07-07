@@ -94,7 +94,7 @@ public:
 	static String RollSkill(CreatureObject* creature, String skillName) {
 		int value = creature->getSkillMod("rp_" + skillName);
 		int Roll = System::random(19) + 1;
-		return "@skl_n:" + skillName + " check : 1d20 = " + String::valueOf(roll) + " + Modifier: " + String::valueOf(value) + ". Result: " + String::valueOf(value + Roll);
+		return "@skl_n:" + skillName + " check : 1d20 = " + String::valueOf(Roll) + " + Modifier: " + String::valueOf(value) + ". Result: " + String::valueOf(value + Roll);
 	}
 
 	/*

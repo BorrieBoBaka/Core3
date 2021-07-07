@@ -171,7 +171,7 @@ public:
 		FillPool(creature, "will", true);
 		FillPool(creature, "force", true);
 
-		String report = creature->getFirstName() + " has fully rested, filling all of their pools.");
+		String report = creature->getFirstName() + " has fully rested, filling all of their pools.";
 		report += " (Was H:" + String::valueOf(lastHealth);
 		report += ", A:" + String::valueOf(lastAction);
 		report += ", W:" + String::valueOf(lastWill);
@@ -298,12 +298,12 @@ public:
 
 	static void InitializeRoleplayMove(CreatureObject* creature) {
 		//Roll Athletics to get bonus movement. Base movement is 10 meters. 
-		int Roll = System::random(9) + 1;
+		int roll = System::random(9) + 1;
 		int Athletics = creature->getSkillMod("rp_athletics");
 
 		PlayerObject* ghost = creature->getPlayerObject();
 		if (ghost == nullptr)
-			return GENERALERROR;
+			return;
 
 		ManagedReference<WaypointObject*> newwaypoint = nullptr;
 
@@ -339,7 +339,7 @@ public:
 	static void ConfirmRoleplayMove(CreatureObject* creature) {
 		PlayerObject* ghost = creature->getPlayerObject();
 		if (ghost == nullptr)
-			return GENERALERROR;
+			return;
 
 
 		// Get previous movement waypoint
