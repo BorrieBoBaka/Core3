@@ -293,7 +293,8 @@ public:
 	}
 
 	static int GetDistance(CreatureObject* creature, float x, float z, float y) {
-		return (int)(creature->getDistanceTo(Coordinate(x, z, y)));
+		Coordinate coord(x,z,y);
+		return (int)(creature->getDistanceTo(coord));
 	}
 
 	static void InitializeRoleplayMove(CreatureObject* creature) {

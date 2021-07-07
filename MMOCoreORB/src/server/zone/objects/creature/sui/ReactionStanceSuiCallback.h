@@ -21,8 +21,8 @@ public:
 		if (cancelPressed)
 			return;
 
-		ManagedReference<SuiListBox*> box = new SuiListBox(creature, SuiWindowType::JUKEBOX_SELECTION);
-		box->setCallback(new TurnHelpSuiCallback(creature->getZoneServer()));
+		ManagedReference<SuiListBox*> box = new SuiListBox(player, SuiWindowType::JUKEBOX_SELECTION);
+		box->setCallback(new TurnHelpSuiCallback(player->getZoneServer()));
 		box->setPromptTitle("Turn Help Menu");
 		box->setPromptText(
 			"This menu provides a codex for all the possible actions one can take during a turn, split between major actions and minor actions. During your "
