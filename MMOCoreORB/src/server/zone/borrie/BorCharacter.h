@@ -28,16 +28,69 @@ public:
 	}
 
 
-	static void AddState(CreatureObject* creature, String state) {
-	
+	static void AddState(CreatureObject* creature, String state, bool alertEveryone = false) {
+		if (state == "stunned" || state == "stun") {
+			creature->setState(CreatureState::STUNNED);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been stunned!";
+		} else if (state == "blinded" || state == "blind") {
+			creature->setState(CreatureState::BLINDED);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been blinded!";
+		} else if (state == "immobilized" || state == "immobile") {
+			creature->setState(CreatureState::IMMOBILIZED);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been immobilized!";
+		} else if (state == "knockeddown" || state == "knockdown" || state == "kd") {
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been knocked down!";
+		} else if (state == "burning" || state == "onfire" || state == "fire" || state == "burn") {
+			creature->setState(CreatureState::ONFIRE);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has set on fire!";
+		} else if (state == "bleeding" || state == "bleed" || state == "bleeding") {
+			creature->setState(CreatureState::BLEEDING);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has started bleeding!";
+		} else {
+			creature->sendSystemMessage("ERROR: Invalid state specified. Try stun, blind, immobile, knockdown, fire, or bleed.");
+		}
 	}
 
-	static void RemoveState(CreatureObject* creature, String state) {
-
+	static void RemoveState(CreatureObject* creature, String state, bool alertEveryone = false) {
+		if (state == "stunned" || state == "stun") {
+			creature->clearState(CreatureState::STUNNED);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer stunned.";
+		} else if (state == "blinded" || state == "blind") {
+			creature->clearState(CreatureState::BLINDED);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer blind.";
+		} else if (state == "immobilized" || state == "immobile") {
+			creature->clearState(CreatureState::IMMOBILIZED);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer immobilized.";
+		} else if (state == "burning" || state == "onfire" || state == "fire" || state == "burn") {
+			creature->clearState(CreatureState::ONFIRE);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer on fire.";
+		} else if (state == "bleeding" || state == "bleed" || state == "bleeding") {
+			creature->clearState(CreatureState::BLEEDING);
+			if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " is no longer bleeding.";
+		} else {
+			creature->sendSystemMessage("ERROR: Invalid state specified. Try stun, blind, immobile, knockdown, fire, or bleed.");
+		}
 	}
 
-	static void ClearStates(CreatureObject* creature, String state) {
-
+	static void ClearStates(CreatureObject* creature, bool alertEveryone = false) {
+		creature->clearState(CreatureState::STUNNED);
+		creature->clearState(CreatureState::BLINDED);
+		creature->clearState(CreatureState::IMMOBILIZED);
+		creature->clearState(CreatureState::ONFIRE);
+		creature->clearState(CreatureState::BLEEDING);
+		if (alertEveryone)
+				BorrieRPG::BroadcastMessage(creature, creature->getFirstName() + " has been cleared of all states.";
 	}
 
 	static void ModPool(CreatureObject* creature, String pool, int mod) {
@@ -231,6 +284,68 @@ public:
 			creature->getZoneServer()->getPlayerManager()->awardExperience(creature, skill, reward, true);
 			dm->sendSystemMessage("Rewarded " + creature->getFirstName() + " " + String::valueOf(reward) + " @skl_n:" + skill + " experience.");
 		}
+	}
+
+	static int GetTargetDistance(CreatureObject* creature, SceneObject* object) {
+		if (object == nullptr)
+			return -1;
+		return (int)creature->getDistanceTo(object);
+	}
+
+	static int GetDistance(CreatureObject* creature, float x, float z, float y) {
+		return (int)creature->getDistanceTo(Coordinate(x, z, y));
+	}
+
+	static void InitializeRoleplayMove(CreatureObject* creature) {
+		//Roll Athletics to get bonus movement. Base movement is 10 meters. 
+		int Roll = System::random(9) + 1;
+		int Athletics = creature->getSkillMod("rp_athletics");
+
+		PlayerObject* ghost = creature->getPlayerObject();
+		if (ghost == nullptr)
+			return GENERALERROR;
+
+		ManagedReference<WaypointObject*> newwaypoint = nullptr;
+
+		// Get previous movement waypoint
+		ManagedReference<WaypointObject*> waypoint = ghost->getSurveyWaypoint();
+
+		// Create new waypoint
+		if (waypoint == nullptr)
+			newwaypoint = (creature->getZoneServer()->createObject(0xc456e788, 1)).castTo<WaypointObject*>();
+		else {
+			ghost->removeWaypoint(waypoint->getObjectID(), true, false);
+			newwaypoint = waypoint.get();
+		}
+
+		Locker locker(newwaypoint);
+
+		newwaypoint->setCustomObjectName(UnicodeString("Last Position"), false);
+		newwaypoint->setPlanetCRC(creature->getZone()->getZoneCRC());
+		newwaypoint->setPosition(creature->getPositionX(), creature->getPositionZ(), creature->getPositionY());
+		newwaypoint->setColor(WaypointObject::COLOR_PURPLE);
+		newwaypoint->setSpecialTypeID(WaypointObject::SPECIALTYPE_RESOURCE);
+		newwaypoint->setActive(true);
+
+		ghost->addWaypoint(newwaypoint, false, true); 
+
+
+
+		BorrieRPG::BroadcastMessage(creature->getFirstName() + " has begun to move. Their range is " + String::valueOf(roll + Athletics) +
+									"m. (Roll: 1d10 = " + String::valueOf(roll) + ")");
+		creature->sendSystemMessage("Move to your desired destination, using the Last Position waypoint to keep track of your distance. Use the move (rpmove) ability to confirm your movement.");
+	}
+
+	static void ConfirmRoleplayMove(CreatureObject* creature) {
+		PlayerObject* ghost = creature->getPlayerObject();
+		if (ghost == nullptr)
+			return GENERALERROR;
+
+
+		// Get previous movement waypoint
+		ManagedReference<WaypointObject*> waypoint = ghost->getSurveyWaypoint();
+		int distance = GetDistance(creature, waypoint->getPositionX(), waypoint->getPositionZ(), waypoint->getPositionY());
+		BorrieRPG::BroadcastMessage(creature->getFirstName() + " moved " + String::valueOf(distance) + " meters from their last position.");
 	}
 };
 

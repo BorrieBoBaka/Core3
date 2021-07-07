@@ -52,6 +52,26 @@ public:
 		delete writer;
 	}
 
+	static void LogString(String message) {
+		string targetName = GetTargetName(target);
+
+		StringBuffer text;
+
+		Time currentTime;
+		text << currentTime.getFormattedTime();
+
+		text <<  message;
+
+		File* file = new File("custom_scripts/borlogs/DMLog.txt");
+		FileWriter* writer = new FileWriter(file, true); // true for appending new lines
+
+		writer->writeLine(text.toString());
+
+		writer->close();
+		delete file;
+		delete writer;
+	}
+
 	String GetTargetName(const uint64& target) {
 		ManagedReference<SceneObject*> object = creature->getZoneServer()->getObject(target, false);
 		if (object == nullptr) {

@@ -244,6 +244,9 @@
 #include "server/zone/objects/creature/commands/RpfsightCommand.h"
 #include "server/zone/objects/creature/commands/RpfprecogCommand.h"
 
+#include "server/zone/objects/creature/commands/RpsetstanceCommand.h"
+#include "server/zone/objects/creature/commands/RpmoveCommand.h"
+
 
 using namespace server::zone::managers::objectcontroller::command;
 
@@ -449,6 +452,9 @@ void CommandConfigManager::registerCommands4() {
 	commandFactory.registerCommand<RpftargethealCommand>(String("rpftargetheal").toLowerCase());
 	commandFactory.registerCommand<RpfsightCommand>(String("rpfsight").toLowerCase());
 	commandFactory.registerCommand<RpfprecogCommand>(String("rpfprecog").toLowerCase());
+
+	commandFactory.registerCommand<RpsetstanceCommand>(String("rpsetstance").toLowerCase());
+	commandFactory.registerCommand<RpmoveCommand>(String("rpmove").toLowerCase());
 
 
 }

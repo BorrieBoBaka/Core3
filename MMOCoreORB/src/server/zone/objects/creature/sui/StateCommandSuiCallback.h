@@ -70,76 +70,66 @@ public:
 			if (index == -1)
 				return;
 			else if (index == 0) {
-				// Select a State
-				box->setCallback(new HpCommandSuiCallback(player->getZoneServer(), target, 1, 0, adminLevel));
-				box->setPromptText("Select the pool you wish to modify.");
-				box->addMenuItem("Modify the Health pool");
-				box->addMenuItem("Modify the Action pool");
-				box->addMenuItem("Modify the Will pool");
-				if (targetCreature->isPlayerCreature()) {
-					if (targetCreature->getPlayerObject()->getJediState() > 0) {
-						box->addMenuItem("Modify the Force pool");
-					}
-				}
+				// Add a State
+				box->setCallback(new StateCommandSuiCallback(player->getZoneServer(), target, 1, 0, adminLevel));
+				box->setPromptText("Select the state you wish to add.");
+				box->addMenuItem("Set Stunned");
+				box->addMenuItem("Set Blinded");
+				box->addMenuItem("Set Immobilized");
+				box->addMenuItem("Set Knocked Down");
+				box->addMenuItem("Set On Fire");
+				box->addMenuItem("Set Bleeding");
+				
 
 			} else if (index == 1) {
-				// Select a pool, fill
-				box->setCallback(new HpCommandSuiCallback(player->getZoneServer(), target, 2, 0, adminLevel));
-				box->setPromptText("Select the pool you wish to fill.");
-				box->addMenuItem("Fill the Health pool");
-				box->addMenuItem("Fill the Action pool");
-				box->addMenuItem("Fill the Will pool");
-				if (targetCreature->isPlayerCreature()) {
-					if (targetCreature->getPlayerObject()->getJediState() > 0) {
-						box->addMenuItem("Fill the Force pool");
-					}
-				}
+				// Remove a state
+				box->setCallback(new StateCommandSuiCallback(player->getZoneServer(), target, 2, 0, adminLevel));
+				box->setPromptText("Select the state you wish to clear.");
+				box->addMenuItem("Remove Stunned");
+				box->addMenuItem("Remove Blinded");
+				box->addMenuItem("Remove Immobilized");
+				box->addMenuItem("Remove On Fire");
+				box->addMenuItem("Remove Bleeding");
 			} else if (index == 2) {
-				// Fill all pools.
-				player->sendExecuteConsoleCommand("/hp fill");
+				// Clear all States
+				player->sendExecuteConsoleCommand("/rpaddstate clear");
+				return;
 			}
 
 			player->getPlayerObject()->addSuiBox(box);
 			player->sendMessage(box->generateMessage());
 
 		} else if (state == 1 || state == 2) { // Select Pool to Mod
-			String pool = "health";
-
-			if (index == -1)
-				return;
-			else if (index == 0) { // Health
-				pool = "health";
-			} else if (index == 1) { // Action
-				pool = "action";
-			} else if (index == 2) { // Will
-				pool = "will";
-			} else if (index == 3) { // Force
-				pool = "force";
-			}
-
 			if (state == 1) {
-				// Open a new Menu
-				ManagedReference<SuiInputBox*> hpModifyBox = new SuiInputBox(player, SuiWindowType::STRUCTURE_SET_ACCESS_FEE);
-				hpModifyBox->setCallback(new HpCommandSuiCallback(player->getZoneServer(), target, 3, index, adminLevel));
-				hpModifyBox->setPromptTitle("Modify " + pool + " pool"); // Access Fee
-				hpModifyBox->setMaxInputSize(3);
-				hpModifyBox->setPromptText("Input the amount you wish to modify the " + pool +
-										   " pool. A positive number will increase the pool, a negative number will decrease it.");
-				player->getPlayerObject()->addSuiBox(hpModifyBox);
-				player->sendMessage(hpModifyBox->generateMessage());
+				if (index == 0) {
+					player->sendExecuteConsoleCommand("/rpaddstate add stun");
+				} else if (index == 1) {
+					player->sendExecuteConsoleCommand("/rpaddstate add blind");
+				} else if (index == 2) {
+					player->sendExecuteConsoleCommand("/rpaddstate add immobilized");
+				} else if (index == 3) {
+					player->sendExecuteConsoleCommand("/rpaddstate add knockdown");
+				} else if (index == 4) {
+					player->sendExecuteConsoleCommand("/rpaddstate add fire");
+				} else if (index == 5) {
+					player->sendExecuteConsoleCommand("/rpaddstate add bleed");
+				}
 
 			} else {
-				// Fill it
-				//player->sendExecuteConsoleCommand("/hp " + pool + " fill");
+				if (index == 0) {
+					player->sendExecuteConsoleCommand("/rpaddstate remove stun");
+				} else if (index == 1) {
+					player->sendExecuteConsoleCommand("/rpaddstate remove blind");
+				} else if (index == 2) {
+					player->sendExecuteConsoleCommand("/rpaddstate remove immobilized");
+				} else if (index == 3) {
+					player->sendExecuteConsoleCommand("/rpaddstate remove fire");
+				} else if (index == 4) {
+					player->sendExecuteConsoleCommand("/rpaddstate remove bleed");
+				}
 			}
 
-		} else if (state == 3) { // Modify Value
-			StringBuffer newCom;
-			newCom << "/hp " << pool << " " << args->get(0).toString();
-			// player->sendSystemMessage(newCom.toString()); //debug
-			// player->sendSystemMessage("modifying value."); //Debug too
-			player->sendExecuteConsoleCommand(newCom.toString());
-		}
+		} 
 	}
 };
 

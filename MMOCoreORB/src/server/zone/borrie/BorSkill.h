@@ -100,6 +100,115 @@ public:
 		else
 			return "";
 	}
+
+	static String GetStringIsSkill(String skill) {
+		if (skill == "strength")
+			return true;
+		else if (skill == "precision")
+			return true;
+		else if (skill == "dexterity")
+			return true;
+		else if (skill == "awareness")
+			return true;
+		else if (skill == "intelligence")
+			return true;
+		else if (skill == "charisma")
+			return true;
+		else if (skill == "constitution")
+			return true;
+		else if (skill == "mindfulness")
+			return true;
+		else if (skill == "melee")
+			return true;
+		else if (skill == "intimidation")
+			return true;
+		else if (skill == "unarmed")
+			return true;
+		else if (skill == "lightsaber")
+			return true;
+		else if (skill == "ranged")
+			return true;
+		else if (skill == "mechanics")
+			return true;
+		else if (skill == "demolitions")
+			return true;
+		else if (skill == "engineering")
+			return true;
+		else if (skill == "larceny")
+			return true;
+		else if (skill == "stealth")
+			return true;
+		else if (skill == "maneuverability")
+			return true;
+		else if (skill == "throwing")
+			return true;
+		else if (skill == "investigation")
+			return true;
+		else if (skill == "piloting")
+			return true;
+		else if (skill == "survival")
+			return true;
+		else if (skill == "sense")
+			return true;
+		else if (skill == "slicing")
+			return true;
+		else if (skill == "computers")
+			return true;
+		else if (skill == "medicine")
+			return true;
+		else if (skill == "science")
+			return true;
+		else if (skill == "persuasion")
+			return true;
+		else if (skill == "bluff")
+			return true;
+		else if (skill == "composure")
+			return true;
+		else if (skill == "resolve")
+			return true;
+		else if (skill == "athletics")
+			return true;
+		else if (skill == "lightning")
+			return true;
+		else if (skill == "armor")
+			return true;
+		else if (skill == "defending")
+			return true;
+		else if (skill == "telekinesis")
+			return true;
+		else if (skill == "control")
+			return true;
+		else if (skill == "alter")
+			return true;
+		else if (skill == "inward")
+			return true;
+		else
+			return false;
+	}
+
+	String GetSkillRealName(String input) {
+		StringTokenizer args(input);
+		String output;
+		args.setDelimeter("_");
+		if (!args.hasMoreTokens())
+			return "invalid";
+		else {
+			if(args.hasMoreTokens()) {
+				args.getStringToken(output);
+				return output;
+			}
+			else return "invalid";
+		}
+	}
+
+	bool GetQualifiedForSkill(CreatureObject* creature, String skill, int desiredLevel) {
+		if (GetStringIsSkill(skill)) {
+			String parent = GetSkillParent(skill);
+			return creature->getSkillMod("rp_" + parent) >= desiredLevel;
+		} else {
+			return true;
+		}
+	}
 };
 
 #endif /*BORSKILL_H_*/

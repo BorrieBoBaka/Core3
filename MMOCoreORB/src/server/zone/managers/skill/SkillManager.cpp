@@ -20,6 +20,7 @@
 #include "server/zone/packets/creature/CreatureObjectDeltaMessage4.h"
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/managers/frs/FrsManager.h"
+#include "server/zone/borrie/BorSkill.h"
 
 SkillManager::SkillManager()
 	: Logger("SkillManager") {
@@ -694,6 +695,10 @@ bool SkillManager::canLearnSkill(const String& skillName, CreatureObject* creatu
 	}
 
 	if (!fulfillsSkillPrerequisites(skillName, creature)) {
+		return false;
+	}
+
+	if (!BorSkill::GetQualifiedForSkill(creature, BorSkill::GetSkillRealName(skillName)) {
 		return false;
 	}
 

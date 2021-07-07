@@ -91,6 +91,12 @@ public:
 		return "fail";
 	}
 
+	static String RollSkill(CreatureObject* creature, String skillName) {
+		int value = creature->getSkillMod("rp_" + skillName);
+		int Roll = System::random(19) + 1;
+		return "@skl_n:" + skillName + " check : 1d20 = " + String::valueOf(roll) + " + Modifier: " + String::valueOf(value) + ". Result: " + String::valueOf(value + Roll);
+	}
+
 	/*
 	static String RollStat(CreatureObject* creature, String statName) {
 		RPStatData* statData = RoleplayManager::instance()->getStatDataByEither(statName);

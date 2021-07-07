@@ -63,12 +63,15 @@ public:
 					args.getStringToken(subCommand);
 					if (command == "add") {
 						// Add state specified by subcommand
+						BorCharacter::AddState(targetCreature, subCommand, true);
 					} else if (command == "remove") {
 						// Remove state specified by subcommand
+						BorCharacter::RemoveState(targetCreature, subCommand, true);
 					}
 				} else {
 					if (command == "reset" || command == "clear") {
 						// Reset all States
+						BorCharacter::ClearStates(targetCreature, true);
 					} else {
 						creature->sendSystemMessage("Invalid arguments for command. Try /rpaddstate <add/remove/reset> <stateName>");
 					}
