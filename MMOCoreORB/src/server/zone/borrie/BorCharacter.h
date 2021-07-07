@@ -295,7 +295,10 @@ public:
 
 	
 	static int GetDistance(CreatureObject* creature, float x, float z, float y) {
-		Coordinate* coord(x,z,y);
+		Coordinate* coord;
+		coord.setPositionX(x);
+		coord.setPositionZ(z);
+		coord.setPositionY(y);
 		return (int)(creature->getDistanceTo(&coord));
 	}
 	
