@@ -292,10 +292,13 @@ public:
 		return (int)(creature->getDistanceTo(object));
 	}
 
+
+	/*
 	static int GetDistance(CreatureObject* creature, float x, float z, float y) {
 		Coordinate* coord(x,z,y);
 		return (int)(creature->getDistanceTo(coord));
 	}
+	*/
 
 	static void InitializeRoleplayMove(CreatureObject* creature) {
 		//Roll Athletics to get bonus movement. Base movement is 10 meters. 
