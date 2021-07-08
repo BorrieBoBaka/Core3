@@ -1,1 +1,1 @@
-include("mobile/static/vendors/debug_vendor.lua")
+include("static/vendors/debug_vendor.lua")
