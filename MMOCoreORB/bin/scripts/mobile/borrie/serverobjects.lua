@@ -1,1 +1,1 @@
-includeFile("static/serverobjects.lua")
+includeFile("borrie/static/serverobjects.lua")
