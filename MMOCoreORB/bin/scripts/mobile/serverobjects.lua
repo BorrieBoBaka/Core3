@@ -48,3 +48,8 @@ includeFile("outfits/serverobjects.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/mobile/serverobjects.lua")
+
+-- Borrie RPG - Loads last to allow for overrides
+includeFile("../borrierpg/mobile/serverobjects.lua")
+includeFile("../borrierpg/conversations/conversations.lua")
+

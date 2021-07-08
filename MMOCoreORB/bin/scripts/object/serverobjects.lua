@@ -83,3 +83,6 @@ includeFile("fs_village_area.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/object/serverobjects.lua")
+
+-- Borrie RPG - Loads last to allow for overrides
+includeFile("../borrierpg/object/serverobjects.lua")

@@ -23,23 +23,17 @@ public:
 
 		ManagedReference<SuiListBox*> box = new SuiListBox(player, SuiWindowType::JUKEBOX_SELECTION);
 		box->setCallback(new TurnHelpSuiCallback(player->getZoneServer()));
-		box->setPromptTitle("Turn Help Menu");
-		box->setPromptText(
-			"This menu provides a codex for all the possible actions one can take during a turn, split between major actions and minor actions. During your "
-			"turn, you can perform one major action and one minor action, or two minor actions.");
+		box->setPromptTitle("Reaction Stance Menu");
+		box->setPromptText("Select the reaction stance you'd like to take. A reaction stance determines how you'll respond when attacked. Most actions beyond \"None\" will cost action points to execute.");
 		box->setCancelButton(true, "@cancel");
-		box->addMenuItem("= Major Actions =");
-		box->addMenuItem("1. Attack");
-		box->addMenuItem("2. Heal");
-		box->addMenuItem("3. Skill Interact");
-		box->addMenuItem("4. Enter Stealth");
-		box->addMenuItem("= Minor Actions =");
-		box->addMenuItem("1. Move");
-		box->addMenuItem("2. Equip/Unequip Item");
-		box->addMenuItem("3. Change Posture");
-		box->addMenuItem("4. Simple Interact");
-		box->addMenuItem("5. Use Force Power");
-		box->addMenuItem("6. Throw Object");
+		box->addMenuItem("None");
+		box->addMenuItem("Defend");
+		box->addMenuItem("Parry");
+		box->addMenuItem("Dodge");
+		box->addMenuItem("Lightsaber Deflect");
+		box->addMenuItem("Force Deflect");
+		box->addMenuItem("Force Absorb");
+
 	}
 
 	String GetIndexDescription(int index) {
