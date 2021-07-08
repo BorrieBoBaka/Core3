@@ -294,3 +294,7 @@ includeFile("conversations/junk_dealer/junk_dealer_quich_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_reggi_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sheani_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
+
+--Borrie RPG
+includeFile("conversations/junk_dealer/rpg_shopkeeper.lua")
+includeFile("conversations/junk_dealer/rpg_shopkeeper_convo_handler.lua")
