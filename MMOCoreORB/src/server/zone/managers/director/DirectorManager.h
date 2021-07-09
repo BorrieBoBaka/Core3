@@ -198,6 +198,12 @@ namespace server {
 		static int spawnTheaterObject(lua_State* L);
 		static int getSchematicItemName(lua_State* L);
 		static int getBadgeListByType(lua_State* L);
+		static int getCityRegionNameAt(lua_State* L);
+		static int getAdminLevel(lua_State* L);
+		static int adminPlaceStructure(lua_State* L);
+		static int objectPlaceStructure(lua_State* L);
+		static int logToFile(lua_State* L);
+		static int spawnCustomizedMobile(lua_State* L);
 
 	private:
 		static void setupLuaPackagePath(Lua* luaEngine);

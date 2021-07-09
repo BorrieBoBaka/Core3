@@ -431,6 +431,17 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->registerFunction("getSchematicItemName", getSchematicItemName);
 	luaEngine->registerFunction("getBadgeListByType", getBadgeListByType);
 
+	//Borrie RPG Functions
+	//Functions from Legends of Hondo
+	luaEngine->registerFunction("getCityRegionNameAt", getCityRegionNameAt);
+	luaEngine->registerFunction("getAdminLevel", getAdminLevel);
+	luaEngine->registerFunction("adminPlaceStructure", adminPlaceStructure);
+	luaEngine->registerFunction("objectPlaceStructure", objectPlaceStructure);
+	luaEngine->registerFunction("logToFile", logToFile);
+	//Functions written by Borrie
+	luaEngine->registerFunction("spawnCustomizedMobile", spawnCustomizedMobile);
+
+
 	//Navigation Mesh Management
 	luaEngine->registerFunction("createNavMesh", createNavMesh);
 
@@ -3700,5 +3711,211 @@ int DirectorManager::getBadgeListByType(lua_State* L) {
 		}
 	}
 
+	return 1;
+}
+
+// Legend of Hondo
+int DirectorManager::getCityRegionNameAt(lua_State* L) {
+	if (checkArgumentCount(L, 3) == 1) {
+		instance()->error("incorrect number of arguments passed to DirectorManager::getCityRegionNameAt");
+		ERROR_CODE = INCORRECT_ARGUMENTS;
+		return 0;
+	}
+
+	String zoneid = lua_tostring(L, -3);
+	float x = lua_tonumber(L, -2);
+	float y = lua_tonumber(L, -1);
+
+	PlanetManager* planetManager = ServerCore::getZoneServer()->getZone(zoneid)->getPlanetManager();
+	CityRegion* cityRegion = planetManager->getRegionAt(x, y);
+
+	if (cityRegion != nullptr) {
+		String regionName = cityRegion->getRegionName();
+		lua_pushstring(L, regionName.toCharArray());
+	} else {
+		lua_pushnil(L);
+	}
+
+	return 1;
+}
+
+// Legend of Hondo
+// lua: getAdminLevel(pPlayer)
+int DirectorManager::getAdminLevel(lua_State* L) {
+	SceneObject* player = (SceneObject*)lua_touserdata(L, -1);
+
+	if (player == nullptr || !player->isPlayerCreature()) {
+		DirectorManager::instance()->error("Attempted to get admin level of a non-player Scene Object.");
+		return 0;
+	}
+
+	Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();
+
+	if (ghost == nullptr) {
+		DirectorManager::instance()->error("getAdminLevel failed to create ghost as player object.");
+		return 0;
+	}
+
+	int adminLevel = ghost->getAdminLevel();
+
+	if (adminLevel >= 0)
+		lua_pushinteger(L, adminLevel);
+	else
+		lua_pushnil(L);
+
+	return 1;
+}
+
+/*
+ * Legend of Hondo
+ * Place a structure as a "player structure" based where the character is standing.
+ * lua: adminPlaceStructure(pPlayer, templateString)
+ */
+int DirectorManager::adminPlaceStructure(lua_State* L) {
+	Reference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -2);
+	String templateString = lua_tostring(L, -1);
+
+	ManagedReference<Zone*> zone = creature->getZone();
+
+	if (zone == nullptr)
+		return 0;
+
+	if (creature->getParent() != nullptr) {
+		DirectorManager::instance()->error("adminPlaceStructure - You were not outside.");
+		return 0;
+	}
+
+	int angle = creature->getDirectionAngle();
+
+	if (templateString.contains("housing_tatt_style02_med") || templateString.contains("player/city/cloning") || templateString.contains("player/city/hospital"))
+		angle -= 90; // Correct unusual default POB rotation
+
+	if (templateString.contains("guild_theater"))
+		angle -= 180; // Correct unusual default POB rotation
+
+	float x = creature->getPositionX();
+	float y = creature->getPositionY();
+	int persistenceLevel = 1;
+
+	// Create Structure
+	StructureObject* structureObject = StructureManager::instance()->placeStructure(creature, templateString, x, y, angle, persistenceLevel);
+
+	return 0;
+}
+
+/*
+ * Legend of Hondo
+ *  Place a structure as a "player structure" using a screenplay scripted object, such as a terminal.
+ * lua: objectPlaceStructure(pPlayer/pCreature, templateString, x, y, angle)
+ * Note that the structure maintainance system will destroy any non player owned building, unless it belongs to "r3-0wn3r".
+ */
+int DirectorManager::objectPlaceStructure(lua_State* L) {
+	Reference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -5); // Using creature required for placeStructure()
+	String templateString = lua_tostring(L, -4);
+	float x = lua_tonumber(L, -3);
+	float y = lua_tonumber(L, -2);
+	int angle = lua_tonumber(L, -1);
+
+	ManagedReference<Zone*> zone = creature->getZone();
+
+	if (zone == nullptr)
+		return 0;
+
+	int persistenceLevel = 1;
+
+	// Create Structure
+	StructureObject* structureObject = StructureManager::instance()->placeStructure(creature, templateString, x, y, angle, persistenceLevel);
+
+	if (structureObject == nullptr) {
+		instance()->error("objectPlaceStructure was unable to spawn building.");
+		lua_pushnil(L);
+	} else {
+		structureObject->_setUpdated(true);
+		lua_pushlightuserdata(L, structureObject);
+	}
+
+	return 1;
+}
+
+// Append a date and time stamped string message to any file on the server
+int DirectorManager::logToFile(lua_State* L) {
+	String message = lua_tostring(L, -2);
+	String pathAndFileName = lua_tostring(L, -1);
+
+	time_t now = time(0);
+	String dt = ctime(&now);
+	String timeStamp = dt.replaceAll("\n", "");
+
+	StringBuffer msg;
+	msg << timeStamp << ": " << message << endl;
+
+	File* file = new File(pathAndFileName);
+	FileWriter* writer = new FileWriter(file, true); // true for append new lines
+	writer->write(msg.toString());
+	writer->close();
+	delete file;
+	delete writer;
+
+	return 0;
+}
+
+int DirectorManager::spawnCustomizedMobile(lua_State* L) {
+	int numberOfArguments = lua_gettop(L);
+	if (numberOfArguments != 9) {
+		String err = "incorrect number of arguments passed to DirectorManager::spawnMobile";
+		printTraceError(L, err);
+		ERROR_CODE = INCORRECT_ARGUMENTS;
+		return 0;
+	}
+
+	uint64 parentID;
+	float x, y, z, heading;
+	int respawnTimer;
+	String mobile, zoneid, customApp;
+
+	customApp = lua_tostring(L, -1);
+	parentID = lua_tointeger(L, -2);
+	heading = lua_tonumber(L, -3);
+	y = lua_tonumber(L, -4);
+	z = lua_tonumber(L, -5);
+	x = lua_tonumber(L, -6);
+	respawnTimer = lua_tointeger(L, -7);
+	mobile = lua_tostring(L, -8);
+	zoneid = lua_tostring(L, -9);
+
+	ZoneServer* zoneServer = ServerCore::getZoneServer();
+
+	Zone* zone = zoneServer->getZone(zoneid);
+
+	if (zone == nullptr) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	CreatureManager* creatureManager = zone->getCreatureManager();
+
+	CreatureObject* creature = creatureManager->spawnCreature(mobile.hashCode(), customApp.hashCode(), x, z, y, parentID);
+
+	if (creature == nullptr) {
+		String err = "could not spawn custom mobile " + mobile;
+		printTraceError(L, err);
+
+		lua_pushnil(L);
+	} else {
+		Locker locker(creature);
+
+		creature->updateDirection(Math::deg2rad(heading));
+
+		if (creature->isAiAgent()) {
+			AiAgent* ai = cast<AiAgent*>(creature);
+			ai->setRespawnTimer(respawnTimer);
+
+			// TODO (dannuic): this is a temporary measure until we add an AI setting method to DirectorManager -- make stationary the default
+			ai->activateLoad("stationary");
+		}
+
+		creature->_setUpdated(true); // mark updated so the GC doesnt delete it while in LUA
+		lua_pushlightuserdata(L, creature);
+	}
 	return 1;
 }

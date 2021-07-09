@@ -1,5 +1,5 @@
 debug_vendor = Creature:new {
-	objectName = "RPG Debug Vendor",
+	customName = "RPG Debug Vendor",
 	socialGroup = "",
 	faction = "",
 	level = 100,
