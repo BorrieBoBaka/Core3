@@ -3924,7 +3924,7 @@ int DirectorManager::spawnCustomizedMobile(lua_State* L) {
 
 int DirectorManager::GetItemTemplateInformation(lua_State* L) {
 	String templateName = lua_tostring(L, -1);
-	uint32 crc = objectTemplate.hashCode();
+	uint32 crc = templateName.hashCode();
 	SharedObjectTemplate* soTemplate = TemplateManager::instance()->getTemplate(crc);
 
 	StringBuffer result;
