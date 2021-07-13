@@ -4024,6 +4024,6 @@ int DirectorManager::GetItemTemplateInformation(lua_State* L) {
 		result << soTemplate->getGameObjectType() << endl;
 	}
 	
-	lua_pushstring(L, result.toString());
+	lua_pushstring(L, result.toString().toCharArray());
 	return 1;
 }
