@@ -23,20 +23,42 @@ class ConversationOption : public Object {
 	StringIdChatParameter optionText;
 	UnicodeString customOption;
 	String linkedScreenID;
+	String customOptionData;
+
 
 public:
 	ConversationOption(const StringIdChatParameter& opttext, const String& screenid) {
 		optionText = opttext;
 		linkedScreenID = screenid;
+		customOptionData = "";
+
+	}
+
+	ConversationOption(const StringIdChatParameter& opttext, const String& screenid, const String& customdata) {
+		optionText = opttext;
+		linkedScreenID = screenid;
+		customOptionData = customdata;
 	}
 
 	ConversationOption(const UnicodeString& customopt, const String& screenid) {
 		customOption = customopt;
 		linkedScreenID = screenid;
+		customOptionData = "";
+
+	}
+
+	ConversationOption(const UnicodeString& customopt, const String& screenid, const String& customdata) {
+		customOption = customopt;
+		linkedScreenID = screenid;
+		customOptionData = customdata;
 	}
 
 	inline String& getLinkedScreenID() {
 		return linkedScreenID;
+	}
+
+	inline String& getCustomOptionData() {
+		return customOptionData;
 	}
 
 	inline StringIdChatParameter& getOptionText() {
@@ -60,6 +82,10 @@ public:
 
 	inline void setOptionText(const StringIdChatParameter& optionText) {
 		this->optionText = optionText;
+	}
+
+	inline void setOptionData(const String& optionData) {
+		this->customOptionData = optionData;
 	}
 };
 
@@ -118,6 +144,16 @@ public:
 			options.add(new ConversationOption(UnicodeString(optionText), linkedScreenID));
 	}
 
+	void addOptionWithData(const String& optionText, const String& linkedScreenID, const String& data) {
+		if (readOnly)
+			throw Exception("Can't modify read only Conversation Screen!");
+
+		if (optionText.beginsWith("@"))
+			options.add(new ConversationOption(StringIdChatParameter(optionText), linkedScreenID, data));
+		else
+			options.add(new ConversationOption(UnicodeString(optionText), linkedScreenID, data));
+	}
+
 	void removeOption(int idx) {
 		if (readOnly)
 			throw Exception("Can't modify read only Conversation Screen!");
@@ -143,6 +179,17 @@ public:
 
 		if (opt != nullptr)
 			text = opt->getOptionText().getFullPath();
+
+		return text;
+	}
+
+	String getOptionData(int idx) const {
+		String text;
+
+		Reference<ConversationOption*> opt = options.get(idx);
+
+		if (opt != nullptr)
+			text = opt->getCustomOptionData();
 
 		return text;
 	}
@@ -233,13 +280,23 @@ public:
 
 			String optionString = luaObj.getStringAt(1);
 			String linkedId = luaObj.getStringAt(2);
+			String optionData = luaObj.getStringAt(3);
 
 			Reference<ConversationOption*> option = nullptr;
 
-			if (optionString.beginsWith("@"))
-				option = new ConversationOption(StringIdChatParameter(optionString), linkedId);
-			else
-				option = new ConversationOption(UnicodeString(optionString), linkedId);
+			if (optionData != "") {
+				if (optionString.beginsWith("@"))
+					option = new ConversationOption(StringIdChatParameter(optionString), linkedId, optionData);
+				else
+					option = new ConversationOption(UnicodeString(optionString), linkedId, optionData);
+			} else {
+				if (optionString.beginsWith("@"))
+					option = new ConversationOption(StringIdChatParameter(optionString), linkedId);
+				else
+					option = new ConversationOption(UnicodeString(optionString), linkedId);
+			}
+
+			
 
 			options.add(option);
 

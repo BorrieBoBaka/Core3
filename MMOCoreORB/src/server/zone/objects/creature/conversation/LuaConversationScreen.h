@@ -25,12 +25,14 @@ public:
 	int _setObject(lua_State* L);
 	// Methods we will need to use
 	int getOptionText(lua_State* L);
+	int getOptionData(lua_State* L);
 	int getOptionLink(lua_State* L);
 	int getOptionCount(lua_State* L);
 	int sendTo(lua_State* L);
 	int getScreenID(lua_State* L);
 	int cloneScreen(lua_State* L);
 	int addOption(lua_State* L);
+	int addOptionWithData(lua_State* L);
 	int removeAllOptions(lua_State* L);
 	int setDialogTextStringId(lua_State* L);
 	int setDialogTextTT(lua_State* L);

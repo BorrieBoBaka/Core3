@@ -18,6 +18,7 @@ Luna<LuaConversationScreen>::RegType LuaConversationScreen::Register[] = {
 		{ "getScreenID", &LuaConversationScreen::getScreenID},
 		{ "cloneScreen", &LuaConversationScreen::cloneScreen},
 		{ "addOption", &LuaConversationScreen::addOption},
+		{ "addOptionWithData", &LuaConversationScreen::addOptionWithData},
 		{ "removeAllOptions", &LuaConversationScreen::removeAllOptions},
 		{ "setDialogTextStringId", &LuaConversationScreen::setDialogTextStringId},
 		{ "setDialogTextTT", &LuaConversationScreen::setDialogTextTT},
@@ -52,6 +53,21 @@ int LuaConversationScreen::getOptionText(lua_State* L) {
 		text = realObject->getOptionText(idx);
 	} catch (Exception& e) {
 
+	}
+
+	lua_pushstring(L, text.toCharArray());
+
+	return 1;
+}
+
+int LuaConversationScreen::getOptionData(lua_State* L) {
+	int idx = lua_tonumber(L, -1);
+
+	String text;
+
+	try {
+		text = realObject->getOptionData(idx);
+	} catch (Exception& e) {
 	}
 
 	lua_pushstring(L, text.toCharArray());
@@ -122,6 +138,18 @@ int LuaConversationScreen::addOption(lua_State* L) {
 	String text = lua_tostring(L, -2);
 
 	realObject->addOption(text, linked);
+
+	return 0;
+}
+
+int LuaConversationScreen::addOptionWithData(lua_State* L) {
+	// void addOption(const String& optionText, const String& linkedScreenID) {
+
+	String linked = lua_tostring(L, -1);
+	String text = lua_tostring(L, -2);
+	String variable = lua_tostring(L, -3);
+
+	realObject->addOptionWithData(text, linked, variable);
 
 	return 0;
 }
