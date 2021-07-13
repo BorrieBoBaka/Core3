@@ -15,6 +15,9 @@ class StimPackTemplate : public SharedTangibleObjectTemplate {
 	int medicineClass;
 	float effectiveness;
 	Vector<byte> attributes;
+	int dieType;
+	int dieCount;
+	int dieCheck;
 
 
 public:
@@ -28,6 +31,9 @@ public:
 		medicineUse = 0;
 		effectiveness = 0;
 		medicineClass = 0;
+		dieType = 0;
+		dieCount = 1;
+		dieCheck = 0;
 	}
 
 	~StimPackTemplate() {
@@ -40,6 +46,10 @@ public:
 		medicineUse = templateData->getIntField("medicineUse");
 		effectiveness = templateData->getFloatField("effectiveness");
 		medicineClass = templateData->getIntField("medicineClass");
+
+		dieType = templateData->getIntField("dieType");
+		dieCount = templateData->getIntField("dieCount");
+		dieCheck = templateData->getIntField("dieCheck");
 
 		LuaObject atts = templateData->getObjectField("attributes");
 
@@ -58,6 +68,18 @@ public:
 
 	inline float getEffectiveness() {
 		return effectiveness;
+	}
+
+	inline int getDieType() {
+		return dieType;
+	}
+
+	inline int getDieCount() {
+		return dieCount;
+	}
+
+	inline int getDieCheck() {
+		return dieCheck;
 	}
 
 	bool isStimPackTemplate() {

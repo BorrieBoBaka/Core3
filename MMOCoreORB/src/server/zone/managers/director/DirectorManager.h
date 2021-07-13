@@ -204,6 +204,7 @@ namespace server {
 		static int objectPlaceStructure(lua_State* L);
 		static int logToFile(lua_State* L);
 		static int spawnCustomizedMobile(lua_State* L);
+		static int GetItemTemplateInformation(lua_State* L);
 
 	private:
 		static void setupLuaPackagePath(Lua* luaEngine);

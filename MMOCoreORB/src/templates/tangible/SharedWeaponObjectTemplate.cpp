@@ -229,6 +229,7 @@ void SharedWeaponObjectTemplate::readObject(LuaObject* templateData) {
 
 	minDamage = templateData->getIntField("minDamage");
 	maxDamage = templateData->getIntField("maxDamage");
+	bonusDamage = templateData->getIntField("bonusDamage");
 
 	woundsRatio = templateData->getFloatField("woundsRatio");
 

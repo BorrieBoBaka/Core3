@@ -83,59 +83,59 @@ void ArmorObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cre
 		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_none"); //None
 
 	//Check for Effectiveness protections(Normal)
-	if (!isSpecial(SharedWeaponObjectTemplate::KINETIC) && !isVulnerable(SharedWeaponObjectTemplate::KINETIC) && getKinetic() > 0) {
+	if (getKinetic() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getKinetic(), 1);
 		alm->insertAttribute("cat_armor_effectiveness.armor_eff_kinetic",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::ENERGY) && !isVulnerable(SharedWeaponObjectTemplate::ENERGY) && getEnergy() > 0) {
+	if (getEnergy() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getEnergy(), 1);
 		alm->insertAttribute("cat_armor_effectiveness.armor_eff_energy",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::ELECTRICITY) && !isVulnerable(SharedWeaponObjectTemplate::ELECTRICITY) && getElectricity() > 0) {
+	if (getElectricity() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getElectricity(), 1);
 		alm->insertAttribute(
 				"cat_armor_effectiveness.armor_eff_elemental_electrical",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::STUN) && !isVulnerable(SharedWeaponObjectTemplate::STUN) && getStun() > 0) {
+	if (getStun() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getStun(), 1);
 		alm->insertAttribute("cat_armor_effectiveness.armor_eff_stun",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::BLAST) && !isVulnerable(SharedWeaponObjectTemplate::BLAST) && getBlast() > 0) {
+	if (getBlast() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getBlast(), 1);
 		alm->insertAttribute("cat_armor_effectiveness.armor_eff_blast",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::HEAT) && !isVulnerable(SharedWeaponObjectTemplate::HEAT) && getHeat() > 0) {
+	if (getHeat() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getHeat(), 1);
 		alm->insertAttribute(
 				"cat_armor_effectiveness.armor_eff_elemental_heat",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::COLD) && !isVulnerable(SharedWeaponObjectTemplate::COLD) && getCold() > 0) {
+	if (getCold() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getCold(), 1);
 		alm->insertAttribute(
 				"cat_armor_effectiveness.armor_eff_elemental_cold",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::ACID) && !isVulnerable(SharedWeaponObjectTemplate::ACID) && getAcid() > 0) {
+	if (getAcid() > 0) {
 		StringBuffer txt;
 		txt << "-" << Math::getPrecision(getAcid(), 1);
 		alm->insertAttribute(
 				"cat_armor_effectiveness.armor_eff_elemental_acid",
 				txt.toString());
 	}
-	if (!isSpecial(SharedWeaponObjectTemplate::LIGHTSABER) && !isVulnerable(SharedWeaponObjectTemplate::LIGHTSABER) && getLightSaber() > 0) {
+	if (getLightSaber() > 0) {
 		StringBuffer txt;
 		alm->insertAttribute("rp_special.rp_arm_ls", "Yes.");
 	}

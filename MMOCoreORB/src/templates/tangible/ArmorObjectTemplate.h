@@ -138,6 +138,20 @@ public:
 		return rating;
 	}
 
+	inline String getRatingString() const {
+		if (rating == 0) {
+			return "None";
+		} else if (rating == 1) {
+			return "Light";
+		} else if (rating == 2) {
+			return "Medium";
+		} else if (rating == 3) {
+			return "Heavy";
+		} else {
+			return "Unknown";
+		}
+	}
+
 	float getStun() const {
 		return stun;
 	}

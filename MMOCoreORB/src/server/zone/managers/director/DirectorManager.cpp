@@ -89,6 +89,8 @@
 #include "server/zone/objects/intangible/TheaterObject.h"
 #include "server/zone/objects/tangible/misc/ContractCrate.h"
 #include "server/zone/managers/crafting/schematicmap/SchematicMap.h"
+#include "templates/tangible/ArmorObjectTemplate.h"
+#include "templates/tangible/StimPackTemplate.h"
 
 int DirectorManager::DEBUG_MODE = 0;
 int DirectorManager::ERROR_CODE = NO_ERROR;
@@ -3917,5 +3919,111 @@ int DirectorManager::spawnCustomizedMobile(lua_State* L) {
 		creature->_setUpdated(true); // mark updated so the GC doesnt delete it while in LUA
 		lua_pushlightuserdata(L, creature);
 	}
+	return 1;
+}
+
+int DirectorManager::GetItemTemplateInformation(lua_State* L) {
+	String templateName = lua_tostring(L, -1);
+	uint32 crc = objectTemplate.hashCode();
+	SharedObjectTemplate* soTemplate = TemplateManager::instance()->getTemplate(crc);
+
+	StringBuffer result;
+
+	if (soTemplate->isWeaponObjectTemplate()) { //Weapon
+		SharedWeaponObjectTemplate* weaponTemplate = dynamic_cast<SharedWeaponObjectTemplate*>(soTemplate);
+		//Name
+		result << weaponTemplate->getObjectName() << endl;
+		//Type
+		result << weaponTemplate->getWeaponType() << endl;
+		//Condition
+		result << "Condition: " << weaponTemplate->getMaxCondition() << endl;
+		//Damage
+		result << "Damage: " << weaponTemplate->getMinDamage() << "d" << weaponTemplate->getMaxDamage() << endl;
+		//Bonus Damage
+		if (weaponTemplate->getBonusDamage() > 0)
+			result << "Bonus Damage: " << weaponTemplate->getBonusDamage() << endl;
+		//Armor Piercing
+		int ap = weaponTemplate->getArmorPiercing();
+		if (ap == 0)
+			result << "Armor Piercing: None" << endl;
+		else if (ap == 1)
+			result << "Armor Piercing: Light" << endl;
+		else if (ap == 2)
+			result << "Armor Piercing: Medium" << endl;
+		else if (ap == 3)
+			result << "Armor Piercing: Heavy" << endl;
+		//Damage Type
+		result << "Damage Type: " << weaponTemplate->getDamageTypeString() << endl;
+		//Min Range
+		result << "Min Range: " << weaponTemplate->getPointBlankRange() << "Mod: " << weaponTemplate->getPointBlankAccuracy() << endl;
+		//Pref Range
+		result << "Preferred Range: " << weaponTemplate->getIdealRange() << "Mod: " << weaponTemplate->getIdealAccuracy() << endl;
+		//Max Range
+		result << "Max Range: " << weaponTemplate->getMaxRange() << "Mod: " << weaponTemplate->getMaxRangeAccuracy() << endl;
+	} else if (soTemplate->isArmorObjectTemplate()) { //Armor
+		ArmorObjectTemplate* armorTemplate = dynamic_cast<ArmorObjectTemplate*>(soTemplate);
+		//Name
+		result << armorTemplate->getObjectName() << endl;
+		//Type
+		result << armorTemplate->getGameObjectType() << endl;
+		//Condition
+		result << "Condition: " << armorTemplate->getMaxCondition() << endl;
+		//Armor Level
+		result << "Armor Rating: " << armorTemplate->getRatingString() << endl;
+		//Protections
+		result << "Protections" << endl;
+		if (armorTemplate->getKinetic() > 0)
+			result << "Kinetic: -" << Math::getPrecision(armorTemplate->getKinetic(), 1) << endl;
+		if (armorTemplate->getEnergy() > 0)
+			result << "Energy: -" << Math::getPrecision(armorTemplate->getEnergy(), 1) << endl;
+		if (armorTemplate->getElectricity() > 0)
+			result << "Electricity: -" << Math::getPrecision(armorTemplate->getElectricity(), 1) << endl;
+		if (armorTemplate->getStun() > 0)
+			result << "Stun: -" << Math::getPrecision(armorTemplate->getStun(), 1) << endl;
+		if (armorTemplate->getBlast() > 0)
+			result << "Blast: -" << Math::getPrecision(armorTemplate->getBlast(), 1) << endl;
+		if (armorTemplate->getHeat() > 0)
+			result << "Heat: -" << Math::getPrecision(armorTemplate->getHeat(), 1) << endl;
+		if (armorTemplate->getCold() > 0)
+			result << "Cold: -" << Math::getPrecision(armorTemplate->getCold(), 1) << endl;
+		if (armorTemplate->getAcid() > 0)
+			result << "Acid: -" << Math::getPrecision(armorTemplate->getAcid(), 1) << endl;
+		//Vulnerabilities
+		result << "Vulnerabilities" << endl;
+		if (armorTemplate->getKinetic() < 0)
+			result << "Kinetic: +" << Math::getPrecision(armorTemplate->getKinetic(), 1) << endl;
+		if (armorTemplate->getEnergy() < 0)
+			result << "Energy: +" << Math::getPrecision(armorTemplate->getEnergy(), 1) << endl;
+		if (armorTemplate->getElectricity() < 0)
+			result << "Electricity: +" << Math::getPrecision(armorTemplate->getElectricity(), 1) << endl;
+		if (armorTemplate->getStun() < 0)
+			result << "Stun: +" << Math::getPrecision(armorTemplate->getStun(), 1) << endl;
+		if (armorTemplate->getBlast() < 0)
+			result << "Blast: +" << Math::getPrecision(armorTemplate->getBlast(), 1) << endl;
+		if (armorTemplate->getHeat() < 0)
+			result << "Heat: +" << Math::getPrecision(armorTemplate->getHeat(), 1) << endl;
+		if (armorTemplate->getCold() < 0)
+			result << "Cold: +" << Math::getPrecision(armorTemplate->getCold(), 1) << endl;
+		if (armorTemplate->getAcid() < 0)
+			result << "Acid: +" << Math::getPrecision(armorTemplate->getAcid(), 1) << endl;
+		if (armorTemplate->getLightSaber() > 0)
+			result << "Resists Lightsabers" << endl;
+	} else if (soTemplate->isStimPackTemplate()) { // Medicine
+		StimPackTemplate* stimpackTemplate = dynamic_cast<StimPackTemplate*>(soTemplate);
+		result << stimpackTemplate->getObjectName() << endl;
+		// Type
+		result << stimpackTemplate->getGameObjectType() << endl;
+		//Healing Potential: 
+		result << "Healing Potential: " << stimpackTemplate->getDieCount() << "d" << stimpackTemplate->getDieType() << endl;
+		//Medicine Dice Check:
+		result << "Medicine DC: " << stimpackTemplate->getDieCheck() << endl;
+		//Is Droid
+	} else { //Generic Item
+		result << soTemplate->getObjectName() << endl;
+		// Type
+		result << soTemplate->getGameObjectType() << endl;
+	}
+	
+	lua_pushstring(L, result.toString());
 	return 1;
 }

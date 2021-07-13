@@ -18,9 +18,9 @@ include system.lang.String;
 class StimPack extends PharmaceuticalObject {
 	protected float effectiveness;
 	protected int medicineClass;
-	public int dieType;
-	public int dieCount;
-	public int dieCheck;
+	protected int dieType;
+	protected int dieCount;
+	protected int dieCheck;
 
 	public StimPack() {
 		setLoggingName("StimPack");
@@ -132,6 +132,21 @@ class StimPack extends PharmaceuticalObject {
 	@dirty
 	public float getEffectiveness() {
 		return effectiveness;
+	}
+
+	@dirty 
+	public float getDieType() {
+		return dieType;
+	}
+
+	@dirty 
+	public float getDieCount() {
+		return dieCount;
+	}
+
+	@dirty 
+	public float getDieCheck() {
+		return dieCheck;
 	}
 
 	/**

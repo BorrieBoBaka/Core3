@@ -36,6 +36,7 @@ protected:
 
 	int minDamage;
 	int maxDamage;
+	int bonusDamage;
 
 	float woundsRatio;
 
@@ -139,6 +140,7 @@ public:
 
 		minDamage = 0;
 		maxDamage = 0;
+		bonusDamage = 0;
 
 		woundsRatio = 0;
 
@@ -213,6 +215,10 @@ public:
 		return minDamage;
 	}
 
+	inline int getBonusDamage() const {
+		return bonusDamage;
+	}
+
 	inline int getMindAttackCost() const {
 		return mindAttackCost;
 	}
@@ -277,6 +283,10 @@ public:
 		this->minDamage = minDamage;
 	}
 
+	void setBonusDamage(int bonusDamage) {
+		this->bonusDamage = bonusDamage;
+	}
+
 	void setMindAttackCost(int mindAttackCost) {
 		this->mindAttackCost = mindAttackCost;
 	}
@@ -311,6 +321,32 @@ public:
 
 	inline int getDamageType() const {
 		return damageType;
+	}
+
+	inline String getDamageTypeString() const {
+		switch (damageType) {
+		case KINETIC:
+			return "Kinetic";
+		case ENERGY:
+			return "Energy";
+		case ELECTRICITY:
+			return "Electricity";
+		case STUN:
+			return "Stun";
+		case BLAST:
+			return "Blast";
+		case HEAT:
+			return "Heat";
+		case COLD:
+			return "Cold";
+		case ACID:
+			return "Acid";
+		case LIGHTSABER:
+			return "Lightsaber";
+		default:
+			return "Unknown";
+			break;
+		}
 	}
 
 	const Vector<String>* getDefenderDefenseModifiers() const {
@@ -403,6 +439,10 @@ public:
 
 	void setWeaponType(uint32 weaponType) {
 		this->weaponType = weaponType;
+	}
+
+	bool isWeaponObjectTemplate() {
+		return true;
 	}
 };
 

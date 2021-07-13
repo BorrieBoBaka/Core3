@@ -577,6 +577,10 @@ public:
 		return false;
 	}
 
+	virtual bool isWeaponObjectTemplate() {
+		return false;
+	}
+
 	virtual bool isSharedTangibleObjectTemplate() const {
 		return false;
 	}
