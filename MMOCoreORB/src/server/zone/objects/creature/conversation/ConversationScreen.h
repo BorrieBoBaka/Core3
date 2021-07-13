@@ -280,7 +280,7 @@ public:
 
 			String optionString = luaObj.getStringAt(1);
 			String linkedId = luaObj.getStringAt(2);
-			String optionData = luaObj.getStringAt(3);
+			String optionData = ""; // luaObj.getStringAt(3);
 
 			Reference<ConversationOption*> option = nullptr;
 
