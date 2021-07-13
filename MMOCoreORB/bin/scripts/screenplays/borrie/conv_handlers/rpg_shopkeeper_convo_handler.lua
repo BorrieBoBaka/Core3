@@ -44,7 +44,7 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
     --Customized Data
     local vendorThemeID = "general" --getQuestStatus(CreatureObject(conversingNPC):getObjectID() .. ":vendorTheme")
     local vendorTheme = rpgVendorThemeDirectory[vendorThemeID]
-    local vendorListID = "general" --getQuestStatus(CreatureObject(conversingNPC):getObjectID() .. ":vendorList")
+    local vendorListID = "shop_general" --getQuestStatus(CreatureObject(conversingNPC):getObjectID() .. ":vendorList")
     local vendorList = rpgVendorShopListDirectory[vendorListID]
 
     --Setting the initial greeting based on theme.
@@ -74,7 +74,9 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
         --Show all the items in the selected category.
         clonedConversation:removeAllOptions()
         for i = 1, #vendorList.manifest[screenID], 1 do
-            clonedConversation:addOption(vendorList.manifest[screenID].items[i].template, "abort")
+            local templateName = vendorList.manifest[screenID].items[i].template
+            local objectName = getItemTemplateName(templateName)
+            clonedConversation:addOption(objectName, "$vnd" .. ":" .. vendorListID .. ":" .. screenID .. ":" .. i)
         end
         clonedConversation:addOption("I'd rather look at something else.", "browse")
     end

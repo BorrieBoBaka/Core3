@@ -442,6 +442,8 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->registerFunction("logToFile", logToFile);
 	//Functions written by Borrie
 	luaEngine->registerFunction("spawnCustomizedMobile", spawnCustomizedMobile);
+	luaEngine->registerFunction("getItemTemplateInformation", getItemTemplateInformation);
+	luaEngine->registerFunction("getItemTemplateName", getItemTemplateName);
 
 
 	//Navigation Mesh Management
@@ -3922,7 +3924,7 @@ int DirectorManager::spawnCustomizedMobile(lua_State* L) {
 	return 1;
 }
 
-int DirectorManager::GetItemTemplateInformation(lua_State* L) {
+int DirectorManager::getItemTemplateInformation(lua_State* L) {
 	String templateName = lua_tostring(L, -1);
 	uint32 crc = templateName.hashCode();
 	SharedObjectTemplate* soTemplate = TemplateManager::instance()->getTemplate(crc);
@@ -4025,5 +4027,14 @@ int DirectorManager::GetItemTemplateInformation(lua_State* L) {
 	}
 	
 	lua_pushstring(L, result.toString().toCharArray());
+	return 1;
+}
+
+int DirectorManager::getItemTemplateName(lua_State* L) {
+	String templateName = lua_tostring(L, -1);
+	uint32 crc = templateName.hashCode();
+	SharedObjectTemplate* soTemplate = TemplateManager::instance()->getTemplate(crc);
+
+	lua_pushstring(L, soTemplate->getObjectName().toCharArray());
 	return 1;
 }
