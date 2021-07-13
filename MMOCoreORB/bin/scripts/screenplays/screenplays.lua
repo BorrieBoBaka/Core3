@@ -677,5 +677,9 @@ includeFile("events/ServerEventAutomation.lua")
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")
 
+--Borrie Directories
+includeFile("borrie/shop_lists/rpgVendorShopListDirectory.lua")
+includeFile("borrie/vendor_themes/rpgVendorThemeDirectory.lua")
+
 --Borrie
 includeFile("borrie/conv_handlers/rpg_shopkeeper_convo_handler.lua")

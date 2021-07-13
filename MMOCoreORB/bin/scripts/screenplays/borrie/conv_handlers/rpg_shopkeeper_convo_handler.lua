@@ -40,5 +40,45 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
     local screenID = screen:getScreenID()
     local pConvScreen = screen:cloneScreen()
     local clonedConversation = LuaConversationScreen(pConvScreen)
+
+    --Customized Data
+    local vendorThemeID = "general" --getQuestStatus(CreatureObject(conversingNPC):getObjectID() .. ":vendorTheme")
+    local vendorTheme = rpgVendorThemeDirectory[vendorThemeID]
+    local vendorListID = "general" --getQuestStatus(CreatureObject(conversingNPC):getObjectID() .. ":vendorList")
+    local vendorList = rpgVendorShopListDirectory[vendorListID]
+
+    --Setting the initial greeting based on theme.
+    if(screenID == "greeting") then
+        clonedConversation:setCustomDialogText(vendorTheme.dialog.greeting)
+    elseif(screenID == "abort") then
+        clonedConversation:setCustomDialogText(vendorTheme.dialog.abort)
+    elseif(screenID == "browse") then
+        clonedConversation:setCustomDialogText(vendorTheme.dialog.browse)
+    elseif(screenID == "items") then
+        clonedConversation:setCustomDialogText(vendorTheme.dialog.items)
+    elseif(screenID == "shop") then
+        clonedConversation:setCustomDialogText(vendorTheme.dialog.startShopping)
+    end
+
+    --Displaying the items.
+
+    if(screenID == "browse") then
+        --We want to get all the categories available
+        clonedConversation:removeAllOptions()
+        for i = 1, #vendorList.categories, 1 do
+            clonedConversation:addOption(vendorList.categories[i], vendorList.categories[i])
+        end
+        clonedConversation:addOption("Nevermind.", "abort")
+    elseif(vendorList.manifest[screenID] ~= nil) then
+        clonedConversation:setCustomDialogText(vendorTheme.dialog.items)
+        --Show all the items in the selected category.
+        clonedConversation:removeAllOptions()
+        for i = 1, #vendorList.manifest[screenID], 1 do
+            clonedConversation:addOption(vendorList.manifest[screenID].items[i].template, "abort")
+        end
+        clonedConversation:addOption("I'd rather look at something else.", "browse")
+    end
+
+
     return pConvScreen
 end
