@@ -31,7 +31,10 @@ function rpg_shopkeeper_convo_handler:getNextConversationScreen(conversationTemp
         end
     end
 -- end of the conversation logic.
-    CreatureObject(conversingPlayer):sendSystemMessage(luaLastConversationScreen:getOptionData(selectedOption))
+	if ( lastConversationScreen ~= nil ) then
+		local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
+		CreatureObject(conversingPlayer):sendSystemMessage(luaLastConversationScreen:getOptionData(selectedOption))
+	end
     return nextConversationScreen
 end
 

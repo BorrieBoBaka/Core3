@@ -13,6 +13,7 @@ Luna<LuaConversationScreen>::RegType LuaConversationScreen::Register[] = {
 		{ "_setObject", &LuaConversationScreen::_setObject },
 		{ "getOptionText", &LuaConversationScreen::getOptionText},
 		{ "getOptionLink", &LuaConversationScreen::getOptionLink},
+		{ "getOptionData", &LuaConversationScreen::getOptionData},
 		{ "getOptionCount", &LuaConversationScreen::getOptionCount},
 		{ "sendTo", &LuaConversationScreen::sendTo},
 		{ "getScreenID", &LuaConversationScreen::getScreenID},
