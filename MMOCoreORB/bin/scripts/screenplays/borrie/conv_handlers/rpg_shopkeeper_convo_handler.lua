@@ -8,6 +8,7 @@ function rpg_shopkeeper_convo_handler:getNextConversationScreen(conversationTemp
     lastConversation = nil
     local conversation = LuaConversationTemplate(conversationTemplate)
 
+    
 
     -- If there is a conversation open, do stuff with it
     if ( conversation ~= nil ) then
@@ -30,7 +31,8 @@ function rpg_shopkeeper_convo_handler:getNextConversationScreen(conversationTemp
         end
     end
 -- end of the conversation logic.
-return nextConversationScreen
+    CreatureObject(conversingPlayer):sendSystemMessage(luaLastConversationScreen:getOptionData(selectedOption))
+    return nextConversationScreen
 end
 
 function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, conversingPlayer, conversingNPC, selectedOption, conversationScreen)
@@ -41,6 +43,9 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
     local pConvScreen = screen:cloneScreen()
     local clonedConversation = LuaConversationScreen(pConvScreen)
 
+
+	--CreatureObject(conversingPlayer):sendSystemMessage("Screen: " .. screenID)
+	
     --Customized Data
     local vendorThemeID = "general" --getQuestStatus(CreatureObject(conversingNPC):getObjectID() .. ":vendorTheme")
     local vendorTheme = rpgVendorThemeDirectory[vendorThemeID]
@@ -61,7 +66,7 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
     end
 
     --Displaying the items.
-
+	
     if(screenID == "browse") then
         --We want to get all the categories available
         clonedConversation:removeAllOptions()
@@ -70,15 +75,16 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
         end
         clonedConversation:addOption("Nevermind.", "abort")
     elseif(vendorList.manifest[screenID] ~= nil) then
+		--CreatureObject(conversingPlayer):sendSystemMessage("Manifest Check Complete. Looking for " .. screenID)
         clonedConversation:setCustomDialogText(vendorTheme.dialog.items)
         --Show all the items in the selected category.
         clonedConversation:removeAllOptions()
-        for i = 1, #vendorList.manifest[screenID], 1 do
+        for i = 1, #vendorList.manifest[screenID].items, 1 do
             local templateName = vendorList.manifest[screenID].items[i].template
             local objectName = getItemTemplateName(templateName)
-            clonedConversation:addOption(objectName, "$vnd" .. ":" .. vendorListID .. ":" .. screenID .. ":" .. i)
+            clonedConversation:addOptionWithData(objectName, "items", "$vnd" .. ":" .. vendorListID .. ":" .. screenID .. ":" .. i)
         end
-        clonedConversation:addOption("I'd rather look at something else.", "browse")
+        clonedConversation:addOption("I'd rather look at something else.", "browse")		
     end
 
 
