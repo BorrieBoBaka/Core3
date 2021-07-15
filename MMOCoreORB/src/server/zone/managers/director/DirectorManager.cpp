@@ -3932,7 +3932,7 @@ int DirectorManager::getItemTemplateInformation(lua_State* L) {
 	StringBuffer result;
 
 	if (soTemplate == nullptr) {
-		lua_pushstring(L, "ERROR");
+		lua_pushstring(L, "[Invalid Template]");
 		return 1;
 	}
 
@@ -4041,7 +4041,7 @@ int DirectorManager::getItemTemplateName(lua_State* L) {
 	SharedObjectTemplate* soTemplate = TemplateManager::instance()->getTemplate(crc);
 
 	if (soTemplate == nullptr) {
-		lua_pushstring(L, "ERROR");
+		lua_pushstring(L, "[Invalid Template]");
 		return 1;
 	}
 
