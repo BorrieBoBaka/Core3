@@ -3931,6 +3931,11 @@ int DirectorManager::getItemTemplateInformation(lua_State* L) {
 
 	StringBuffer result;
 
+	if (soTemplate == nullptr) {
+		lua_pushstring(L, "ERROR");
+		return 1;
+	}
+
 	if (soTemplate->isWeaponObjectTemplate()) { //Weapon
 		SharedWeaponObjectTemplate* weaponTemplate = dynamic_cast<SharedWeaponObjectTemplate*>(soTemplate);
 		//Name
@@ -4034,6 +4039,11 @@ int DirectorManager::getItemTemplateName(lua_State* L) {
 	String templateName = lua_tostring(L, -1);
 	uint32 crc = templateName.hashCode();
 	SharedObjectTemplate* soTemplate = TemplateManager::instance()->getTemplate(crc);
+
+	if (soTemplate == nullptr) {
+		lua_pushstring(L, "ERROR");
+		return 1;
+	}
 
 	lua_pushstring(L, soTemplate->getObjectName().toCharArray());
 	return 1;

@@ -74,18 +74,19 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
         --We want to get all the categories available
         clonedConversation:removeAllOptions()
         for i = 1, #vendorList.categories, 1 do
-            clonedConversation:addOption(vendorList.categories[i], vendorList.categories[i])
+            clonedConversation:addOption(vendorList.categories[i], "items")
         end
         clonedConversation:addOption("Nevermind.", "abort")
-    elseif(vendorList.manifest[screenID] ~= nil) then
+    elseif(screenID == "items") then
 		--CreatureObject(conversingPlayer):sendSystemMessage("Manifest Check Complete. Looking for " .. screenID)
         clonedConversation:setCustomDialogText(vendorTheme.dialog.items)
         --Show all the items in the selected category.
         clonedConversation:removeAllOptions()
-        for i = 1, #vendorList.manifest[screenID].items, 1 do
-            local templateName = vendorList.manifest[screenID].items[i].template
-            local objectName = getItemTemplateName(templateName)
-            clonedConversation:addOptionWithData(objectName, "items", "$vnd" .. ":" .. vendorListID .. ":" .. screenID .. ":" .. i)
+        for i = 1, #vendorList.manifest["Pistols"].items, 1 do
+            local templateName = vendorList.manifest["Pistols"].items[i].template
+            --local objectName = getItemTemplateName(templateName)
+            clonedConversation:addOptionWithData("$vnd" .. ":" .. vendorListID .. ":" .. screenID .. ":" .. i, templateName, "items")
+			--clonedConversation:addOption(templateName, "abort")
         end
         clonedConversation:addOption("I'd rather look at something else.", "browse")		
     end
