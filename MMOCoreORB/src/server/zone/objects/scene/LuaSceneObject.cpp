@@ -878,13 +878,13 @@ int LuaSceneObject::deleteStoredString(lua_State* L) {
 int LuaSceneObject::setStoredInt(lua_State* L) {
 	int value = lua_tointeger(L, -1);
 	String variable = lua_tostring(L, -2);
-	realObject->setStoredInteger(variable, value);
+	realObject->setStoredInt(variable, value);
 	return 1;
 }
 
 int LuaSceneObject::getStoredInt(lua_State* L) {
 	String variable = lua_tostring(L, -1);
-	int result = realObject->getStoredInteger(variable);
+	int result = realObject->getStoredInt(variable);
 
 	lua_pushinteger(L, result);
 
@@ -893,7 +893,7 @@ int LuaSceneObject::getStoredInt(lua_State* L) {
 
 int LuaSceneObject::deleteStoredInt(lua_State* L) {
 	String variable = lua_tostring(L, -1);
-	realObject->deleteStoredInteger(variable);
+	realObject->deleteStoredInt(variable);
 	return 1;
 }
 
