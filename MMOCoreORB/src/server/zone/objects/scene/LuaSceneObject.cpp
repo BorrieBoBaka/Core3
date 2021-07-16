@@ -88,6 +88,15 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "info", &LuaSceneObject::info },
 		{ "getPlayersInRange", &LuaSceneObject::getPlayersInRange },
 		{ "isInNavMesh", &LuaSceneObject::isInNavMesh },
+		{ "getStoredString", &LuaSceneObject::getStoredString},
+		{ "setStoredString", &LuaSceneObject::setStoredString},
+		{ "deleteStoredString", &LuaSceneObject::deleteStoredString},
+		{ "getStoredInt", &LuaSceneObject::getStoredInt},
+		{ "setStoredInt", &LuaSceneObject::setStoredInt},
+		{ "deleteStoredInt", &LuaSceneObject::deleteStoredInt},
+		{ "getStoredFloat", &LuaSceneObject::getStoredFloat},
+		{ "setStoredFloat", &LuaSceneObject::setStoredFloat},
+		{ "deleteStoredFloat", &LuaSceneObject::deleteStoredFloat},
 		{ 0, 0 }
 
 };
@@ -839,5 +848,74 @@ int LuaSceneObject::isInNavMesh(lua_State* L) {
 
 	lua_pushboolean(L, val);
 
+	return 1;
+}
+
+//String
+int LuaSceneObject::setStoredString(lua_State* L) {
+	String value = lua_tostring(L, -1);
+	String variable = lua_tostring(L, -2);
+	realObject->setStoredString(variable, value);
+	return 1;
+}
+
+int LuaSceneObject::getStoredString(lua_State* L) {
+	String variable = lua_tostring(L, -1);
+	String result = realObject->getStoredString(variable);
+
+	lua_pushstring(L, result.toCharArray());
+
+	return 1;
+}
+
+int LuaSceneObject::deleteStoredString(lua_State* L) {
+	String variable = lua_tostring(L, -1);
+	realObject->deleteStoredString(variable);
+	return 1;
+}
+
+//Integer
+int LuaSceneObject::setStoredInt(lua_State* L) {
+	int value = lua_tointeger(L, -1);
+	String variable = lua_tostring(L, -2);
+	realObject->setStoredInteger(variable, value);
+	return 1;
+}
+
+int LuaSceneObject::getStoredInt(lua_State* L) {
+	String variable = lua_tostring(L, -1);
+	int result = realObject->getStoredInteger(variable);
+
+	lua_pushinteger(L, result);
+
+	return 1;
+}
+
+int LuaSceneObject::deleteStoredInt(lua_State* L) {
+	String variable = lua_tostring(L, -1);
+	realObject->deleteStoredInteger(variable);
+	return 1;
+}
+
+//Float
+int LuaSceneObject::setStoredFloat(lua_State* L) {
+	float value = lua_tonumber(L, -1);
+	String variable = lua_tostring(L, -2);
+	realObject->setStoredFloat(variable, value);
+	return 1;
+}
+
+int LuaSceneObject::getStoredFloat(lua_State* L) {
+	String variable = lua_tostring(L, -1);
+	float result = realObject->getStoredFloat(variable);
+
+	lua_pushnumber(L, result);
+
+	return 1;
+}
+
+int LuaSceneObject::deleteStoredFloat(lua_State* L) {
+	String variable = lua_tostring(L, -1);
+	realObject->deleteStoredFloat(variable);
 	return 1;
 }

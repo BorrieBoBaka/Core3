@@ -139,6 +139,13 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 
 	protected boolean forceNoTrade;
 
+	@dereferenced 
+	protected VectorMap<string, string> storedStrings;
+	@dereferenced 
+	protected VectorMap<string, int> storedIntegers;
+	@dereferenced 
+	protected VectorMap<string, float> storedFloats;
+
 	/**
 	 * SceneObject constructor, used to initialize the object.
 	 * @pre { templateData is a valid SharedObjectTemplate LuaObject that contains the necessary values to initialize SceneObject }
@@ -2179,4 +2186,48 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 	@dirty
 	@local
 	public abstract native void getChildrenRecursive(@dereferenced SortedVector<unsigned long> childrenObjectsFound, int maxDepth = 50, boolean pruneCreo = false, boolean pruneCraftedComponents = false);
+
+	//Borrie's Local Data Equivalent Functions
+
+	//Stored Strings
+	public void setStoredString(final string variable, final string data) {
+		storedStrings.put(variable, data);
+	}
+
+	public void deleteStoredString(final string variable) {
+		storedStrings.drop(variable);
+	}
+
+	@read
+	public string getStoredString(final string variable) {
+		return storedStrings.get(variable);
+	}
+
+	//Stored Integers
+	public void setStoredInt(final string variable, final int data) {
+		storedIntegers.put(variable, data);
+	}
+
+	public void deleteStoredInt(final string variable) {
+			storedIntegers.drop(variable);
+	}
+
+	@read 
+	public int getStoredInt(final string variable) {
+		return storedIntegers.get(variable);
+	}
+
+	// Stored Floats
+	public void setStoredFloat(final string variable, final float data) {
+		storedFloats.put(variable, data);
+	}
+
+	public void deleteStoredFloat(final string variable) {
+			storedFloats.drop(variable);
+	}
+
+	@read 
+	public int getStoredFloat(final string variable) {
+		return storedFloats.get(variable);
+	}
 }

@@ -33,19 +33,33 @@ function rpg_shopkeeper_convo_handler:getNextConversationScreen(conversationTemp
 -- end of the conversation logic.
 	if ( lastConversationScreen ~= nil ) then
 		local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
+		local optionData = luaLastConversationScreen:getOptionData(selectedOption)
+        if(string.find(optionData, "$vnd")) then
+			local results = HelperFuncs:splitString(optionData, ":")
+			if(results[2] == "item") then
+				CreatureObject(conversingPlayer):sendSystemMessage(results[3])
+				
+				local pGhost = CreatureObject(conversingPlayer):getPlayerObject()
+
+				if (pGhost ~= nil) then
+					PlayerObject(pGhost):closeSuiWindowType( NEWSNET_INFO )
+				end
+				CreatureObject(conversingPlayer):
+				local suiManager = LuaSuiManager()
+				local itemName = getItemTemplateName(results[4])
+				local itemDescription = getItemTemplateInformation(results[4])
+				
+				suiManager:sendMessageBox(conversingPlayer, conversingPlayer, "Merchandise Info", itemDescription, "@confirm", "rpg_shopkeeper_convo_handler", "notifyPurchaseItem", NEWSNET_INFO)
+				
+			end
+        end
 	end
 
-    if(nextConversationScreen ~= nil) then
-        local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
-        local optionData = luaLastConversationScreen:getOptionData(selectedOption)
-        if(strlen(optionData) > 4) then
-            if(strsub(optionData, 1, 4) == "$vnd") then
-                CreatureObject(conversingPlayer):sendSystemMessage(optionData)
-            end
-        end
-    end
-
     return nextConversationScreen
+end
+
+function rpg_shopkeeper_convo_handler:notifyPurchaseItem() 
+	
 end
 
 function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, conversingPlayer, conversingNPC, selectedOption, conversationScreen)
@@ -94,7 +108,7 @@ function rpg_shopkeeper_convo_handler:runScreenHandlers(conversationTemplate, co
             local templateName = vendorList.manifest["Pistols"].items[i].template
             local objectName = getItemTemplateName(templateName)
             local price = vendorList.manifest["Pistols"].items[i].cost;
-            clonedConversation:addOptionWithData("$vnd:item:" .. ":" .. price .. ":" .. templateName, objectName, "items")
+            clonedConversation:addOptionWithData("$vnd:item:" .. price .. ":" .. templateName, objectName, "items")
         end
         clonedConversation:addOption("I'd rather look at something else.", "browse")		
     end

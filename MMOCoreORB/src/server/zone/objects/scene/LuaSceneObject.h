@@ -103,6 +103,16 @@ namespace scene {
 		int info(lua_State* L);
 		int getPlayersInRange(lua_State* L);
 		int isInNavMesh(lua_State* L);
+		//Borrie's Local Data Equivalents
+		int setStoredString(lua_State* L);
+		int getStoredString(lua_State* L);
+		int deleteStoredString(lua_State* L);
+		int setStoredInt(lua_State* L);
+		int getStoredInt(lua_State* L);
+		int deleteStoredInt(lua_State* L);
+		int setStoredFloat(lua_State* L);
+		int getStoredFloat(lua_State* L);
+		int deleteStoredFloat(lua_State* L);
 
 	protected:
 		SceneObject* _getRealSceneObject() {
