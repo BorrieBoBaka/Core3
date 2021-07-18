@@ -412,3 +412,14 @@ object_building_yavin_shared_temple_woolamander = SharedBuildingObjectTemplate:n
 }
 
 ObjectTemplates:addClientTemplate(object_building_yavin_shared_temple_woolamander, "object/building/yavin/shared_temple_woolamander.iff")
+
+object_building_shared_dark_enclave_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/shared_dark_enclave_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_shared_dark_enclave_empty, "object/building/shared_dark_enclave_empty.iff")
+--******************************************************************************************************************************
+object_building_shared_light_enclave_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/shared_light_enclave_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_shared_light_enclave_empty, "object/building/shared_light_enclave_empty.iff")
+--********************************************************************************************************************************

@@ -164,3 +164,42 @@ object_building_dathomir_shared_night_sister_stronghold = SharedBuildingObjectTe
 }
 
 ObjectTemplates:addClientTemplate(object_building_dathomir_shared_night_sister_stronghold, "object/building/dathomir/shared_night_sister_stronghold.iff")
+
+object_building_dathomir_shared_mtn_clan_stronghold_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_mtn_clan_stronghold_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_mtn_clan_stronghold_empty, "object/building/dathomir/shared_mtn_clan_stronghold_empty.iff")
+--**************************************************************************************************************************************************************
+object_building_dathomir_shared_night_sister_stronghold_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_night_sister_stronghold_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_night_sister_stronghold_empty, "object/building/dathomir/shared_night_sister_stronghold_empty.iff")
+--************************************************************************************************************************************************************************
+
+--New
+object_building_dathomir_shared_dathomir_quarantine_zone_cantina = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_dathomir_quarantine_zone_cantina.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_dathomir_quarantine_zone_cantina, "object/building/dathomir/shared_dathomir_quarantine_zone_cantina.iff")
+--**********************************************************************************************************************************
+object_building_dathomir_shared_dathomir_quarantine_zone_starport = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_dathomir_quarantine_zone_starport.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_dathomir_quarantine_zone_starport, "object/building/dathomir/shared_dathomir_quarantine_zone_starport.iff")
+--**********************************************************************************************************************************
+object_building_dathomir_shared_imperial_blackwing_facility = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_imperial_blackwing_facility.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_imperial_blackwing_facility, "object/building/dathomir/shared_imperial_blackwing_facility.iff")
+--**********************************************************************************************************************************
+object_building_dathomir_shared_imperial_blackwing_facility_administrative_building = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_imperial_blackwing_facility_administrative_building.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_imperial_blackwing_facility_administrative_building, "object/building/dathomir/shared_imperial_blackwing_facility_administrative_building.iff")
+--**********************************************************************************************************************************
+object_building_dathomir_shared_spiderclan_breeding_cave = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_spiderclan_breeding_cave.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_spiderclan_breeding_cave, "object/building/dathomir/shared_spiderclan_breeding_cave.iff")
+--**********************************************************************************************************************************
+

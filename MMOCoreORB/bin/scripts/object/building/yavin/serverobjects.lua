@@ -51,3 +51,6 @@ includeFile("building/yavin/temple_blueleaf.lua")
 includeFile("building/yavin/temple_exar_kun.lua")
 includeFile("building/yavin/temple_massassi.lua")
 includeFile("building/yavin/temple_woolamander.lua")
+
+includeFile("building/yavin/dark_enclave_empty.lua")
+includeFile("building/yavin/light_enclave_empty.lua")

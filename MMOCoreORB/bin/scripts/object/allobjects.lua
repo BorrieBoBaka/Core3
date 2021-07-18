@@ -836,3 +836,14 @@ includeFile("weapon/ranged/objects.lua")
 includeFile("weapon/trap/objects.lua")
 includeFile("weapon/objects.lua")
 
+includeFile("building/heroic/objects.lua")
+
+includeFile("building/mustafar/dungeon/objects.lua")
+includeFile("building/mustafar/items/objects.lua")
+includeFile("building/mustafar/particle/objects.lua")
+includeFile("building/mustafar/structures/objects.lua")
+includeFile("building/mustafar/terrain/objects.lua")
+
+includeFile("building/kashyyyk/objects.lua")
+includeFile("building/ship/objects.lua")
+includeFile("building/content/objects.lua")

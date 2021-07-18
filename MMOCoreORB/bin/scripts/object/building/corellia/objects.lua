@@ -2768,3 +2768,70 @@ object_building_corellia_shared_starport_corellia = SharedBuildingObjectTemplate
 }
 
 ObjectTemplates:addClientTemplate(object_building_corellia_shared_starport_corellia, "object/building/corellia/shared_starport_corellia.iff")
+
+----------------------------------------------------------------------------
+object_building_corellia_shared_association_hall_civilian_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_association_hall_civilian_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_association_hall_civilian_corellia_empty, "object/building/corellia/shared_association_hall_civilian_corellia_empty.iff")
+--********************************************************************************************************************************************************************************************
+object_building_corellia_shared_cantina_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_cantina_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_cantina_corellia_empty, "object/building/corellia/shared_cantina_corellia_empty.iff")
+--********************************************************************************************************************************************************
+object_building_corellia_shared_capitol_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_capitol_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_capitol_corellia_empty, "object/building/corellia/shared_capitol_corellia_empty.iff")
+--********************************************************************************************************************************************************
+object_building_corellia_shared_cloning_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_cloning_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_cloning_corellia_empty, "object/building/corellia/shared_cloning_corellia_empty.iff")
+--********************************************************************************************************************************************************
+object_building_corellia_shared_guild_combat_corellia_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_guild_combat_corellia_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_guild_combat_corellia_style_01_empty, "object/building/corellia/shared_guild_combat_corellia_style_01_empty.iff")
+--************************************************************************************************************************************************************************************
+object_building_corellia_shared_guild_commerce_corellia_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_guild_commerce_corellia_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_guild_commerce_corellia_style_01_empty, "object/building/corellia/shared_guild_commerce_corellia_style_01_empty.iff")
+--****************************************************************************************************************************************************************************************
+object_building_corellia_shared_guild_theater_corellia_s01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_guild_theater_corellia_s01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_guild_theater_corellia_s01_empty, "object/building/corellia/shared_guild_theater_corellia_s01_empty.iff")
+--****************************************************************************************************************************************************************************
+object_building_corellia_shared_guild_university_corellia_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_guild_university_corellia_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_guild_university_corellia_style_01_empty, "object/building/corellia/shared_guild_university_corellia_style_01_empty.iff")
+--********************************************************************************************************************************************************************************************
+object_building_corellia_shared_hospital_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_hospital_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_hospital_corellia_empty, "object/building/corellia/shared_hospital_corellia_empty.iff")
+--**********************************************************************************************************************************************************
+object_building_corellia_shared_hospital_corellia_s02_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_hospital_corellia_s02_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_hospital_corellia_s02_empty, "object/building/corellia/shared_hospital_corellia_s02_empty.iff")
+--******************************************************************************************************************************************************************
+object_building_corellia_shared_hotel_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_hotel_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_hotel_corellia_empty, "object/building/corellia/shared_hotel_corellia_empty.iff")
+--****************************************************************************************************************************************************
+object_building_corellia_shared_salon_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_salon_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_salon_corellia_empty, "object/building/corellia/shared_salon_corellia_empty.iff")
+--****************************************************************************************************************************************************
+object_building_corellia_shared_starport_corellia_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/corellia/shared_starport_corellia_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_corellia_shared_starport_corellia_empty, "object/building/corellia/shared_starport_corellia_empty.iff")
+--************************************************************************************************************************************************************

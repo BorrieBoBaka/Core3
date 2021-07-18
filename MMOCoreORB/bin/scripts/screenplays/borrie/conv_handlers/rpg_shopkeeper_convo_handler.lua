@@ -44,7 +44,6 @@ function rpg_shopkeeper_convo_handler:getNextConversationScreen(conversationTemp
 				if (pGhost ~= nil) then
 					PlayerObject(pGhost):closeSuiWindowType( NEWSNET_INFO )
 				end
-				CreatureObject(conversingPlayer):
 				local suiManager = LuaSuiManager()
 				--local itemName = getItemTemplateName(results[4])
 				local itemDescription = getItemTemplateInformation(results[4])

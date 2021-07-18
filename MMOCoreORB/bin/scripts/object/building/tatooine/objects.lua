@@ -3450,3 +3450,102 @@ object_building_tatooine_shared_tower_jabbas_palace = SharedBuildingObjectTempla
 }
 
 ObjectTemplates:addClientTemplate(object_building_tatooine_shared_tower_jabbas_palace, "object/building/tatooine/shared_tower_jabbas_palace.iff")
+
+object_building_tatooine_shared_cantina_tatooine_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_cantina_tatooine_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_cantina_tatooine_empty, "object/building/tatooine/shared_cantina_tatooine_empty.iff")
+--********************************************************************************************************************************************************
+object_building_tatooine_shared_cloning_facility_tatooine_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_cloning_facility_tatooine_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_cloning_facility_tatooine_empty, "object/building/tatooine/shared_cloning_facility_tatooine_empty.iff")
+--**************************************************************************************************************************************************************************
+object_building_tatooine_shared_fort_tusken_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_fort_tusken_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_fort_tusken_empty, "object/building/tatooine/shared_fort_tusken_empty.iff")
+--**********************************************************************************************************************************************
+object_building_tatooine_shared_guild_combat_tatooine_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_guild_combat_tatooine_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_guild_combat_tatooine_style_01_empty, "object/building/tatooine/shared_guild_combat_tatooine_style_01_empty.iff")
+--************************************************************************************************************************************************************************************
+object_building_tatooine_shared_guild_commerce_tatooine_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_guild_commerce_tatooine_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_guild_commerce_tatooine_style_01_empty, "object/building/tatooine/shared_guild_commerce_tatooine_style_01_empty.iff")
+--****************************************************************************************************************************************************************************************
+object_building_tatooine_shared_guild_theater_tatooine_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_guild_theater_tatooine_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_guild_theater_tatooine_style_01_empty, "object/building/tatooine/shared_guild_theater_tatooine_style_01_empty.iff")
+--**************************************************************************************************************************************************************************************
+object_building_tatooine_shared_guild_university_tatooine_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_guild_university_tatooine_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_guild_university_tatooine_style_01_empty, "object/building/tatooine/shared_guild_university_tatooine_style_01_empty.iff")
+--********************************************************************************************************************************************************************************************
+object_building_tatooine_shared_guild_university_tatooine_style_02_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_guild_university_tatooine_style_02_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_guild_university_tatooine_style_02_empty, "object/building/tatooine/shared_guild_university_tatooine_style_02_empty.iff")
+--********************************************************************************************************************************************************************************************
+object_building_tatooine_shared_hospital_tatooine_s02_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_hospital_tatooine_s02_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_hospital_tatooine_s02_empty, "object/building/tatooine/shared_hospital_tatooine_s02_empty.iff")
+--******************************************************************************************************************************************************************
+object_building_tatooine_shared_junkshop_watto_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_junkshop_watto_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_junkshop_watto_empty, "object/building/tatooine/shared_junkshop_watto_empty.iff")
+--****************************************************************************************************************************************************
+object_building_tatooine_shared_lucky_despot_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_lucky_despot_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_lucky_despot_empty, "object/building/tatooine/shared_lucky_despot_empty.iff")
+--************************************************************************************************************************************************
+object_building_tatooine_shared_palace_tatooine_jabba_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_palace_tatooine_jabba_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_palace_tatooine_jabba_empty, "object/building/tatooine/shared_palace_tatooine_jabba_empty.iff")
+--******************************************************************************************************************************************************************
+object_building_tatooine_shared_salon_tatooine_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_salon_tatooine_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_salon_tatooine_empty, "object/building/tatooine/shared_salon_tatooine_empty.iff")
+--****************************************************************************************************************************************************
+object_building_tatooine_shared_starport_tatooine_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_starport_tatooine_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_starport_tatooine_empty, "object/building/tatooine/shared_starport_tatooine_empty.iff")
+--**********************************************************************************************************************************************************
+
+--New
+object_building_tatooine_shared_cale_herron_house_tatooine_mos_taike = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_cale_herron_house_tatooine_mos_taike.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_cale_herron_house_tatooine_mos_taike, "object/building/tatooine/shared_cale_herron_house_tatooine_mos_taike.iff")
+--**********************************************************************************************************************************
+object_building_tatooine_shared_cave_tatooine_legacy_cult = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_cave_tatooine_legacy_cult.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_cave_tatooine_legacy_cult, "object/building/tatooine/shared_cave_tatooine_legacy_cult.iff")
+--**********************************************************************************************************************************
+object_building_tatooine_shared_cave_tatooine_legacy_darklighter = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_cave_tatooine_legacy_darklighter.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_cave_tatooine_legacy_darklighter, "object/building/tatooine/shared_cave_tatooine_legacy_darklighter.iff")
+--**********************************************************************************************************************************
+
+object_building_tatooine_shared_poi_darklighter_estate = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_poi_darklighter_estate.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_poi_darklighter_estate, "object/building/tatooine/shared_poi_darklighter_estate.iff")
+--**********************************************************************************************************************************
+object_building_tatooine_shared_poi_tosche_station = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/tatooine/shared_poi_tosche_station.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_tatooine_shared_poi_tosche_station, "object/building/tatooine/shared_poi_tosche_station.iff")
+--**********************************************************************************************************************************

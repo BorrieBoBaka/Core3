@@ -2954,3 +2954,34 @@ object_building_military_shared_small_imperial_cloning_facility_s02 = SharedBuil
 }
 
 ObjectTemplates:addClientTemplate(object_building_military_shared_small_imperial_cloning_facility_s02, "object/building/military/shared_small_imperial_cloning_facility_s02.iff")
+
+object_building_military_shared_military_base_police_station_imperial_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/military/shared_military_base_police_station_imperial_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_military_shared_military_base_police_station_imperial_style_01_empty, "object/building/military/shared_military_base_police_station_imperial_style_01_empty.iff")
+--********************************************************************************************************************************************************************************************************************
+object_building_military_shared_military_base_shed_imperial_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/military/shared_military_base_shed_imperial_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_military_shared_military_base_shed_imperial_style_01_empty, "object/building/military/shared_military_base_shed_imperial_style_01_empty.iff")
+--************************************************************************************************************************************************************************************************
+object_building_military_shared_military_base_shed_rebel_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/military/shared_military_base_shed_rebel_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_military_shared_military_base_shed_rebel_style_01_empty, "object/building/military/shared_military_base_shed_rebel_style_01_empty.iff")
+--******************************************************************************************************************************************************************************************
+object_building_military_shared_military_detachment_hq_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/military/shared_military_detachment_hq_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_military_shared_military_detachment_hq_empty, "object/building/military/shared_military_detachment_hq_empty.iff")
+--********************************************************************************************************************************************************************
+object_building_military_shared_military_field_hospital_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/military/shared_military_field_hospital_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_military_shared_military_field_hospital_empty, "object/building/military/shared_military_field_hospital_empty.iff")
+--**********************************************************************************************************************************************************************
+object_building_military_shared_military_tactical_center_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/military/shared_military_tactical_center_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_military_shared_military_tactical_center_empty, "object/building/military/shared_military_tactical_center_empty.iff")
+--************************************************************************************************************************************************************************

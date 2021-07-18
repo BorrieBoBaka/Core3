@@ -2892,3 +2892,123 @@ object_building_naboo_shared_starport_naboo = SharedBuildingObjectTemplate:new {
 }
 
 ObjectTemplates:addClientTemplate(object_building_naboo_shared_starport_naboo, "object/building/naboo/shared_starport_naboo.iff")
+
+object_building_naboo_shared_association_hall_civilian_naboo_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_association_hall_civilian_naboo_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_association_hall_civilian_naboo_empty, "object/building/naboo/shared_association_hall_civilian_naboo_empty.iff")
+--********************************************************************************************************************************************************************************
+object_building_naboo_shared_cantina_naboo_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_cantina_naboo_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_cantina_naboo_empty, "object/building/naboo/shared_cantina_naboo_empty.iff")
+--********************************************************************************************************************************************
+object_building_naboo_shared_capitol_naboo_theed_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_capitol_naboo_theed_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_capitol_naboo_theed_empty, "object/building/naboo/shared_capitol_naboo_theed_empty.iff")
+--********************************************************************************************************************************************************
+object_building_naboo_shared_cloning_facility_naboo_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_cloning_facility_naboo_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_cloning_facility_naboo_empty, "object/building/naboo/shared_cloning_facility_naboo_empty.iff")
+--**************************************************************************************************************************************************************
+object_building_naboo_shared_emperors_retreat_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_emperors_retreat_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_emperors_retreat_empty, "object/building/naboo/shared_emperors_retreat_empty.iff")
+--**************************************************************************************************************************************************
+object_building_naboo_shared_guild_combat_naboo_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_guild_combat_naboo_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_guild_combat_naboo_style_01_empty, "object/building/naboo/shared_guild_combat_naboo_style_01_empty.iff")
+--************************************************************************************************************************************************************************
+object_building_naboo_shared_guild_commerce_naboo_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_guild_commerce_naboo_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_guild_commerce_naboo_style_01_empty, "object/building/naboo/shared_guild_commerce_naboo_style_01_empty.iff")
+--****************************************************************************************************************************************************************************
+object_building_naboo_shared_guild_theater_naboo_s01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_guild_theater_naboo_s01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_guild_theater_naboo_s01_empty, "object/building/naboo/shared_guild_theater_naboo_s01_empty.iff")
+--****************************************************************************************************************************************************************
+object_building_naboo_shared_guild_university_naboo_style_01_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_guild_university_naboo_style_01_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_guild_university_naboo_style_01_empty, "object/building/naboo/shared_guild_university_naboo_style_01_empty.iff")
+--********************************************************************************************************************************************************************************
+object_building_naboo_shared_hangar_naboo_theed_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_hangar_naboo_theed_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_hangar_naboo_theed_empty, "object/building/naboo/shared_hangar_naboo_theed_empty.iff")
+--******************************************************************************************************************************************************
+object_building_naboo_shared_hospital_naboo_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_hospital_naboo_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_hospital_naboo_empty, "object/building/naboo/shared_hospital_naboo_empty.iff")
+--**********************************************************************************************************************************************
+object_building_naboo_shared_hospital_naboo_s02_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_hospital_naboo_s02_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_hospital_naboo_s02_empty, "object/building/naboo/shared_hospital_naboo_s02_empty.iff")
+--******************************************************************************************************************************************************
+object_building_naboo_shared_hotel_naboo_theed_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_hotel_naboo_theed_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_hotel_naboo_theed_empty, "object/building/naboo/shared_hotel_naboo_theed_empty.iff")
+--****************************************************************************************************************************************************
+object_building_naboo_shared_salon_naboo_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_salon_naboo_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_salon_naboo_empty, "object/building/naboo/shared_salon_naboo_empty.iff")
+--****************************************************************************************************************************************
+object_building_naboo_shared_starport_naboo_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_starport_naboo_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_starport_naboo_empty, "object/building/naboo/shared_starport_naboo_empty.iff")
+--**********************************************************************************************************************************************
+--New
+object_building_naboo_shared_ac_mystril_safehouse_01_memorial = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_ac_mystril_safehouse_01_memorial.iff"
+
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_ac_mystril_safehouse_01_memorial, "object/building/naboo/shared_ac_mystril_safehouse_01_memorial.iff")
+--*******************************************************************************************************************************
+object_building_naboo_shared_rori_restuss_shuttleport = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_rori_restuss_shuttleport.iff"
+
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_rori_restuss_shuttleport, "object/building/naboo/shared_rori_restuss_shuttleport.iff")
+--*******************************************************************************************************************************
+object_building_naboo_shared_rori_restuss_starport = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_rori_restuss_starport.iff"
+
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_rori_restuss_starport, "object/building/naboo/shared_rori_restuss_starport.iff")
+--*******************************************************************************************************************************
+object_building_naboo_shared_small_imperial_bunker = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_small_imperial_bunker.iff"
+
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_small_imperial_bunker, "object/building/naboo/shared_small_imperial_bunker.iff")
+--*******************************************************************************************************************************
+object_building_naboo_shared_syren4_safehouse = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_syren4_safehouse.iff"
+
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_syren4_safehouse, "object/building/naboo/shared_syren4_safehouse.iff")
+--*******************************************************************************************************************************
+object_building_naboo_shared_trandoshan_slave_naboo_house = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_trandoshan_slave_naboo_house.iff"
+
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_trandoshan_slave_naboo_house, "object/building/naboo/shared_trandoshan_slave_naboo_house.iff")
+--*******************************************************************************************************************************
+object_building_naboo_shared_trapped_family_house = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/naboo/shared_trapped_family_house.iff"
+
+}
+ObjectTemplates:addClientTemplate(object_building_naboo_shared_trapped_family_house, "object/building/naboo/shared_trapped_family_house.iff")
+--*******************************************************************************************************************************
+

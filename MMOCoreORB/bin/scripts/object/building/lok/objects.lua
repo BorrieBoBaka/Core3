@@ -226,3 +226,10 @@ object_building_lok_shared_nym_stronghold = SharedBuildingObjectTemplate:new {
 }
 
 ObjectTemplates:addClientTemplate(object_building_lok_shared_nym_stronghold, "object/building/lok/shared_nym_stronghold.iff")
+
+object_building_lok_shared_nym_stronghold_empty = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/lok/shared_nym_stronghold_empty.iff"
+}
+ObjectTemplates:addClientTemplate(object_building_lok_shared_nym_stronghold_empty, "object/building/lok/shared_nym_stronghold_empty.iff")
+--********************************************************************************************************************************************
+
